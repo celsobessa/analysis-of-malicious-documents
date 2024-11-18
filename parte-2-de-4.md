@@ -1,10 +1,11 @@
 # Analysis of malicious documents – Part 02 – PDF documents
 
 
-After the overview of virtual machine management and installation of Remnux as an environment to analyze suspicious artifacts, we will explore PDF files in terms of format and ways they can be used to harm users.
-What is a PDF?
 
-When we open a PDF file, we use specific software that render its content in a readable way, however, as many other file types, PDFs are built using a combination of regular plain text and binary data (for images and other elements that might require it), for instance, the following text renders the PDF file showed after:
+Após a visão geral do gerenciamento de máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos, exploraremos os arquivos PDF em termos de formato e maneiras como eles podem ser usados para prejudicar os usuários.
+O que é um PDF?
+
+Quando abrimos um arquivo PDF, usamos um software específico que renderiza seu conteúdo de forma legível; no entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples regular e dados binários (para imagens e outros elementos que possam exigir isso); por exemplo, o texto a seguir renderiza o arquivo PDF mostrado depois:
 
 ```txt
 %PDF-1.4
@@ -61,25 +62,27 @@ startxref
 344
 %%EOF
 ```
-Screenshot of a PDF file in blank with a red square in the bottom left corner of the page
+Captura de tela de um arquivo PDF em branco com um quadrado vermelho no canto inferior esquerdo da página
 
-From “How to create a simple PDF file” from Callas Software
-File structure
+De "How to create a simple PDF file" (Como criar um arquivo PDF simples) da Callas Software
+Estrutura do arquivo
 
-From this example, we can see the standard structure of any PDF file:
+A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
-Screenshot with the text composing a PDF file with divisions marking the different sections: Header, Body, Cross-reference table, and Trailer
+Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Trailer
 
-Header: Containing the version of the protocol the file was built with, to instruct the reader program how to read the rest of the structure and render all its elements.
+Cabeçalho: Contém a versão do protocolo com o qual o arquivo foi criado, para instruir o programa leitor sobre como ler o restante da estrutura e renderizar todos os seus elementos.
 
-Body: Here will be all the objects composing the PDF file, pages, images, text, fonts, etc. Even code and automated actions if the file has them.
+Corpo: Aqui estarão todos os objetos que compõem o arquivo PDF, páginas, imagens, texto, fontes etc. Até mesmo códigos e ações automatizadas, se o arquivo os tiver.
 
-Cross-reference table: Here we’ll find a list of all the objects of the document for easy access and their respective places inside the file. This is similar to a ‘table of contents’ but for the PDF reader software to read. If at any given time the reader needs to render a specific object (for instance, if we scroll to a random page on a big document), the reader software will see what page should it render, and look it on this table to locate the respective elements in the body to load them on the screen.
+Tabela de referência cruzada: Aqui encontraremos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para o software leitor de PDF ler. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser renderizada e procurará nessa tabela para localizar os respectivos elementos no corpo e carregá-los na tela.
 
-Trailer: Here we will find the place in the document of the cross-reference table and other useful information, like the number of objects in the cross-reference table (to check that the file is not corrupted for instance), the root object of the document, and encryption information if applicable. PDFs readers by design start reading the documents from the end, where they can find quickly where is the root object, and the cross-reference table to start rendering content.
-Understanding PDF objects
 
-Given the way PDFs are structured, the most interesting section to deep into is the body, because there we can found everything we can see and interact with (text, pages, images, forms, code, etc.). All of these elements are called objects, and there is a wide range of them according to the specifications, for instance, in the example above, the object
+Trailer: Aqui encontraremos o local no documento da tabela de referência cruzada e outras informações úteis, como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.
+Entendendo os objetos do PDF
+
+Considerando a forma como os PDFs são estruturados, a seção mais interessante para se aprofundar é o corpo do documento, pois lá se encontra tudo o que podemos ver e interagir (texto, páginas, imagens, formulários, código etc.). Todos esses elementos são chamados de objetos, e há uma grande variedade deles de acordo com as especificações, por exemplo, no exemplo acima, o objeto
+
 
 ```txt
 4 0 obj
@@ -92,146 +95,146 @@ Given the way PDFs are structured, the most interesting section to deep into is 
 endobj
 ```
 
-is a page with the id 4, has a parent element with the id 3, and contains as child the element with id 1 (the red rectangle). Showing the exact way each object is written is outside of the scope of this material, however, there are some kinds of elements that might be used for malicious purposes, and we want to cover them a little more.
+é uma página com o id 4, tem um elemento pai com o id 3 e contém como filho o elemento com o id 1 (o retângulo vermelho). Mostrar a maneira exata como cada objeto é escrito está fora do escopo deste material; no entanto, há alguns tipos de elementos que podem ser usados para fins maliciosos, e queremos abordá-los um pouco mais.
 
-/OpenAction: This object reference a set of actions to be executed when the PDF file is opened, this might be used to launch a website to support the content or for tracking purposes, execute JavaScript code, etc. This might be used to trick users into executing extra actions that can be harmful, or depending on the computer environment, this object can execute malware directly.
+/OpenAction: Esse objeto faz referência a um conjunto de ações a serem executadas quando o arquivo PDF é aberto, o que pode ser usado para iniciar um site para dar suporte ao conteúdo ou para fins de rastreamento, executar código JavaScript etc. Isso pode ser usado para induzir os usuários a executar ações extras que podem ser prejudiciais ou, dependendo do ambiente do computador, esse objeto pode executar malware diretamente.
 
-/AA: This object also includes a series of actions that are triggered under varying circumstances, like visualizing a page, hovering the mouse pointer over specific objects, filling form fields, etc. The associated risks are similar to the /OpenAction object, but with many more trigger scenarios.
+/AA: esse objeto também inclui uma série de ações que são acionadas em circunstâncias variadas, como visualizar uma página, passar o ponteiro do mouse sobre objetos específicos, preencher campos de formulários etc. Os riscos associados são semelhantes aos do objeto /OpenAction, mas com muito mais cenários de acionamento.
 
-/JS or /Javascript:  Contains JavaScript code to be executed after an action is triggered, this code might include functions exclusive to PDFs.
+/JS ou /Javascript:  Contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
 
-/Launch: Tries to launch an external application on the device after an action is triggered, this might be used, for instance, to open other documents or execute specific commands, which might be harmful.
+/Launch: Tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
 
-/EmbeddedFile: Allows the inclusion of arbitrary files, from documents to executables inside the PDF file. There are antecedents of benign PDF files containing other harmful files embedded, like malware executables or Microsoft Office documents with malicious macros.
 
-/ObjStm: Contains arbitrary information that will be processed according to the way it is called. The main use for this object is for grouping many objects and compressing them, resulting in a smaller file. However, this might be used as well to compress malicious code as a way to obfuscate it and avoid antivirus detection. Given the many different use cases for this type of object, assuming its presence as malicious will lead us to many false positives.
+/EmbeddedFile: permite a inclusão de arquivos arbitrários, de documentos a executáveis, dentro do arquivo PDF. Há antecedentes de arquivos PDF benignos contendo outros arquivos nocivos incorporados, como executáveis de malware ou documentos do Microsoft Office com macros maliciosas.
 
-In more elaborated attacks, a combination of these objects can be used, for instance, a PDF file might trigger an action that opens a file that is embedded in the same file encrypted in a /ObjStm.
+/ObjStm: Contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código mal-intencionado como uma forma de ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada nos levará a muitos falsos positivos.
 
-Considering all of this, we want to know if a file has any of these object types as a first step to see if a PDF file is malicious, or at least to make sure it is not.
-Enter pdfid
+Em ataques mais elaborados, uma combinação desses objetos pode ser usada; por exemplo, um arquivo PDF pode acionar uma ação que abre um arquivo incorporado no mesmo arquivo criptografado em um /ObjStm.
 
-Given that we know where to start looking for red flags on PDF files we might consider suspicious, we can start using the tool pdfid as the first step to see which object types are contained in our file. Pdfid is a part of a suite of tools developed by Didier Stevens to streamline some analysis processes on PDF files. These tools are executed using the command line, so they are known as CLI (Command Line Interface) applications. We’ll be explaining how to use them using the Remnux Virtual Machine we set up in the previous part of this course.
+Considerando tudo isso, queremos saber se um arquivo tem algum desses tipos de objetos como primeira etapa para verificar se um arquivo PDF é mal-intencionado ou, pelo menos, para ter certeza de que não é.
 
-To use pdfid, we need to open a Terminal application in our virtual machine. When we start our VM this window should be already opened, however, we can always click the Activities menu in the top left corner, and then the Terminal icon in the left panel, as shown in the image,
+Digite `pdfid`
 
-Screenshot of the navigation bar in REMnux highlighting the terminal icon
+Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PDF que podemos considerar suspeitos, podemos começar a usar a ferramenta pdfid como a primeira etapa para ver quais tipos de objetos estão contidos em nosso arquivo. O pdfid faz parte de um conjunto de ferramentas desenvolvidas por Didier Stevens para simplificar alguns processos de análise em arquivos PDF. Essas ferramentas são executadas usando a linha de comando, por isso são conhecidas como aplicativos CLI (Command Line Interface). Explicaremos como usá-las usando a máquina virtual Remnux que configuramos na parte anterior deste curso.
 
-Screenshot of the REMnux virtual machine in its inicial status
+Para usar o pdfid, precisamos abrir um aplicativo de Terminal em nossa máquina virtual. Quando iniciamos nossa máquina virtual, essa janela já deve estar aberta; no entanto, sempre podemos clicar no menu Activities (Atividades) no canto superior esquerdo e, em seguida, no ícone Terminal no painel esquerdo, conforme mostrado na imagem,
 
-Once in the Terminal window, we can start exploring the use of the pdfid command though its help, we only need to type
+Captura de tela da barra de navegação no REMnux destacando o ícone do terminal
+
+Captura de tela da máquina virtual REMnux em seu status inicial
+
+Uma vez na janela do Terminal, podemos começar a explorar o uso do comando pdfid por meio de sua ajuda, basta digitar
 
 `pdfid.py -h`
 
--h is for “help”
+-h significa "ajuda".
 
-Tip: we can always use the Tab key to autocomplete some commands
+Dica: sempre podemos usar a tecla Tab para autocompletar alguns comandos
 
-Screenshot of a terminal window with the help command from the pdfid.py tool
+Captura de tela de uma janela de terminal com o comando de ajuda da ferramenta pdfid.py
 
-Here we can see a number of options we can employ when using pdfid, this might look challenging for those new to using the terminal, however, we usually stick to a few of these options, and also with little practice, the process becomes faster and easier.
+Aqui podemos ver várias opções que podemos empregar ao usar o pdfid, o que pode parecer desafiador para quem está começando a usar o terminal; no entanto, geralmente nos limitamos a algumas dessas opções e, com um pouco de prática, o processo se torna mais rápido e fácil.
 
-To analyze our first file, we need to keep present that the command we run in the command line is running “from a folder/directory”, so we need to know where are running the command from, and where is located the file we want to analyze. To give you some context, each time we open the Terminal application in Remnux, we are opening a terminal in the Home directory, the same location that we see when we open the Files application
+Para analisar nosso primeiro arquivo, precisamos estar cientes de que o comando que executamos na linha de comando está sendo executado "de uma pasta/diretório", portanto, precisamos saber de onde estamos executando o comando e onde está localizado o arquivo que queremos analisar. Para contextualizar, toda vez que abrimos o aplicativo Terminal no Remnux, estamos abrindo um terminal no diretório Home, o mesmo local que vemos quando abrimos o aplicativo Files
 
-Screenshot of the navigation bar in REMnux highlighting the files icon
+Captura de tela da barra de navegação no REMnux destacando o ícone de arquivos
 
-Screenshot of the file explorer application inside REMnux
+Captura de tela do aplicativo explorador de arquivos no REMnux
 
-To make things easier for now, we can put our PDFs in this folder, so the terminal command is executed from the same directory as our PDF file.
+Para facilitar as coisas por enquanto, podemos colocar nossos PDFs nessa pasta, de modo que o comando do terminal seja executado a partir do mesmo diretório do nosso arquivo PDF.
 
-We can take our example file from above and save it as a pdf file with the help of a text editor on our host computer and drag and drop the file into the Remnux home directory.
+Podemos pegar nosso arquivo de exemplo acima e salvá-lo como um arquivo PDF com a ajuda de um editor de texto em nosso computador host e arrastar e soltar o arquivo no diretório inicial do Remnux.
 
-Screenshot of the file explorer application inside REMnux with the file test.pdf highlighted
+Captura de tela do aplicativo explorador de arquivos dentro do REMnux com o arquivo test.pdf destacado
 
-And with this, we can run the following command in our Terminal:
+Com isso, podemos executar o seguinte comando em nosso Terminal:
 
 `pdfid.py test.pdf`
 
-To receive this response:
+Para receber esta resposta:
 
-Screenshot of a terminal window with the pdfid.py tool output for the analysis of the test.pdf file
+Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo test.pdf
 
-As we can check, all the objects seen by pdfid match with the ones we know from the source of the PDF file, and none of them seems to be in the list of suspicious objects we described above.
-As we stated before, there are techniques malicious actors employ to avoid easy detection of specific kinds of objects, pdfid tries to show even obfuscated objects, however, in some less common cases, there might be hidden objects that will require diving a little deeper to discover.
-Enter pdf-parser, example 1
+Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo test.pdf
 
-Now, what happens when we find a pdf file with a suspicious object? Imagine we have a file ex005.pdf that gives us an output like this on pdfid:
+Como podemos verificar, todos os objetos vistos pelo pdfid correspondem aos que conhecemos da fonte do arquivo PDF, e nenhum deles parece estar na lista de objetos suspeitos que descrevemos acima.
+Como dissemos antes, há técnicas que os agentes mal-intencionados empregam para evitar a fácil detecção de tipos específicos de objetos. O pdfid tenta mostrar até mesmo objetos ofuscados; no entanto, em alguns casos menos comuns, pode haver objetos ocultos que exigem um mergulho um pouco mais profundo para serem descobertos.
+Digite pdf-parser, exemplo 1
 
-Screenshot of a terminal window with the pdfid.py tool output for the analysis of the file ex005.pdf highlighting the objects of types JS, JavasScript, and OpenAction
+Agora, o que acontece quando encontramos um arquivo PDF com um objeto suspeito? Imagine que temos um arquivo ex005.pdf que nos dá uma saída como esta no pdfid:
 
-From here, and the guidance above of this resource, we know that there are 3 objects of the types /JS, /Javascript, and /OpenAction that could be interesting to review, especially because they suggest that the file is trying to execute some action when we open the file. Here, we can process it with pdf-parser to get which object type is each object and to see the content of said objects. For our example file, we will execute the following command:
+Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex005.pdf, destacando os objetos dos tipos JS, JavasScript e OpenAction
+
+A partir daqui, e da orientação acima desse recurso, sabemos que há 3 objetos dos tipos /JS, /Javascript e /OpenAction que podem ser interessantes de analisar, especialmente porque sugerem que o arquivo está tentando executar alguma ação quando abrimos o arquivo. Aqui, podemos processá-lo com o pdf-parser para obter qual tipo de objeto é cada objeto e ver o conteúdo desses objetos. Para nosso arquivo de exemplo, executaremos o seguinte comando:
 
 `pdf-parser.py -a ex005.pdf`
 
-We use the argument -a to see file’s stats, for a better reference we can always use pdf-parser.py –help to see a list of options on the screen.
+Usamos o argumento -a para ver as estatísticas do arquivo; para uma melhor referência, podemos sempre usar pdf-parser.py -help para ver uma lista de opções na tela.
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file ex005.pdf highlighting the objects of types JS, JavasScript, and OpenAction
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf, destacando os objetos dos tipos JS, JavasScript e OpenAction
 
-Here, we can see that indeed we have these three problematic objects, but also some additional information, we can see the id of the objects for each object type. Now we know that the /JS and /Javascript object(s) are living in the object with id 7, and the /OpenAction one is living in the object with id 1. Next, we can see the content of the /OpenAction object to see what the document is trying to do when opening it, for this, we use the command
+Aqui, podemos ver que de fato temos esses três objetos problemáticos, mas também algumas informações adicionais, podemos ver o id dos objetos para cada tipo de objeto. Agora sabemos que os objetos /JS e /Javascript estão no objeto com id 7, e o objeto /OpenAction está no objeto com id 1. Em seguida, podemos ver o conteúdo do objeto /OpenAction para ver o que o documento está tentando fazer ao abri-lo. Para isso, usamos o comando
 
 `pdf-parser.py -o 1 ex005.pdf`
 
-Here the -o argument is used to give the tool the id of the object which content we want to see on the screen:
+Aqui, o argumento -o é usado para fornecer à ferramenta a identificação do objeto cujo conteúdo queremos ver na tela:
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file ex005.pdf and its object 1, highlighting an OpenAction object type
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 1, destacando um tipo de objeto OpenAction
 
-Here, we can see the line “/OpenAction 7 0 R”, this means that the actual content of the /OpenAction object is living in the object with id 7, and when we open the file, we will call or reference said object. Repeating the process to see the content of the object with id 7 we get:
+Aqui, podemos ver a linha "/OpenAction 7 0 R", o que significa que o conteúdo real do objeto /OpenAction está no objeto com id 7 e, quando abrirmos o arquivo, chamaremos ou faremos referência a esse objeto. Repetindo o processo para ver o conteúdo do objeto com id 7, obtemos:
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file ex005.pdf and its object 7, highlighting a Javascript object type
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 7, destacando um tipo de objeto Javascript
 
-Where we can see that the document is trying to show an alert or pop-up with the message described in the terminal, if we open the file it will look like this:
+Onde podemos ver que o documento está tentando mostrar um alerta ou pop-up com a mensagem descrita no terminal, se abrirmos o arquivo, ele terá a seguinte aparência:
 
-Screenshot of a popup window saying Hello from PDF JavaScript over a PDF document saying JavaScript example
-Example 2
+Captura de tela de uma janela pop-up dizendo Hello from PDF JavaScript sobre um documento PDF dizendo JavaScript example
 
-As we mentioned before, there might be files in which suspicious content is not viewable in plain text, there might be a number of reasons to do this in legitimate cases, like compressing long pieces of information to reduce the size of the file among others, however, malicious files employ these techniques with obfuscation purposes to help avoid detection by antivirus software and other security solutions. For instance, if we repeat the previous workflow to the file ex006.pdf, we will see that the output for the pdfid command is the following:
+Exemplo 2
 
-Screenshot of a terminal window with the pdfid.py tool output for the analysis of the file ex006.pdf highlighting one JavasScript object
+Como mencionamos anteriormente, pode haver arquivos em que o conteúdo suspeito não seja visível em texto simples. Pode haver vários motivos para fazer isso em casos legítimos, como compactar informações longas para reduzir o tamanho do arquivo, entre outros; no entanto, os arquivos mal-intencionados empregam essas técnicas com o objetivo de ofuscação para ajudar a evitar a detecção pelo software antivírus e outras soluções de segurança. Por exemplo, se repetirmos o fluxo de trabalho anterior para o arquivo ex006.pdf, veremos que a saída do comando pdfid é a seguinte:
 
-Here we can see in the /JavaScript line “1(1)”, this means that pdfid detected an object of this type, but obfuscated, repeating the same workflow we already know, we review the object with id 8 (where the JavaScript code resides) to see the following:
+Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex006.pdf destacando um objeto JavasScript
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file ex006.pdf and its object 8, highlighting a Javascript object type with a FlateDecode Filter
+Aqui podemos ver na linha /JavaScript "1(1)", isso significa que o pdfid detectou um objeto desse tipo, mas ofuscado, repetindo o mesmo fluxo de trabalho que já conhecemos, analisamos o objeto com id 8 (onde reside o código JavaScript) para ver o seguinte:
 
-Here we can’t see the actual code like in the last example, instead, we see among other things the line “/Filter /FlateDecode”. The /Filter option executes an operation on the final content of a stream to decode it, then /FlateDecode indicates the associated encoding that should be considered when decoding the content, to give a better sense of this, if we open the file with a text editor and search manually for this element we should see something like this:
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file ex006.pdf and its object 8, highlighting a Javascript object type with a FlateDecode Filter and the content of the stream, which can't be understood because of inintelligible characters
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode
+Aqui não podemos ver o código real como no último exemplo, em vez disso, vemos, entre outras coisas, a linha "/Filter /FlateDecode". A opção /Filter executa uma operação no conteúdo final de um fluxo para decodificá-lo e, em seguida, /FlateDecode indica a codificação associada que deve ser considerada ao decodificar o conteúdo. Para ter uma noção melhor disso, se abrirmos o arquivo com um editor de texto e procurarmos manualmente por esse elemento, veremos algo assim:
 
-Where the content inside the red square is the actual encoded content, for this case, pdf-parser can try to decode the actual content, for this we use the argument -f, so we end up using the command
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo, que não pode ser entendido por causa de caracteres ininteligíveis
+Onde o conteúdo dentro do quadrado vermelho é o conteúdo codificado real, nesse caso, o pdf-parser pode tentar decodificar o conteúdo real, para isso usamos o argumento -f, então acabamos usando o comando
 
 `pdf-parser.py -o 8 -f ex006.pdf`
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file ex006.pdf and its object 8, highlighting a Javascript object type with a FlateDecode Filter and the content of the stream, the function included an option to decode the stream and it reveals a JavaScript function
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo. e o conteúdo do fluxo, a função incluiu uma opção para decodificar o fluxo e revela uma função JavaScript
 
-Where we can see the actual content of the object to be rendered by the PDF reader.
+Onde podemos ver o conteúdo real do objeto a ser renderizado pelo leitor de PDF.
 
-Now that we know the basics of how to review PDF files to look for suspicious objects, there are a couple of challenges for you.
-Example 3
+Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de objetos suspeitos, há alguns desafios para você.
+Exemplo 3
 
-Another thing PDF creator software does usually to build new files is to create objects inside streams that are encoded to make the resulting files smaller, this is desirable in general, but also creates a way to further obfuscate malicious code, analyzing the file example3.pdf we see some /ObjStm (Object Streams) that might contain (and they do indeed) other objects that might be interesting.
+Outra coisa que o software criador de PDF faz normalmente para criar novos arquivos é criar objetos dentro de fluxos que são codificados para tornar os arquivos resultantes menores. Isso é desejável em geral, mas também cria uma maneira de ofuscar ainda mais o código malicioso. Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que podem conter (e de fato contêm) outros objetos que podem ser interessantes.
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes
+Para esse tipo de cenário, é aconselhável usar a opção -O (como em o maiúsculo) do pdf-parser. Essa opção tentará analisar qualquer fluxo que contenha um objeto e tratá-los como objetos regulares do arquivo, por exemplo, usando essa opção assim.
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file example3.pdf showing a number of different object types
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes
 
-For this kind of scenarios, it is advisable to use the option -O (as in capital o) of pdf-parser, this option will try to parse any stream containing an object and treat them as regular objects of the file, for instance, using this option like this.
+Revela que o arquivo tem "novos" objetos e que um deles é um /AA, o que é interessante para procurar comportamento malicioso, observando o respectivo objeto que temos
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file example3.pdf showing a number of different object types
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA
 
-Reveal that the file has “new” objects and that one of them is an /AA, which is interesting to look for malicious behavior, looking at the respective object we have
+Isso nos diz que a ação está vinculada a um objeto de página; nesse caso, o /O está indicando que a ação é acionada quando abrimos a página, e a ação real é armazenada no objeto 37.
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file example3.pdf and its object 10, showing an AA object type
+Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 37, mostrando um tipo de objeto desconhecido
 
-Telling us that the action is tied to a page object, in this case the /O is indicating that the action is triggered when we open the page, and the actual action is stored in the object 37, then
+Após algumas pesquisas, podemos concluir que esse objeto tenta abrir a caixa de diálogo de propriedades do leitor de PDF da seguinte forma (nada especialmente perigoso - exemplo em um computador configurado em espanhol)
 
-Screenshot of a terminal window with the pdf-parser.py tool output for the analysis of the file example3.pdf and its object 37, showing an unknown object type
+Captura de tela de uma janela de propriedades de arquivo do leitor de PDF
+Conclusão: tente usar o parâmetro -O caso haja outros objetos escondidos nos fluxos
+Desafios
 
-After some research, we can conclude that this object tries to open the properties dialog of the pdf reader like this (nothing especially dangerous – example in a computer configured in Spanish)
-
-Screenshot of a PDF reader window of file propoerties
-
-Conclusion: try to use the -O parameter in case there are other objects hiding inside streams
-
-Challenges
-
-Question: analyzing the file challenge1.pdf (md5: 3b20821cb817e40e088d9583e8699938), what kind of interesting object is hiding behind a stream?
+Pergunta: analisando o arquivo challenge1.pdf (md5: 3b20821cb817e40e088d9583e8699938), que tipo de objeto interessante está escondido atrás de um fluxo?
 
 1. OpenAction
 
@@ -252,10 +255,9 @@ Question: analyzing the file challenge1.pdf (md5: 3b20821cb817e40e088d9583e86999
 
 
 
-Question: analyzing the file challenge2.pdf (md5: 30373b268d516845751c10dc2b579c97), we can see an action that tries to open an URL, what code the URL includes as a tracking code? (hint: 6 numbers)
+Pergunta: Analisando o arquivo challenge2.pdf (md5: 30373b268d516845751c10dc2b579c97), podemos ver uma ação que tenta abrir uma URL. Qual código a URL inclui como código de rastreamento? (dica: 6 números)
 
-I want to see the answer
+Quero ver a resposta
 
 
-
-Now that we know more about PDFs, lets cover in the next part another heavily weaponized kind of files: Office Documents.
+Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tipo de arquivo fortemente armado: Documentos do Office.
