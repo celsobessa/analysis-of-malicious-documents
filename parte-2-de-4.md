@@ -1,6 +1,4 @@
-# Analysis of malicious documents – Part 02 – PDF documents
-
-
+# Analysis of malicious documents – Part 02 – PDF documents.
 
 Após a visão geral do gerenciamento de máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos, exploraremos os arquivos PDF em termos de formato e maneiras como eles podem ser usados para prejudicar os usuários.
 O que é um PDF?
