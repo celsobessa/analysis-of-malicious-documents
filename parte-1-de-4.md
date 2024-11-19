@@ -4,140 +4,76 @@ Introdução
 
 Este (mini)curso destina-se aos entusiastas e profissionais de segurança digital (suporte técnico, facilitadores, socorristas, etc.) que desejam saber mais sobre documentos maliciosos e como identificá-los. Esses documentos podem ser anexos de e-mail, arquivos em pen drives ou downloads de sites específicos. Os principais objetivos são:
 
-Aprender os conceitos básicos de como funcionam os formatos comuns de documentos e como eles podem ser transformados em armas, com ênfase especial em arquivos Portable Document Format (PDF) e documentos do Microsoft Office (pelo menos MS Word, Excel e PowerPoint).
-
-Apresentar algumas ferramentas que podem ajudar a identificar sinais de documentos perigosos ou confirmar se é seguro abri-los.
-
-Fornecer alguns conselhos de segurança e esclarecer dúvidas comuns sobre como lidar com arquivos suspeitos.
+- Aprender os conceitos básicos de como funcionam os formatos comuns de documentos e como eles podem ser transformados em armas, com ênfase especial em arquivos Portable Document Format (PDF) e documentos do Microsoft Office (pelo menos MS Word, Excel e PowerPoint).
+- Apresentar algumas ferramentas que podem ajudar a identificar sinais de documentos perigosos ou confirmar se é seguro abri-los.
+- Fornecer alguns conselhos de segurança e esclarecer dúvidas comuns sobre como lidar com arquivos suspeitos.
 
 Este curso utiliza o formato de leituras curtas e questionários na maior parte do conteúdo abordado, sendo que, dependendo do material, será necessário executar algumas ferramentas. Isso será abordado na seção Ambiente de trabalho logo após a introdução, os requisitos gerais são:
 
 Para concluir os exercícios propostos:
 
-```
-Capacidade de executar 1) uma máquina virtual no computador usando o Virtualbox ou software semelhante, ou 2) scripts python (somente para analisar os arquivos do curso, não para analisar amostras reais).
-```
-
-O tempo para cobrir o material (aproximadamente 2 horas)
+- Capacidade de executar 1) uma máquina virtual no computador usando o Virtualbox ou software semelhante, ou 2) scripts python (somente para analisar os arquivos do curso, não para analisar amostras reais).
+- O tempo para cobrir o material (aproximadamente 2 horas)
 
 Este curso utiliza materiais disponíveis em outras referências e usa apenas ferramentas disponíveis gratuitamente. A maior parte do conteúdo é inspirada no trabalho que Didier Stevens tem feito ao longo do tempo, especialmente para o SANS, bem como em outras referências:
 
-https://blog.didierstevens.com/2011/05/25/malicious-pdf-analysis-workshop-screencasts/
+- https://blog.didierstevens.com/2011/05/25/malicious-pdf-analysis-workshop-screencasts/
+- https://github.com/filipi86/MalwareAnalysis-in-PDF
+- https://www.sentinelone.com/blog/malicious-pdfs-revealing-techniques-behind-attacks/
+- https://www.youtube.com/watch?v=opdVFQEBCNU
 
-https://github.com/filipi86/MalwareAnalysis-in-PDF
+## Estrutura
 
-https://www.sentinelone.com/blog/malicious-pdfs-revealing-techniques-behind-attacks/
+- Isenções de responsabilidade
+- Algumas considerações sobre modelagem de ameaças
+- Para cada tipo de formato de arquivo (PDFs, MS Office)
+- Como eles são estruturados (de uma forma mais técnica)
+  - Como eles podem ser transformados em armas
+  - Como podemos fazer uma análise introdutória
+  - Algumas conclusões/fatos sobre o formato de arquivo
+- Alguns conselhos gerais contra as ameaças relacionadas
+- O que vem a seguir
 
-https://www.youtube.com/watch?v=opdVFQEBCNU
+A seguir, uma série de isenções de responsabilidade úteis antes de começar a usar o material
 
-Estrutura
-
-Isenções de responsabilidade
-
-Algumas considerações sobre modelagem de ameaças
-
-Para cada tipo de formato de arquivo (PDFs, MS Office)
-
-```
-Como eles são estruturados (de uma forma mais técnica)
-
-
-Como eles podem ser transformados em armas
-
-
-Como podemos fazer uma análise introdutória
-
-
-Algumas conclusões/fatos sobre o formato de arquivo
-```
-
-Alguns conselhos gerais contra as ameaças relacionadas
-
-O que vem a seguir
-
-A seguir, uma série de isenções de responsabilidade úteis antes de começar a usar o material Isenções de responsabilidade
+## Isenções de responsabilidade
 
 Dada a natureza da tarefa que realizaremos após dominar o conteúdo fornecido (análise de arquivos maliciosos e perigosos) e a complexidade do tópico (que consideramos uma introdução à análise de malware), recomendamos enfaticamente a leitura desta seção e a concordância com todos os itens antes de prosseguir.
 
-Este curso é introdutório: ele foi criado para pessoas sem experiência anterior em análise de documentos suspeitos. Na seção Próximas etapas, incluímos uma lista de recursos para leitura e referência adicionais.
+- **Este curso é introdutório:** ele foi criado para pessoas sem experiência anterior em análise de documentos suspeitos. Na seção Próximas etapas, incluímos uma lista de recursos para leitura e referência adicionais.
+- **Este curso não aborda muitas técnicas avançadas:** há muitas ameaças específicas cuja complexidade vai além do escopo deste material. Além disso, como em tudo relacionado à segurança da informação, pode haver ameaças esperando para serem descobertas que não serão abordadas neste curso. Recomendamos procurar ajuda caso suspeitemos que estamos vendo uma ameaça avançada ou desconhecida em um arquivo ou em qualquer outro artefato. Dito isso, este curso nos ajudará a entender melhor como um arquivo benigno geralmente se parece, em vez de como todo documento mal-intencionado é estruturado.
+- **Tome suas precauções ao analisar arquivos reais:** as amostras usadas neste curso são inofensivas, mas repetir os fluxos de trabalho apresentados em amostras reais sem as respectivas medidas de segurança provavelmente fará com que seu dispositivo seja infectado. Não execute nenhum arquivo suspeito em seu computador principal, use uma máquina virtual, um dispositivo dedicado ou um ambiente em que não seja possível executar o arquivo em sua máquina, mas apenas analisar suas propriedades.
 
-Este curso não aborda muitas técnicas avançadas: há muitas ameaças específicas cuja complexidade vai além do escopo deste material. Além disso, como em tudo relacionado à segurança da informação, pode haver ameaças esperando para serem descobertas que não serão abordadas neste curso. Recomendamos procurar ajuda caso suspeitemos que estamos vendo uma ameaça avançada ou desconhecida em um arquivo ou em qualquer outro artefato. Dito isso, este curso nos ajudará a entender melhor como um arquivo benigno geralmente se parece, em vez de como todo documento mal-intencionado é estruturado.
+## Questionário de isenção de responsabilidade
 
-Tome suas precauções ao analisar arquivos reais: as amostras usadas neste curso são inofensivas, mas repetir os fluxos de trabalho apresentados em amostras reais sem as respectivas medidas de segurança provavelmente fará com que seu dispositivo seja infectado. Não execute nenhum arquivo suspeito em seu computador principal, use uma máquina virtual, um dispositivo dedicado ou um ambiente em que não seja possível executar o arquivo em sua máquina, mas apenas analisar suas propriedades.
+**Pergunta 1:** Entendo os riscos de analisar arquivos suspeitos, as possíveis consequências de executar malware de propósito ou acidentalmente, li o conteúdo desta página/seção e entendo as estratégias mais comuns para lidar com essas possíveis ameaças.
 
-Questionário de isenção de responsabilidade
-
-Pergunta 1: Entendo os riscos de analisar arquivos suspeitos, as possíveis consequências de executar malware de propósito ou acidentalmente, li o conteúdo desta página/seção e entendo as estratégias mais comuns para lidar com essas possíveis ameaças.
-
-Pergunta 2: Qual das opções a seguir descreve melhor o que precisamos fazer ao analisar um arquivo realmente suspeito?
+**Pergunta 2:** Qual das opções a seguir descreve melhor o que precisamos fazer ao analisar um arquivo realmente suspeito?
 
 1. Devemos iniciar uma máquina virtual (VM) ou um computador dedicado para analisar o arquivo e dar a ele o mínimo de acesso possível à nossa máquina host e ao restante da rede
 2. Podemos analisar o arquivo em nosso próprio computador/ambiente, mas sem ter acesso à Internet.
 3. Devemos analisar o arquivo em um computador ou máquina virtual (VM) com sistemas operacionais menos comuns, como Linux ou macOS.
 
-Sobre modelos de ameaças
+## Sobre modelos de ameaças
 
 Ao procurar conselhos sobre como lidar com arquivos suspeitos, geralmente a abordagem proposta é evitar qualquer interação com os arquivos, por exemplo:
 
-Não abra arquivos desconhecidos.
+- Não abra arquivos desconhecidos.
+- Não interaja com arquivos suspeitos.
+- Não faça contato visual com nenhum arquivo suspeito.
+-
+- Ou podemos encontrar outro tipo de conselho que, embora seja suficiente para a maioria das pessoas, pode ser enganoso para usuários sensíveis, como ativistas de direitos humanos ou jornalistas que trabalham em ambientes perigosos, ou simplesmente contraproducente, por exemplo:
 
-Não interaja com arquivos suspeitos.
-
-Não faça contato visual com nenhum arquivo suspeito. Ou podemos encontrar outro tipo de conselho que, embora seja suficiente para a maioria das pessoas, pode ser enganoso para usuários sensíveis, como ativistas de direitos humanos ou jornalistas que trabalham em ambientes perigosos, ou simplesmente contraproducente, por exemplo:
-
-O uso de um antivírus é suficiente para protegê-lo de arquivos maliciosos.
-
-Somente os documentos do Microsoft Office com macros são perigosos, portanto, você pode tratar outros tipos de arquivos sem se preocupar muito. Exclua qualquer e-mail com anexos suspeitos. Isso é particularmente preocupante em alguns cenários porque, se excluirmos os e-mails e anexos de nossa caixa de entrada, perderemos evidências importantes que podem nos ajudar a avaliar se os artefatos são de fato mal-intencionados ou direcionados, o que pode ser uma informação inestimável.
-
-Na prática, quando estamos trabalhando com comunidades visadas (especialmente jornalistas), não interagir com arquivos não é uma opção. Muitas organizações, grupos e indivíduos precisam abrir arquivos potencialmente perigosos como parte de seu trabalho, e eles o farão mesmo sabendo dos riscos:
-
-Jornalistas recebem um convite para uma coletiva de imprensa. Ativistas recebem um documento de apoio como prova em um caso de violação de direitos humanos ou como um vazamento.
-
-Uma instituição adversária envia um documento que deve ser analisado e tratado.
-
-Um fator extra a ser considerado é que os atores da sociedade civil estão expostos a ameaças direcionadas desconhecidas pelos mecanismos antivírus. Este curso utiliza materiais disponíveis em outras referências e usa apenas ferramentas disponíveis gratuitamente.A maior parte do conteúdo é inspirada no trabalho que Didier Stevens tem feito ao longo do tempo, especialmente para o SANS, bem como em outras referências: https://blog.didierstevens.com/2011/05/25/malicious-pdf-analysis-workshop-screencasts/ https://github.com/filipi86/MalwareAnalysis-in-PDF
-
-https://www.sentinelone.com/blog/malicious-pdfs-revealing-techniques-behind-attacks/ https://www.youtube.com/watch?v=opdVFQEBCNU Estrutura Isenções de responsabilidade
-
-Algumas considerações sobre modelagem de ameaças Para cada tipo de formato de arquivo (PDFs, MS Office)
-
-Como eles são estruturados (de uma forma mais técnica) Como eles podem ser transformados em armas
-
-Como podemos fazer uma análise introdutória Algumas conclusões/fatos sobre o formato de arquivo
-
-Alguns conselhos gerais contra as ameaças relacionadas O que vem a seguir A seguir, uma série de isenções de responsabilidade úteis antes de começar a usar o material
-
-Isenções de responsabilidade Dada a natureza da tarefa que realizaremos após dominar o conteúdo fornecido (análise de arquivos maliciosos e perigosos) e a complexidade do tópico (que consideramos uma introdução à análise de malware), recomendamos enfaticamente a leitura desta seção e a concordância com todos os itens antes de prosseguir.
-
-Este curso é introdutório: ele foi criado para pessoas sem experiência anterior em análise de documentos suspeitos.Na seção Próximas etapas, incluímos uma lista de recursos para leitura e referência adicionais.
-
-Este curso não aborda muitas técnicas avançadas: há muitas ameaças específicas cuja complexidade vai além do escopo deste material. Além disso, como em tudo relacionado à segurança da informação, pode haver ameaças esperando para serem descobertas que não serão abordadas neste curso.Recomendamos procurar ajuda caso suspeitemos que estamos vendo uma ameaça avançada ou desconhecida em um arquivo ou em qualquer outro artefato.Dito isso, este curso nos ajudará a entender melhor como um arquivo benigno geralmente se parece, em vez de como todo documento mal-intencionado é estruturado.
-
-Sobre modelos de ameaças
-
-Ao procurar conselhos sobre como lidar com arquivos suspeitos, geralmente a abordagem proposta é evitar qualquer interação com os arquivos, por exemplo:
-
-Não abra arquivos desconhecidos.
-
-Não interaja com arquivos suspeitos.
-
-Não faça contato visual com nenhum arquivo suspeito.
-
-Ou podemos encontrar outro tipo de conselho que, embora seja suficiente para a maioria das pessoas, pode ser enganoso para usuários sensíveis, como ativistas de direitos humanos ou jornalistas que trabalham em ambientes perigosos, ou simplesmente contraproducente, por exemplo:
-
-O uso de um antivírus é suficiente para protegê-lo de arquivos maliciosos.
-
-Somente os documentos do Microsoft Office com macros são perigosos, portanto, você pode tratar outros tipos de arquivos sem se preocupar muito.
-
-Exclua qualquer e-mail com anexos suspeitos. Isso é particularmente preocupante em alguns cenários porque, se excluirmos os e-mails e anexos de nossa caixa de entrada, perderemos evidências importantes que podem nos ajudar a avaliar se os artefatos são de fato mal-intencionados ou direcionados, o que pode ser uma informação inestimável.
+- O uso de um antivírus é suficiente para protegê-lo de arquivos maliciosos.
+- Somente os documentos do Microsoft Office com macros são perigosos, portanto, você pode tratar outros tipos de arquivos sem se preocupar muito.
+- Exclua qualquer e-mail com anexos suspeitos. Isso é particularmente preocupante em alguns cenários porque, se excluirmos os e-mails e anexos de nossa caixa de entrada, perderemos evidências importantes que podem nos ajudar a avaliar se os artefatos são de fato mal-intencionados ou direcionados, o que pode ser uma informação inestimável.
 
 Na prática, quando estamos trabalhando com comunidades visadas (especialmente jornalistas), não interagir com arquivos não é uma opção. Muitas organizações, grupos e indivíduos precisam abrir arquivos potencialmente perigosos como parte de seu trabalho, e eles o farão mesmo sabendo dos riscos:
 
-Jornalistas recebem um convite para uma coletiva de imprensa.
 
-Ativistas recebem um documento de apoio como prova em um caso de violação de direitos humanos ou como um vazamento.
-
-Uma instituição adversária envia um documento que deve ser analisado e tratado.
+- Jornalistas recebem um convite para uma coletiva de imprensa.
+- Ativistas recebem um documento de apoio como prova em um caso de violação de direitos humanos ou como um vazamento.
+- Uma instituição adversária envia um documento que deve ser analisado e tratado.
 
 Um fator extra a ser considerado é que os atores da sociedade civil estão expostos a ameaças direcionadas desconhecidas pelos mecanismos antivírus. Outro fator é que, dependendo do tipo de ataque, outros formatos de arquivo também podem ser usados como arma. Esses fatores são essenciais para serem considerados pelas pessoas que ajudam grupos vulneráveis a entender melhor como os documentos e outros formatos de arquivos comuns podem ser transformados em armas, para dar conselhos úteis, mas também para ajudá-los a analisar arquivos específicos para entender e avaliar se estão sendo vítimas de ataques direcionados.
 
@@ -185,15 +121,17 @@ A análise estática tenta dissecar os arquivos e outros artefatos para obter o 
 
 Dependendo do tipo de malware, um tipo de análise pode ser mais útil do que o outro, mas, em geral, a análise dinâmica exigirá mais medidas para proteger o ambiente de teste e a rede para poder suportar a execução de malware real.Este curso mostra apenas técnicas de análise estática. Tenha cuidado ao publicar amostras ou outras informações das amostras analisadas:Em geral, isso pode alertar os operadores de malware sobre o fato de estarmos analisando a campanha de malware, fazendo com que eles fechem a infraestrutura, limpem todos os rastros para dificultar a atribuição etc.Isso se aplica a qualquer plataforma pública, como mídias sociais e sites, incluindo algumas plataformas públicas em que podemos enviar arquivos para analisá-los na nuvem em busca de sinalizações de mecanismos antivírus e da comunidade de segurança da informação.
 
-Para o último cenário, compartilharemos alguns exemplos e técnicas para verificar as informações de que precisamos sem alertar ninguém. Questionário sobre o ambiente Pergunta 1: Qual das seguintes afirmações é verdadeira? 1.A execução de amostras exigirá menos medidas de segurança do que tentar dissecar os artefatos para procurar insights úteis.
+Para o último cenário, compartilharemos alguns exemplos e técnicas para verificar as informações de que precisamos sem alertar ninguém.
 
-2.
+## Questionário sobre o ambiente
 
-Cortar o acesso à Internet tornará mais difícil para uma amostra de malware notificar os criadores de que foi executada.
+**Pergunta 1:** Qual das seguintes afirmações é verdadeira?
 
-3.
+1. A execução de amostras exigirá menos medidas de segurança do que tentar dissecar os artefatos para procurar insights úteis.
 
-A maneira mais eficiente de analisar malware é usar máquinas virtuais porque, se a máquina for infectada, poderemos criá-la novamente do zero.
+2. Cortar o acesso à Internet tornará mais difícil para uma amostra de malware notificar os criadores de que foi executada.
+
+3. A maneira mais eficiente de analisar malware é usar máquinas virtuais porque, se a máquina for infectada, poderemos criá-la novamente do zero.
 
 Exemplo de ambiente:
 
@@ -238,3 +176,25 @@ Podemos usar o botão “Restore” (Restaurar) na respectiva tela
 Captura de tela da janela do VirtualBox com o botão Restore destacado O que vem a seguir
 
 Como podemos lidar com o básico com o VirtualBox, podemos aprender sobre o Remnux enquanto entendemos e analisamos nosso primeiro formato de arquivo: PDFs.
+
+## Respostas dos questionários
+
+### Respostas Questionário Isenção de responsabilidade - Pergunta 2
+
+
+- Opção 1: **CORRETO** – Caso o arquivo suspeito esteja realmente infectado, qualquer dano seria feito em um espaço seguro, além de desconectar a máquina do seu ambiente real, outras recomendações são configurar uma maneira de reverter o ambiente para uma condição segura anterior, ter ferramentas de monitoramento caso queiramos saber quais alterações são feitas durante uma possível infecção e usar diferentes sistemas operacionais entre o host e o sistema convidado para mitigar infecções acidentais.
+- Opção 2: _Incorreto_ – Mesmo quando desconectar da internet é uma prática recomendada durante a análise de arquivos, um arquivo infectado ainda pode comprometer seu computador/ambiente principal ou deixá-lo preparado para danificá-lo quando a conectividade for restaurada.
+- Opção 2: _Incorreto_ – Mesmo quando a maioria dos malwares conhecidos é projetada para Windows, também há códigos maliciosos projetados para outros sistemas, e também o mais importante ao analisar arquivos suspeitos é evitar infecções em nosso ambiente principal, independentemente de seu sistema operacional. Este conselho, embora possa ajudar a mitigar o impacto negativo da execução acidental de malware, não é suficiente sem outras séries de medidas, este conselho é considerado opcional e fornece pouco impacto se tivermos ambientes de teste fortes.
+
+### Respostas Questionário de Modelos de Ameaças - Pergunta 1
+
+- Opção 1: **CORRETA** -  É possível (especialmente para vítimas de alto risco) ser alvo de malwares muito específicos que não são expostos ao resto da internet, então os mecanismos AV ainda não os encontraram e não podem detectá-los como maliciosos. Além disso, há muitas técnicas que agentes maliciosos empregam para disfarçar malware como dados legítimos que às vezes dificultam a detecção de código malicioso pelo software AV.
+ - Opção 2: _Incorreto_ – Anexos na caixa de entrada não são executados no computador sem a permissão explícita do usuário (ou pelo menos em ataques conhecidos), especialmente se estiverem armazenados em servidores externos. Portanto, excluí-los imediatamente nos fará perder evidências valiosas caso queiramos pesquisar mais sobre o arquivo e o e-mail.
+ - Opção 2: _Incorreto_ – Mesmo quando isso garante que arquivos maliciosos não sejam executados, devemos entender que públicos vulneráveis ​​na maioria das vezes precisam interagir com informações de fontes não confiáveis ​​para cumprir sua missão, tornando a interação zero insustentável como conselho na maioria dos casos.
+
+### Respostas Questionário sobre o ambiente - Pergunta 1
+
+- Opção 1: _Incorreto_ – Executar malware infectará o ambiente que estamos usando, causando coisas como notificar os criadores, o malware tentando infectar outros dispositivos na rede e tornando o dispositivo inutilizável. Todas essas consequências exigem mais medidas de segurança do que analisar a amostra sem executá-la (conhecido como Análise Estática)
+- Opção 2: **Correto** – Sem acesso à Internet, o malware não será capaz de se comunicar com servidores externos para executar certas ações, incluindo notificar sua execução. É bom saber também que alguns malwares usam a Internet para baixar outras partes de seu código, então cortar o acesso também pode ser um problema porque não teremos insights sobre toda a funcionalidade sem obter as partes que faltam. No entanto, os riscos associados à execução acidental do malware tornam melhor estar desconectado e ver durante a análise se estamos perdendo algo importante.
+- Opção 3: _Incorreto_ – O que torna as VMs mais eficientes para uso em análise de malware é a capacidade de tirar “instantâneos”, para que possamos fazer uma captura do estado de uma VM antes de começar a análise e, quando terminar, podemos reverter a VM para esse instantâneo, para que estejamos prontos para analisar a próxima amostra de forma controlada. Isso é muito mais rápido do que recriar a VM do zero todas as vezes. (Essa foi complicada, para ser honesto)
+
