@@ -1,13 +1,10 @@
-# Análise de documentos maliciosos - Parte 03 - Documentos do Microsoft Office
+# Documentos do Microsoft Office
 
-`
-Depois de verificar como configurar máquinas virtuais como ambientes seguros e apresentar um fluxo de trabalho introdutório para analisar documentos PDF suspeitos, estamos prontos para continuar com os formatos de arquivo do Microsoft Office.
-Problemas de segurança com documentos do Microsoft Office
+\` Depois de verificar como configurar máquinas virtuais como ambientes seguros e apresentar um fluxo de trabalho introdutório para analisar documentos PDF suspeitos, estamos prontos para continuar com os formatos de arquivo do Microsoft Office. Problemas de segurança com documentos do Microsoft Office
 
 Em geral, os documentos do Office não são perigosos por si só se contiverem apenas as informações para as quais foram projetados: páginas com texto e outros elementos imprimíveis para o MS Word, células com valores e fórmulas para o MS Excel, slides com elementos observáveis no MS PowerPoint etc.
 
-No entanto, entre os vários recursos disponíveis no ecossistema do MS Office para acrescentar funcionalidades adicionais aos documentos, um é especificamente interessante do ponto de vista da segurança digital: a possibilidade de incorporar objetos nos documentos. Os tipos de objetos que podemos incorporar são muitos, como notação matemática, multimídia, outros documentos etc. E, entre todos eles, há um que é especialmente poderoso porque permite a execução de código personalizado, que pode ser usado como arma para prejudicar o usuário: a macro.
-Macros
+No entanto, entre os vários recursos disponíveis no ecossistema do MS Office para acrescentar funcionalidades adicionais aos documentos, um é especificamente interessante do ponto de vista da segurança digital: a possibilidade de incorporar objetos nos documentos. Os tipos de objetos que podemos incorporar são muitos, como notação matemática, multimídia, outros documentos etc. E, entre todos eles, há um que é especialmente poderoso porque permite a execução de código personalizado, que pode ser usado como arma para prejudicar o usuário: a macro. Macros
 
 O caso de uso inicial das macros nos documentos do MS é executar tarefas repetitivas com facilidade, "gravando-as" uma vez e "reproduzindo-as" repetidamente depois. Você pode criar macros sem ter nenhum conhecimento de programação, apenas gravando cliques em botões e atalhos de teclado e, em seguida, o MS Office traduzirá a gravação em uma série de comandos que serão executados como um "pequeno programa" que vive dentro de nossos documentos.
 
@@ -15,16 +12,11 @@ Quando começamos a nos aprofundar no funcionamento das macros, começamos a ver
 
 Em segundo lugar, a execução de macros a partir de documentos é muito fácil. Os criadores de documentos podem configurá-las para serem executadas automaticamente ao abrir o arquivo, ao clicar em um botão, link ou qualquer elemento específico, entre outros gatilhos. Então, para arquivos desconhecidos, o MS Office nos avisará que suas macros podem ser perigosas e as bloqueará, mas geralmente estamos a um ou dois cliques de desativar essa proteção e executar as macros de qualquer maneira. Essa situação torna muito atraente para os agentes mal-intencionados usar macros e nos convencer de que é seguro executá-las por meio de argumentos convincentes próprios de cada campanha de phishing.
 
-Comparando PDFs com documentos do MS Office com macros para atividades maliciosas, os documentos do MS Office oferecem mais possibilidades de comandos a serem executados em dispositivos que os abrem, o que os torna mais poderosos e também mais populares do que os PDFs. Além disso, essa flexibilidade é o motivo pelo qual estamos nos concentrando em transformar em armas as macros permitidas dentro de documentos maliciosos em comparação com outras formas de transformar em armas os documentos do MS Office. Se você estiver interessado em maneiras diferentes de usar esses arquivos para vulnerar usuários de versões desatualizadas do Office, no final, forneceremos links para outras referências.
-Vulnerabilidades do Office
-Há muitas maneiras documentadas usadas para explorar macros ou documentos do Office em geral; no entanto, muitas das mais criativas não são possíveis de serem exploradas em instâncias totalmente atualizadas do MS Office
+Comparando PDFs com documentos do MS Office com macros para atividades maliciosas, os documentos do MS Office oferecem mais possibilidades de comandos a serem executados em dispositivos que os abrem, o que os torna mais poderosos e também mais populares do que os PDFs. Além disso, essa flexibilidade é o motivo pelo qual estamos nos concentrando em transformar em armas as macros permitidas dentro de documentos maliciosos em comparação com outras formas de transformar em armas os documentos do MS Office. Se você estiver interessado em maneiras diferentes de usar esses arquivos para vulnerar usuários de versões desatualizadas do Office, no final, forneceremos links para outras referências. Vulnerabilidades do Office Há muitas maneiras documentadas usadas para explorar macros ou documentos do Office em geral; no entanto, muitas das mais criativas não são possíveis de serem exploradas em instâncias totalmente atualizadas do MS Office
 
-Como qualquer outro programa, o MS Office pode ter vulnerabilidades conhecidas ou desconhecidas que podem permitir o comprometimento de um dispositivo, mesmo sem o uso de macros.
-Os "antigos" e os "novos" formatos de documentos do MS Office
+Como qualquer outro programa, o MS Office pode ter vulnerabilidades conhecidas ou desconhecidas que podem permitir o comprometimento de um dispositivo, mesmo sem o uso de macros. Os "antigos" e os "novos" formatos de documentos do MS Office
 
-Desde 2003, o Microsoft Office mudou a forma como os documentos são criados por padrão, incluindo novas extensões de arquivo, de modo que os novos documentos do MS Word são armazenados com a extensão ".docx" em vez de ".doc" e assim por diante. Mesmo quando a estrutura interna desses dois formatos de arquivo é diferente, as macros são armazenadas de maneira semelhante, portanto, a orientação fornecida neste material se aplica tanto aos formatos de arquivo antigos quanto aos novos.
-Se estiver interessado em saber mais sobre as convenções para armazenar macros e muitos outros tipos de objetos, você pode pesquisar mais sobre Object Linking and Embedding (ou OLE), que ainda é usado e adaptado a novos formatos de arquivo, incluindo documentos do MS Office
-Análise de documentos do MS Office
+Desde 2003, o Microsoft Office mudou a forma como os documentos são criados por padrão, incluindo novas extensões de arquivo, de modo que os novos documentos do MS Word são armazenados com a extensão ".docx" em vez de ".doc" e assim por diante. Mesmo quando a estrutura interna desses dois formatos de arquivo é diferente, as macros são armazenadas de maneira semelhante, portanto, a orientação fornecida neste material se aplica tanto aos formatos de arquivo antigos quanto aos novos. Se estiver interessado em saber mais sobre as convenções para armazenar macros e muitos outros tipos de objetos, você pode pesquisar mais sobre Object Linking and Embedding (ou OLE), que ainda é usado e adaptado a novos formatos de arquivo, incluindo documentos do MS Office Análise de documentos do MS Office
 
 Para começar a explorar maneiras de detectar quando as macros estão incluídas em documentos do MS Office, usaremos oledump.py, uma ferramenta Python desenvolvida por Didier Stevens, o mesmo autor das ferramentas propostas anteriormente na parte anterior, com foco em PDFs. Também usaremos uma série de arquivos de exemplo para mostrar como os documentos do MS Office funcionam e como as macros podem ser detectadas e analisadas, também a partir de materiais de treinamento de Didier Stevens.
 
@@ -48,8 +40,7 @@ Aqui podemos ver que mais elementos no exemplo .doc são armazenados como objeto
 
 Quando abrirmos um arquivo com macros, o resultado incluirá novos elementos:
 
-Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip
-Se olharmos atentamente para esse exemplo, veremos que o arquivo que passamos para o comando é um arquivo zip; nesse caso, é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "infected" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente para nós.
+Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip Se olharmos atentamente para esse exemplo, veremos que o arquivo que passamos para o comando é um arquivo zip; nesse caso, é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "infected" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente para nós.
 
 Nessa saída, vemos dois objetos que são diferentes e são identificados com a letra "m" ou "M". Isso significa que esses objetos específicos contêm macros. Vamos usar o comando -s no oledump.py para ver o conteúdo desses fluxos, começando com o objeto (ou fluxo 8)
 
@@ -94,18 +85,8 @@ Pergunta: Aplicando o mesmo fluxo de trabalho ao arquivo ex006.doc.zip, vemos es
 Captura de tela de um terminal mostrando a saída da ferramenta oledump.py para o arquivo ex006.doc.zip, mostrando dois objetos com macros descritas pela letra m minúscula
 
 1. O arquivo não tem nenhuma macro
-
-
-
-
 2. O arquivo tem macros personalizadas criadas como qualquer um dos outros exemplos abordados
-
-
-
-
 3. De alguma forma, o arquivo tem macros inofensivas ao sistema, mas não tem macros criadas de forma personalizada.
-
-
 
 Pergunta: aplicando o mesmo fluxo de trabalho ao arquivo ex016.doc.zip, vemos uma macro semelhante à última abordada acima, em que a macro decodifica algo em base64. O que está sendo passado para a função Decode64? (dica: aaaaaaaaaaaaaaaaaa.aaaaaaa.aaaa)
 
@@ -113,15 +94,8 @@ Janela da interface de linha de comando mostrando a saída de uma macro de docum
 
 Quero ver a resposta
 
-
-
 O que vem a seguir?
 
-Depois de ter uma ideia melhor de como o PDF e o MS Office podem ser avaliados quanto a códigos mal-intencionados, podemos entender melhor como propor medidas defensivas e também podemos revisar as dicas finais sobre como conduzir esse tipo de avaliação inicial.
-Bônus: leitura adicional sobre segurança do MS Office
+Depois de ter uma ideia melhor de como o PDF e o MS Office podem ser avaliados quanto a códigos mal-intencionados, podemos entender melhor como propor medidas defensivas e também podemos revisar as dicas finais sobre como conduzir esse tipo de avaliação inicial. Bônus: leitura adicional sobre segurança do MS Office
 
-Oletools: outra ferramenta famosa para analisar arquivos do MS Office
-Lista de vulnerabilidades conhecidas do Microsoft Office (a maioria não envolve macros)
-CVE-2022-30190 ou codinome "Follina": uma vulnerabilidade recente que está na moda, abusando de documentos para interagir com os recursos de solução de problemas do Windows.
-"Uncompromised: Unpacking a malicious Excel macro", um caso interessante que explora um arquivo malicioso passo a passo.
-Analyzing Malicious Documents Cheat Sheet, uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
+Oletools: outra ferramenta famosa para analisar arquivos do MS Office Lista de vulnerabilidades conhecidas do Microsoft Office (a maioria não envolve macros) CVE-2022-30190 ou codinome "Follina": uma vulnerabilidade recente que está na moda, abusando de documentos para interagir com os recursos de solução de problemas do Windows. "Uncompromised: Unpacking a malicious Excel macro", um caso interessante que explora um arquivo malicioso passo a passo. Analyzing Malicious Documents Cheat Sheet, uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
