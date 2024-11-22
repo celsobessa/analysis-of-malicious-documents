@@ -2,7 +2,7 @@
 
 Após a visão geral do gerenciamento de máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos, exploraremos os arquivos PDF em termos de formato e maneiras como eles podem ser usados para prejudicar os usuários. O que é um PDF?
 
-Quando abrimos um arquivo PDF, usamos um software específico que renderiza seu conteúdo de forma legível; no entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples regular e dados binários (para imagens e outros elementos que possam exigir isso); por exemplo, o texto a seguir renderiza o arquivo PDF mostrado depois:
+Quando abrimos um arquivo PDF, usamos um software específico que renderiza seu conteúdo de forma legível. No entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples regular e dados binários (para imagens e outros elementos que possam exigir isso). Por exemplo, o texto a seguir renderiza o arquivo PDF mostrado logo depois:
 
 ```txt
 %PDF-1.4
@@ -60,23 +60,27 @@ startxref
 %%EOF
 ```
 
-Captura de tela de um arquivo PDF em branco com um quadrado vermelho no canto inferior esquerdo da página
+<figure><img src=".gitbook/assets/pdf-example-1.png" alt="Captura de tela de um arquivo PDF em branco com um quadrado vermelho no canto inferior esquerdo da página"><figcaption></figcaption></figure>
 
-De "How to create a simple PDF file" (Como criar um arquivo PDF simples) da Callas Software Estrutura do arquivo
+Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73261/l/798383-how-to-create-a-simple-pdf-file)" (Como criar um arquivo PDF simples, em ) da Callas Software
+
+### Estrutura de arquivo PDF
 
 A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
-Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Trailer
+\[imagem] Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Trailer
 
-Cabeçalho: Contém a versão do protocolo com o qual o arquivo foi criado, para instruir o programa leitor sobre como ler o restante da estrutura e renderizar todos os seus elementos.
+**Cabeçalho:** Contém a versão do protocolo com o qual o arquivo foi criado, para indicar ao programa leitor como ler o restante da estrutura e renderizar todos os seus elementos.
 
-Corpo: Aqui estarão todos os objetos que compõem o arquivo PDF, páginas, imagens, texto, fontes etc. Até mesmo códigos e ações automatizadas, se o arquivo os tiver.
+**Corpo:** Aqui estarão todos os objetos que compõem o arquivo PDF, páginas, imagens, texto, fontes etc. Até mesmo códigos e ações automatizadas, se o arquivo os tiver.
 
-Tabela de referência cruzada: Aqui encontraremos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para o software leitor de PDF ler. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser renderizada e procurará nessa tabela para localizar os respectivos elementos no corpo e carregá-los na tela.
+**Tabela de referência cruzada:** Aqui encontraremos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para ser lido pelo software leitor de PDFs. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser renderizada e procurará nessa tabela para localizar os respectivos elementos no corpo e carregá-los na tela.
 
-Trailer: Aqui encontraremos o local no documento da tabela de referência cruzada e outras informações úteis, como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo. Entendendo os objetos do PDF
+**Reboque (**_**Trailer**_**):** Aqui encontraremos a indicação de onde começa tabela de referência cruzada no documento e outras informações úteis "à reboque", como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.&#x20;
 
-Considerando a forma como os PDFs são estruturados, a seção mais interessante para se aprofundar é o corpo do documento, pois lá se encontra tudo o que podemos ver e interagir (texto, páginas, imagens, formulários, código etc.). Todos esses elementos são chamados de objetos, e há uma grande variedade deles de acordo com as especificações, por exemplo, no exemplo acima, o objeto
+### Entendendo os objetos do PDF
+
+Considerando a forma como os PDFs são estruturados, a seção mais interessante para se aprofundar é o corpo do documento, pois lá se encontra tudo o que podemos ver e interagir (texto, páginas, imagens, formulários, código etc.). Todos esses elementos são chamados de objetos, e há uma grande variedade deles de acordo com as especificações. No exemplo acima, o objeto
 
 ```txt
 4 0 obj
@@ -89,29 +93,29 @@ Considerando a forma como os PDFs são estruturados, a seção mais interessante
 endobj
 ```
 
-é uma página com o id 4, tem um elemento pai com o id 3 e contém como filho o elemento com o id 1 (o retângulo vermelho). Mostrar a maneira exata como cada objeto é escrito está fora do escopo deste material; no entanto, há alguns tipos de elementos que podem ser usados para fins maliciosos, e queremos abordá-los um pouco mais.
+é uma página com o id 4, tem um elemento pai com o id 3 e contém como filho o elemento com o id 1 (o retângulo vermelho). Mostrar a maneira exata como cada objeto é escrito está fora do escopo deste material; no entanto, há alguns tipos de elementos que podem ser usados para fins maliciosos, e queremos abordá-los.
 
-/OpenAction: Esse objeto faz referência a um conjunto de ações a serem executadas quando o arquivo PDF é aberto, o que pode ser usado para iniciar um site para dar suporte ao conteúdo ou para fins de rastreamento, executar código JavaScript etc. Isso pode ser usado para induzir os usuários a executar ações extras que podem ser prejudiciais ou, dependendo do ambiente do computador, esse objeto pode executar malware diretamente.
+_**/OpenAction**_: Esse objeto faz referência a um conjunto de ações a serem executadas quando o arquivo PDF é aberto, o que pode ser usado para iniciar um site para dar suporte ao conteúdo ou para fins de rastreamento, executar código JavaScript, etc. Isso pode ser usado para induzir os usuários a executar ações extras que podem ser prejudiciais ou, dependendo do ambiente do computador, esse objeto pode executar _malware_ diretamente.
 
-/AA: esse objeto também inclui uma série de ações que são acionadas em circunstâncias variadas, como visualizar uma página, passar o ponteiro do mouse sobre objetos específicos, preencher campos de formulários etc. Os riscos associados são semelhantes aos do objeto /OpenAction, mas com muito mais cenários de acionamento.
+_**/AA**_: esse objeto também inclui uma série de ações que são acionadas em circunstâncias variadas, como visualizar uma página, passar o ponteiro do mouse sobre objetos específicos, preencher campos de formulários etc. Os riscos associados são semelhantes aos do objeto `/OpenAction`, mas com muito mais cenários onde pode haver acionamento.
 
-/JS ou /Javascript: Contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
+_**/JS**_ ou _**/Javascript**_: Contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
 
-/Launch: Tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
+_**/Launch:**_ Tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
 
-/EmbeddedFile: permite a inclusão de arquivos arbitrários, de documentos a executáveis, dentro do arquivo PDF. Há antecedentes de arquivos PDF benignos contendo outros arquivos nocivos incorporados, como executáveis de malware ou documentos do Microsoft Office com macros maliciosas.
+_**/EmbeddedFile**_: permite a inclusão de arquivos arbitrários, de documentos a executáveis, dentro do arquivo PDF. Há antecedentes de arquivos PDF benignos contendo outros arquivos nocivos incorporados, como executáveis de _malware_ ou documentos do Microsoft Office com macros maliciosas.
 
-/ObjStm: Contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código mal-intencionado como uma forma de ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada nos levará a muitos falsos positivos.
+_**/ObjStm**_: Contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código mal-intencionado como uma forma de ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada nos levará a muitos falsos positivos.
 
-Em ataques mais elaborados, uma combinação desses objetos pode ser usada; por exemplo, um arquivo PDF pode acionar uma ação que abre um arquivo incorporado no mesmo arquivo criptografado em um /ObjStm.
+Em ataques mais elaborados, uma combinação desses objetos pode ser usada; por exemplo, um arquivo PDF pode acionar uma ação que abre um arquivo incorporado no mesmo arquivo criptografado em um `/ObjStm`.
 
 Considerando tudo isso, queremos saber se um arquivo tem algum desses tipos de objetos como primeira etapa para verificar se um arquivo PDF é mal-intencionado ou, pelo menos, para ter certeza de que não é.
 
-Digite `pdfid`
+### Conheça  o `pdfid`
 
-Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PDF que podemos considerar suspeitos, podemos começar a usar a ferramenta pdfid como a primeira etapa para ver quais tipos de objetos estão contidos em nosso arquivo. O pdfid faz parte de um conjunto de ferramentas desenvolvidas por Didier Stevens para simplificar alguns processos de análise em arquivos PDF. Essas ferramentas são executadas usando a linha de comando, por isso são conhecidas como aplicativos CLI (Command Line Interface). Explicaremos como usá-las usando a máquina virtual Remnux que configuramos na parte anterior deste curso.
+Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PDF que podemos considerar suspeitos, podemos começar a usar a ferramenta pdfid como a primeira etapa para ver quais tipos de objetos estão contidos em nosso arquivo. O pdfid faz parte de um conjunto de ferramentas desenvolvidas por Didier Stevens para simplificar alguns processos de análise em arquivos PDF. Essas ferramentas são executadas usando a linha de comando (_Command Line_ em inglês), por isso são conhecidas como aplicativos CLI (_Command Line Interface,_ ou interfaces de linha de comando). Explicaremos como usá-las usando a máquina virtual _Remnux_ que configuramos na parte anterior deste curso.
 
-Para usar o pdfid, precisamos abrir um aplicativo de Terminal em nossa máquina virtual. Quando iniciamos nossa máquina virtual, essa janela já deve estar aberta; no entanto, sempre podemos clicar no menu Activities (Atividades) no canto superior esquerdo e, em seguida, no ícone Terminal no painel esquerdo, conforme mostrado na imagem,
+Para usar o _pdfid_, precisamos abrir um aplicativo de Terminal em nossa máquina virtual. Quando iniciamos nossa máquina virtual, essa janela já deve estar aberta; no entanto, sempre podemos clicar no menu Activities (Atividades) no canto superior esquerdo e, em seguida, no ícone Terminal no painel esquerdo, conforme mostrado na imagem:
 
 Captura de tela da barra de navegação no REMnux destacando o ícone do terminal
 
