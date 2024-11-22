@@ -2,7 +2,7 @@
 
 Introdução
 
-Este (mini)curso destina-se aos entusiastas e profissionais de segurança digital (suporte técnico, facilitadores, socorristas, etc.) que desejam saber mais sobre documentos maliciosos e como identificá-los. Esses documentos podem ser anexos de e-mail, arquivos em pen drives ou downloads de sites específicos. Os principais objetivos são:
+Este minicurso destina-se aos entusiastas e profissionais de segurança digital (suporte técnico, facilitadores, <mark style="color:red;">socorristas</mark>, etc.) que desejam saber mais sobre documentos maliciosos e como identificá-los. Esses documentos podem ser: anexos de e-mail, arquivos em pen drives ou downloads de sites específicos. Os principais objetivos são:
 
 * Aprender os conceitos básicos de como funcionam os formatos comuns de documentos e como eles podem ser transformados em armas, com ênfase especial em arquivos Portable Document Format (PDF) e documentos do Microsoft Office (pelo menos MS Word, Excel e PowerPoint).
 * Apresentar algumas ferramentas que podem ajudar a identificar sinais de documentos perigosos ou confirmar se é seguro abri-los.
