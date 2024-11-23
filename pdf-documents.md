@@ -69,7 +69,7 @@ Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73
 A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
 
-<figure><img src="/images/example2.png" alt="Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Reboque (Trailer)"><figcaption></figcaption></figure>
+<figure><img src="./images/example2.png" alt="Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Reboque (Trailer)"><figcaption></figcaption></figure>
 
 **Cabeçalho (_Header_):** Contém a versão do protocolo com o qual o arquivo foi criado, para indicar ao programa leitor como ler o restante da estrutura e renderizar todos os seus elementos.
 
@@ -118,9 +118,9 @@ Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PD
 
 Para usar o _pdfid_, precisamos abrir um aplicativo de Terminal em nossa máquina virtual. Quando iniciamos nossa máquina virtual, essa janela já deve estar aberta; no entanto, sempre podemos clicar no menu Activities (Atividades) no canto superior esquerdo e, em seguida, no ícone Terminal no painel esquerdo, conforme mostrado na imagem:
 
-<figure><img src="/images/Screenshot-from-2022-06-13-15-26-19.png" alt=" Captura de tela da barra de navegação no REMnux destacando o ícone do terminal"><figcaption></figcaption></figure>
+<figure><img src="./images/Screenshot-from-2022-06-13-15-26-19.png" alt=" Captura de tela da barra de navegação no REMnux destacando o ícone do terminal"><figcaption></figcaption></figure>
 
-<figure><img src="/images/Screenshot-from-2022-06-13-15-29-05.png" alt="Captura de tela da máquina virtual REMnux em seu status inicial "><figcaption></figcaption></figure>
+<figure><img src="./images/Screenshot-from-2022-06-13-15-29-05.png" alt="Captura de tela da máquina virtual REMnux em seu status inicial "><figcaption></figcaption></figure>
 
 Quando estivermos na janela do Terminal, começamos a explorar o uso do comando pdfid por meio do seu guia de ajuda. Basta digitar:
 
@@ -130,21 +130,21 @@ A opção -h imprime na tela informações de ajuda (-h se refere a _help_, ajud
 
 Dica:podemos usar a tecla Tab para autocompletar alguns comandos
 
-<figure><img src="/images/Screenshot-from-2022-06-13-15-32-42.png" alt="Captura de tela de uma janela de terminal com o comando de ajuda da ferramenta pdfid.py"><figcaption></figcaption></figure>
+<figure><img src="./images/Screenshot-from-2022-06-13-15-32-42.png" alt="Captura de tela de uma janela de terminal com o comando de ajuda da ferramenta pdfid.py"><figcaption></figcaption></figure>
 
 Aqui podemos ver várias opções que podemos empregar ao usar o pdfid, o que pode parecer desafiador para quem está começando a usar o terminal; no entanto, geralmente nos limitamos a algumas dessas opções e, com um pouco de prática, o processo se torna mais rápido e fácil.
 
 Para analisar nosso primeiro arquivo, precisamos estar cientes de que o comando que executamos na linha de comando está sendo executado de uma pasta/diretório e , portanto, precisamos saber de onde estamos executando o comando e onde está localizado o arquivo que queremos analisar. Para contextualizar, toda vez que abrimos o aplicativo Terminal no Remnux, estamos abrindo um terminal no diretório Home (a "casa" do usuário ao logar), o mesmo local que vemos quando abrimos o aplicativo Files
 
-<figure><img src="/images/files-icon.png" alt="Captura de tela da barra de navegação no REMnux destacando o ícone de arquivos"><figcaption></figcaption></figure>
+<figure><img src="./images/files-icon.png" alt="Captura de tela da barra de navegação no REMnux destacando o ícone de arquivos"><figcaption></figcaption></figure>
 
-<figure><img src="/images/files.png" alt="Captura de tela do aplicativo explorador de arquivos no REMnux"><figcaption></figcaption></figure>
+<figure><img src="./images/files.png" alt="Captura de tela do aplicativo explorador de arquivos no REMnux"><figcaption></figcaption></figure>
 
 Para facilitar as coisas por enquanto, podemos colocar nossos PDFs nessa pasta, de modo que o comando do terminal seja executado a partir do mesmo diretório do nosso arquivo PDF.
 
 Podemos pegar nosso arquivo de exemplo acima e salvá-lo como um arquivo PDF com a ajuda de um editor de texto em nosso computador anfitrião e arrastar e soltar o arquivo no diretório inicial do Remnux.
 
-<figure><img src="/images/Screenshot-from-2022-06-13-16-02-30.png" alt="Captura de tela do aplicativo explorador de arquivos dentro do REMnux com o arquivo test.pdf destacado"><figcaption></figcaption></figure>
+<figure><img src="./images/Screenshot-from-2022-06-13-16-02-30.png" alt="Captura de tela do aplicativo explorador de arquivos dentro do REMnux com o arquivo test.pdf destacado"><figcaption></figcaption></figure>
 
 Com isso, podemos executar o seguinte comando em nosso Terminal:
 
@@ -152,7 +152,7 @@ Com isso, podemos executar o seguinte comando em nosso Terminal:
 
 Para receber esta resposta:
 
-<figure><img src="/images/Screenshot-from-2022-06-13-16-04-20.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo test.pdf"><figcaption></figcaption></figure>
+<figure><img src="./images/Screenshot-from-2022-06-13-16-04-20.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo test.pdf"><figcaption></figcaption></figure>
 
 Como podemos verificar, todos os objetos vistos pelo pdfid correspondem aos que conhecemos da fonte do arquivo PDF, e nenhum deles parece estar na lista de objetos suspeitos que descrevemos acima.&#x20;
 
@@ -164,7 +164,7 @@ Como podemos verificar, todos os objetos vistos pelo pdfid correspondem aos que 
 
 Agora, o que acontece quando encontramos um arquivo PDF com um objeto suspeito? Imagine que temos um arquivo ex005.pdf que nos dá uma saída como esta ao usar pdfid:
 
-<figure><img src="/images/ex005_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex005.pdf, destacando os objetos dos tipos JS, JavasScript e OpenAction"><figcaption></figcaption></figure>
+<figure><img src="./images/ex005_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex005.pdf, destacando os objetos dos tipos JS, JavasScript e OpenAction"><figcaption></figcaption></figure>
 
 A partir daqui, e da orientação acima desse recurso, sabemos que há 3 objetos dos tipos /JS, /JavaScript e /OpenAction que podem ser interessantes de analisar, especialmente porque sugerem que o arquivo está tentando executar alguma ação quando abrimos o arquivo. Aqui, podemos processá-lo com o pdf-parser para obter qual tipo de objeto é cada objeto e ver o conteúdo desses objetos. Para nosso arquivo de exemplo, executaremos o seguinte comando:
 
@@ -180,35 +180,35 @@ Aqui, podemos ver que de fato temos esses três objetos problemáticos, mas tamb
 
 Aqui, o argumento `-o` é usado para fornecer à ferramenta a identificação do objeto cujo conteúdo queremos ver na tela:
 
-<figure><img src="/images/ex005_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 1, destacando um tipo de objeto OpenAction"><figcaption></figcaption></figure>
+<figure><img src="./images/ex005_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 1, destacando um tipo de objeto OpenAction"><figcaption></figcaption></figure>
 
 Aqui, podemos ver a linha "/OpenAction 7 0 R", o que significa que o conteúdo real do objeto /OpenAction está no objeto com id 7 e, quando abrirmos o arquivo, chamaremos ou faremos referência a esse objeto. Repetindo o processo para ver o conteúdo do objeto com id 7, obtemos:
 
-<figure><img src="/images/ex005_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 7, destacando um tipo de objeto Javascript"><figcaption></figcaption></figure>
+<figure><img src="./images/ex005_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 7, destacando um tipo de objeto Javascript"><figcaption></figcaption></figure>
 
 Onde podemos ver que o documento está tentando mostrar um alerta ou pop-up com a mensagem descrita no terminal, se abrirmos o arquivo, ele terá a seguinte aparência:
 
-<figure><img src="/images/ex005_5.png" alt=" "><figcaption></figcaption></figure><figure><img src="/images/" alt="Captura de tela de uma janela pop-up dizendo Hello from PDF JavaScript sobre um documento PDF dizendo JavaScript example"><figcaption></figcaption></figure>
+<figure><img src="./images/ex005_5.png" alt=" "><figcaption></figcaption></figure><figure><img src="./images/" alt="Captura de tela de uma janela pop-up dizendo Hello from PDF JavaScript sobre um documento PDF dizendo JavaScript example"><figcaption></figcaption></figure>
 
 #### Exemplo 2
 
 Como mencionamos anteriormente, pode haver arquivos em que o conteúdo suspeito não seja visível em texto simples. Pode haver vários motivos para fazer isso em casos legítimos, como compactar informações longas para reduzir o tamanho do arquivo, entre outros; no entanto, os arquivos mal-intencionados empregam essas técnicas com o objetivo de ofuscação para ajudar a evitar a detecção pelo software antivírus e outras soluções de segurança. Por exemplo, se repetirmos o fluxo de trabalho anterior para o arquivo ex006.pdf, veremos que a saída do comando pdfid é a seguinte:
 
-<figure><img src="/images/ex006_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex006.pdf destacando um objeto JavasScript"><figcaption></figcaption></figure>
+<figure><img src="./images/ex006_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex006.pdf destacando um objeto JavasScript"><figcaption></figcaption></figure>
 
 Aqui podemos ver na linha /JavaScript "1(1)", isso significa que o pdfid detectou um objeto desse tipo, mas ofuscado, repetindo o mesmo fluxo de trabalho que já conhecemos, analisamos o objeto com id 8 (onde reside o código JavaScript) para ver o seguinte:
 
-<figure><img src="/images/ex006_2.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode"><figcaption></figcaption></figure>
+<figure><img src="./images/ex006_2.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode"><figcaption></figcaption></figure>
 
 Aqui não podemos ver o código real como no último exemplo, em vez disso, vemos, entre outras coisas, a linha "/Filter /FlateDecode". A opção /Filter executa uma operação no conteúdo final de um fluxo para decodificá-lo e, em seguida, /FlateDecode indica a codificação associada que deve ser considerada ao decodificar o conteúdo. Para ter uma noção melhor disso, se abrirmos o arquivo com um editor de texto e procurarmos manualmente por esse elemento, veremos algo assim:
 
-<figure><img src="/images/ex006_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo, que não pode ser entendido por causa de caracteres ininteligíveis."><figcaption></figcaption></figure>
+<figure><img src="./images/ex006_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo, que não pode ser entendido por causa de caracteres ininteligíveis."><figcaption></figcaption></figure>
 
 Onde o conteúdo dentro do quadrado vermelho é o conteúdo real codificado. Nesse caso, o pdf-parser pode tentar decodificar o conteúdo real, e para isso usamos o argumento -f. Então acabamos o comando:
 
 `pdf-parser.py -o 8 -f ex006.pdf`
 
-<figure><img src="/images/ex006_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo. e o conteúdo do fluxo, a função incluiu uma opção para decodificar o fluxo e revela uma função JavaScript"><figcaption></figcaption></figure>
+<figure><img src="./images/ex006_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo. e o conteúdo do fluxo, a função incluiu uma opção para decodificar o fluxo e revela uma função JavaScript"><figcaption></figcaption></figure>
 
 Onde podemos ver o conteúdo real do objeto a ser renderizado pelo leitor de PDF.
 
@@ -218,23 +218,23 @@ Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de obj
 
 Outra coisa que o software criador de PDF faz normalmente para criar novos arquivos é criar objetos dentro de fluxos que são codificados para tornar os arquivos resultantes menores. Isso é desejável em geral, mas também cria uma maneira de ofuscar ainda mais o código malicioso. Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que podem conter (e de fato contêm) outros objetos que podem ser interessantes.
 
-<figure><img src="/images/example3_1-1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
+<figure><img src="./images/example3_1-1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
 
 Para esse tipo de cenário, é aconselhável usar a opção `-O` (como em o maiúsculo) do pdf-parser. Essa opção tentará analisar qualquer fluxo que contenha um objeto e tratá-los como objetos regulares do arquivo. Usando essa opção, por exemplo:
 
-<figure><img src="/images/example3_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
+<figure><img src="./images/example3_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
 
 Revela que o arquivo tem "novos" objetos e que um deles é um /AA, o que é interessante para procurar comportamento malicioso, observando o respectivo objeto que temos:
 
-<figure><img src="/images/example3_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA"><figcaption></figcaption></figure>
+<figure><img src="./images/example3_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA"><figcaption></figcaption></figure>
 
 Isso nos diz que a ação está vinculada a um objeto de página; nesse caso, o /O está indicando que a ação é acionada quando abrimos a página, e a ação real é armazenada no objeto 37.
 
-<figure><img src="/images/example3_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 37, mostrando um tipo de objeto desconhecido"><figcaption></figcaption></figure>
+<figure><img src="./images/example3_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 37, mostrando um tipo de objeto desconhecido"><figcaption></figcaption></figure>
 
 Após algumas pesquisas, podemos concluir que esse objeto tenta abrir a caixa de diálogo de propriedades do leitor de PDF da seguinte forma (nada especialmente perigoso - exemplo em um computador configurado em espanhol)
 
-<figure><img src="/images/example3_5.png" alt="Captura de tela de uma janela de propriedades de arquivo do leitor de PDF"><figcaption></figcaption></figure>
+<figure><img src="./images/example3_5.png" alt="Captura de tela de uma janela de propriedades de arquivo do leitor de PDF"><figcaption></figcaption></figure>
 
 **Conclusão:** tente usar o parâmetro `-O` caso haja outros objetos escondidos nos fluxos
 
