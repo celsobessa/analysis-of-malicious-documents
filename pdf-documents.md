@@ -205,41 +205,54 @@ Aqui não podemos ver o código real como no último exemplo, em vez disso, vemo
 
 \[imagem] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo, que não pode ser entendido por causa de caracteres ininteligíveis.
 
-Onde o conteúdo dentro do quadrado vermelho é o conteúdo codificado real, nesse caso, o pdf-parser pode tentar decodificar o conteúdo real, para isso usamos o argumento -f, então acabamos usando o comando
+Onde o conteúdo dentro do quadrado vermelho é o conteúdo real codificado. Nesse caso, o pdf-parser pode tentar decodificar o conteúdo real, e para isso usamos o argumento -f. Então acabamos o comando:
 
 `pdf-parser.py -o 8 -f ex006.pdf`
 
-\[imagems] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo. e o conteúdo do fluxo, a função incluiu uma opção para decodificar o fluxo e revela uma função JavaScript
+\[imagem] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex006.pdf e seu objeto 8, destacando um tipo de objeto Javascript com um filtro FlateDecode e o conteúdo do fluxo. e o conteúdo do fluxo, a função incluiu uma opção para decodificar o fluxo e revela uma função JavaScript
 
 Onde podemos ver o conteúdo real do objeto a ser renderizado pelo leitor de PDF.
 
-Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de objetos suspeitos, há alguns desafios para você. Exemplo 3
+Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de objetos suspeitos, há alguns desafios para você.
 
-Outra coisa que o software criador de PDF faz normalmente para criar novos arquivos é criar objetos dentro de fluxos que são codificados para tornar os arquivos resultantes menores. Isso é desejável em geral, mas também cria uma maneira de ofuscar ainda mais o código malicioso. Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que podem conter (e de fato contêm) outros objetos que podem ser interessantes. Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes Para esse tipo de cenário, é aconselhável usar a opção -O (como em o maiúsculo) do pdf-parser. Essa opção tentará analisar qualquer fluxo que contenha um objeto e tratá-los como objetos regulares do arquivo, por exemplo, usando essa opção assim.
+### Exemplo 3
 
-Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes
+Outra coisa que o software criador de PDF faz normalmente para criar novos arquivos é criar objetos dentro de fluxos que são codificados para tornar os arquivos resultantes menores. Isso é desejável em geral, mas também cria uma maneira de ofuscar ainda mais o código malicioso. Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que podem conter (e de fato contêm) outros objetos que podem ser interessantes.
+
+\[imagem] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes&#x20;
+
+Para esse tipo de cenário, é aconselhável usar a opção `-O` (como em o maiúsculo) do pdf-parser. Essa opção tentará analisar qualquer fluxo que contenha um objeto e tratá-los como objetos regulares do arquivo. Usando essa opção, por exemplo:
+
+\[imagem]\[substituir comandos na imagem por comandos no corpo] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes
 
 Revela que o arquivo tem "novos" objetos e que um deles é um /AA, o que é interessante para procurar comportamento malicioso, observando o respectivo objeto que temos
 
-Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA
+\[imagem]\[substituir comandos na imagem por comandos no corpo] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA
 
 Isso nos diz que a ação está vinculada a um objeto de página; nesse caso, o /O está indicando que a ação é acionada quando abrimos a página, e a ação real é armazenada no objeto 37.
 
-Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 37, mostrando um tipo de objeto desconhecido
+\[imagem]\[substituir comandos na imagem por comandos no corpo] Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 37, mostrando um tipo de objeto desconhecido
 
 Após algumas pesquisas, podemos concluir que esse objeto tenta abrir a caixa de diálogo de propriedades do leitor de PDF da seguinte forma (nada especialmente perigoso - exemplo em um computador configurado em espanhol)
 
-Captura de tela de uma janela de propriedades de arquivo do leitor de PDF Conclusão: tente usar o parâmetro -O caso haja outros objetos escondidos nos fluxos Desafios
+\[imagem]Captura de tela de uma janela de propriedades de arquivo do leitor de PDF
 
-Pergunta: analisando o arquivo challenge1.pdf (md5: 3b20821cb817e40e088d9583e8699938), que tipo de objeto interessante está escondido atrás de um fluxo?
+**Conclusão:** tente usar o parâmetro `-O` caso haja outros objetos escondidos nos fluxos
+
+### Desafios
+
+**Pergunta 1:** analisando o arquivo challenge1.pdf (md5: 3b20821cb817e40e088d9583e8699938), que tipo de objeto interessante está escondido atrás de um fluxo?
 
 1. OpenAction
 2. AA
 3. JS
 4. JavaScript
 
-Pergunta: Analisando o arquivo challenge2.pdf (md5: 30373b268d516845751c10dc2b579c97), podemos ver uma ação que tenta abrir uma URL. Qual código a URL inclui como código de rastreamento? (dica: 6 números)
+**Pergunta 2:** Analisando o arquivo challenge2.pdf (md5: 30373b268d516845751c10dc2b579c97), podemos ver uma ação que tenta abrir uma URL. Qual código a URL inclui como código de rastreamento? (dica: 6 números)
 
-Quero ver a resposta
+#### Respostas dos desafios
 
-Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tipo de arquivo fortemente armado: Documentos do Office.
+* Pergunta 1: opção 2
+* Pergunta 2: 88965 \[AFAZER, CB: verificar o sext número]
+
+Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tipo de arquivo fortemente armado: [Documentos do Office](documentos-do-microsoft-office.md).
