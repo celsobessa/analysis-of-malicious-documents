@@ -68,7 +68,8 @@ Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73
 
 A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
-\[imagem] Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Trailer
+
+<figure><img src="/images/example2.png" alt="Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Reboque (Trailer)"><figcaption></figcaption></figure>
 
 **Cabeçalho:** Contém a versão do protocolo com o qual o arquivo foi criado, para indicar ao programa leitor como ler o restante da estrutura e renderizar todos os seus elementos.
 
