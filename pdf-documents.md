@@ -275,6 +275,6 @@ Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de obj
 #### Respostas dos desafios
 
 * Pergunta 1: opção 2
-* Pergunta 2: 88965 \[AFAZER, CB: verificar o sext número]
+* Pergunta 2: 889652
 
 Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tipo de arquivo fortemente armado: [Documentos do Office](documentos-do-microsoft-office.md).
