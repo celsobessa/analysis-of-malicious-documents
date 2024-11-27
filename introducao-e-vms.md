@@ -2,20 +2,20 @@
 
 Introdução
 
-Este minicurso destina-se aos entusiastas e profissionais de segurança digital (suporte técnico, facilitadores, <mark style="color:red;">socorristas</mark>, etc.) que desejam saber mais sobre documentos maliciosos e como identificá-los. Esses documentos podem ser: anexos de e-mail, arquivos em pen drives ou downloads de sites específicos. Os principais objetivos são:
+Este minicurso destina-se aos entusiastas e profissionais de segurança digital (suporte técnico, facilitadores, <mark style="color:red;">atendentes</mark>, etc.) que desejam saber mais sobre documentos maliciosos e como identificá-los. Esses documentos podem ser: anexos de e-mail, arquivos em pen drives ou downloads de sites específicos. Os principais objetivos são:
 
 * Aprender os conceitos básicos de como funcionam os formatos comuns de documentos e como eles podem ser transformados em armas, com ênfase especial em arquivos Portable Document Format (PDF) e documentos do Microsoft Office (pelo menos MS Word, Excel e PowerPoint).
 * Apresentar algumas ferramentas que podem ajudar a identificar sinais de documentos perigosos ou confirmar se é seguro abri-los.
 * Fornecer alguns conselhos de segurança e esclarecer dúvidas comuns sobre como lidar com arquivos suspeitos.
 
-Este curso utiliza o formato de leituras curtas e questionários na maior parte do conteúdo abordado, sendo que, dependendo do material, será necessário executar algumas ferramentas. Isso será abordado na seção Ambiente de trabalho logo após a introdução, os requisitos gerais são:
+Este curso utiliza o formato de leituras curtas e questionários na maior parte do conteúdo abordado, sendo que, dependendo do material, será necessário executar algumas ferramentas. Isso será abordado na seção [**Ambiente de trabalho**](#user-content-fn-1)[^1]**,** logo após a introdução. Os requisitos gerais são:
 
 Para concluir os exercícios propostos:
 
 * Capacidade de executar 1) uma máquina virtual no computador usando o Virtualbox ou software semelhante, ou 2) scripts python (somente para analisar os arquivos do curso, não para analisar amostras reais).
-* O tempo para cobrir o material (aproximadamente 2 horas)
+* O tempo para estudar o material (aproximadamente 2 horas)
 
-Este curso utiliza materiais disponíveis em outras referências e usa apenas ferramentas disponíveis gratuitamente. A maior parte do conteúdo é inspirada no trabalho que Didier Stevens tem feito ao longo do tempo, especialmente para o SANS, bem como em outras referências:
+Este curso utiliza materiais disponíveis em outras referências e usa apenas ferramentas disponíveis gratuitamente. A maior parte do conteúdo é inspirada no trabalho que [Didier Stevens](#user-content-fn-2)[^2] tem feito ao longo do tempo, especialmente para o SANS, bem como em outras referências:
 
 * https://blog.didierstevens.com/2011/05/25/malicious-pdf-analysis-workshop-screencasts/
 * https://github.com/filipi86/MalwareAnalysis-in-PDF
@@ -24,15 +24,24 @@ Este curso utiliza materiais disponíveis em outras referências e usa apenas fe
 
 ## Estrutura
 
-* Isenções de responsabilidade
-* Algumas considerações sobre modelagem de ameaças
-* Para cada tipo de formato de arquivo (PDFs, MS Office)
-* Como eles são estruturados (de uma forma mais técnica)
-  * Como eles podem ser transformados em armas
-  * Como podemos fazer uma análise introdutória
-  * Algumas conclusões/fatos sobre o formato de arquivo
-* Alguns conselhos gerais contra as ameaças relacionadas
-* O que vem a seguir
+1. [<mark style="color:red;">Avisos legais</mark>](#user-content-fn-3)[^3]
+2. Algumas considerações sobre modelagem de ameaças
+3. Para cada tipo de formato de arquivo (PDFs, MS Office)
+
+
+
+1. [Como eles são estruturados (de uma forma mais técnica)](#user-content-fn-4)[^4]
+2. Como eles podem ser transformados em armas
+3. Como podemos fazer uma análise introdutória
+4. Algumas conclusões/fatos sobre o formato de arquivo
+
+
+
+* Como eles podem ser transformados em armas
+* Como podemos fazer uma análise introdutórios
+
+1. Alguns conselhos gerais contra as ameaças relacionadas
+2. O que vem a seguir
 
 A seguir, uma série de isenções de responsabilidade úteis antes de começar a usar o material
 
@@ -192,3 +201,12 @@ Como podemos lidar com o básico com o VirtualBox, podemos aprender sobre o Remn
 * Opção 1: _Incorreto_ – Executar malware infectará o ambiente que estamos usando, causando coisas como notificar os criadores, o malware tentando infectar outros dispositivos na rede e tornando o dispositivo inutilizável. Todas essas consequências exigem mais medidas de segurança do que analisar a amostra sem executá-la (conhecido como Análise Estática)
 * Opção 2: **Correto** – Sem acesso à Internet, o malware não será capaz de se comunicar com servidores externos para executar certas ações, incluindo notificar sua execução. É bom saber também que alguns malwares usam a Internet para baixar outras partes de seu código, então cortar o acesso também pode ser um problema porque não teremos insights sobre toda a funcionalidade sem obter as partes que faltam. No entanto, os riscos associados à execução acidental do malware tornam melhor estar desconectado e ver durante a análise se estamos perdendo algo importante.
 * Opção 3: _Incorreto_ – O que torna as VMs mais eficientes para uso em análise de malware é a capacidade de tirar “instantâneos”, para que possamos fazer uma captura do estado de uma VM antes de começar a análise e, quando terminar, podemos reverter a VM para esse instantâneo, para que estejamos prontos para analisar a próxima amostra de forma controlada. Isso é muito mais rápido do que recriar a VM do zero todas as vezes. (Essa foi complicada, para ser honesto)
+
+[^1]: sugiro este negrito que nãa existe no original, para maior clareza
+
+[^2]: no original há um link para o perfil dele no X. buscar alternativa? sugestão: perfil dele no SANS [https://www.sans.org/profiles/didier-stevens/](https://www.sans.org/profiles/didier-stevens/)
+
+[^3]: ou Advertências
+
+[^4]: este tópico e os outros 3 abaixo (1 a 4) devem ter formato de subítem subordinado ao ítem 3 acima.
+
