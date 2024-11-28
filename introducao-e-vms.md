@@ -97,7 +97,7 @@ Outra vantagem de ter um ambiente dedicado é que, depois de manipular amostras 
 
 Uma das estratégias mais usadas para garantir um ambiente isolado é o uso de máquinas virtuais (VMs), que basicamente emulam um computador completo dentro de outro computador, incluindo o sistema operacional (SO)[^7], discos rígidos, tela etc. As ferramentas comuns para configurar e usar VMs são o Virtualbox e o VMware Workstation Player, entre outras. O uso de hardware dedicado também é uma opção, desde que esteja protegido em caso de infecção.
 
-[Uma possível desvantagem é que alguns malwares incluem código para verificar se são executados em ambientes isolados, o que dificulta a análise. No entanto, o perigo inerente de executar malware em nossos ambientes cotidianos não compensa nem mesmo o risco de tentar. Por isso, recomendamos procurar ajuda, concentrando-se em técnicas que não dependam da execução de arquivos suspeitos ou obtendo informações sobre como configurar um ambiente que se pareça com uma máquina real para uma amostra de malware. Para esse recurso, isso não deve ser um problema, pois não executaremos nenhum código de documentos. No entanto, se você quiser aprender a realizar análises dinâmicas em arquivos suspeitos, isso será útil.](#user-content-fn-8)[^8]
+[Uma possível desvantagem é que alguns malwares incluem código para verificar se são executados em ambientes isolados, o que dificulta a análise. No entanto, o perigo inerente de executar malware em nossos ambientes cotidianos não compensa nem mesmo o risco de tentar. Por isso, recomendamos procurar ajuda, concentrando-se em técnicas que não dependam da execução de arquivos suspeitos ou obtendo informações sobre como configurar um ambiente que se pareça com uma máquina real para uma amostra de malware. Para esse exercício, isso não deve ser um problema, pois não executaremos nenhum código de documentos. No entanto, se você quiser aprender a realizar análises dinâmicas em arquivos suspeitos, isso será útil.](#user-content-fn-8)[^8]
 
 ## Outras considerações
 
@@ -138,55 +138,38 @@ Agora, acesse [https://remnux.org/](https://remnux.org/) e clique em “Download
 
 \[Captura de tela do site do Remnux na seção de downloads]
 
-Depois de fazer o download do arquivo, é recomendável verificar se ele foi baixado corretamente. Para isso, precisamos verificar o [_hash_](#user-content-fn-9)[^9] associado ao arquivo. [_Hashing_](#user-content-fn-10)[^10] é um tópico denso que incentivamos a aprender e aplicar (também é muito usado na análise de malware), mas, por enquanto, podemos resumi-lo como um processo matemático que transforma um dado (como um texto ou um arquivo) em um código alfanumérico. Esse código deve ser exclusivo para os dados que você está analisando e, mesmo com pequenas alterações, o _hash_ mudará muito, Portanto, verificar se o arquivo baixado tem o mesmo _hash_ publicado no site do Remnux nos dirá que o arquivo foi baixado sem problemas; se o _hash_ for diferente, será um sinal de que o arquivo foi corrompido por causa de um processo de download defeituoso ou que, de alguma forma, não é o arquivo correto (talvez um erro de nossa parte ao selecionar a versão correta ou, em um cenário remoto, alguém alterou o arquivo para uma versão maliciosa, portanto, fique atenta). Uma referência rápida sobre como verificar _hashes_ está disponível em [https://technastic.com/check-md5-checksum-hash/](https://technastic.com/check-md5-checksum-hash/)
+Depois de fazer o download do arquivo, é recomendável verificar se ele foi baixado corretamente. Para isso, precisamos verificar o [_hash_](#user-content-fn-9)[^9] associado ao arquivo. [_Hashing_](#user-content-fn-10)[^10] é um tópico denso que incentivamos a aprender e aplicar (também é muito usado na análise de malware), mas, por enquanto, podemos resumi-lo como um processo matemático que transforma um dado (como um texto ou um arquivo) em um código alfanumérico. Esse código deve ser exclusivo para os dados que você está analisando e, mesmo com pequenas alterações, o _hash_ mudará muito. Portanto, verificar se o arquivo baixado tem o mesmo _hash_ publicado no site do Remnux nos dirá que o arquivo foi baixado sem problemas; se o _hash_ for diferente, será um sinal de que o arquivo foi corrompido por causa de um processo de download defeituoso ou que, de alguma forma, não é o arquivo correto (talvez um erro de nossa parte ao selecionar a versão correta ou, em um cenário remoto, alguém alterou o arquivo para uma versão maliciosa, portanto, fique atenta). Uma referência rápida sobre como verificar _hashes_ está disponível em [https://technastic.com/check-md5-checksum-hash/](https://technastic.com/check-md5-checksum-hash/)
 
-\*\*\*\*\*\*\*\*\*\*CHECAR CONTEÚDO ABAIXO (EU)
+[**Baixando o arquivo**](#user-content-fn-11)[^11]
 
-## Baixando o arquivo
+Depois de verificar se nosso arquivo baixou sem problemas, podemos importá-lo para o Virtualbox. Na página do Remnux em que baixamos a VM, há instruções disponíveis; no entanto, basta clicar duas vezes no arquivo .ova, e um assistente nos guiará pelo processo de importação. Podemos deixar tudo como sugerido na configuração proposta. No final, deveremos ver a máquina Remnux em nossa janela do Virtualbox. Ao clicar em “Start”, a máquina será ligada em uma janela separada. Esta é uma máquina Linux e, para fazer login, o usuário é remnux e a senha é malware (no entanto, é possível que a sessão seja aberta sem solicitar credenciais).
 
-Em geral, podemos dividir a análise de malware de acordo com o fato de estarmos executando as amostras ou não.
+[\[imagem 1\]](#user-content-fn-12)[^12]
 
-A análise estática tenta dissecar os arquivos e outros artefatos para obter o máximo de informações possível sem executá-los, enquanto a análise dinâmica executa as amostras para ver o que muda no ambiente de teste.
+[\[imagem 2\]](#user-content-fn-13)[^13]
 
-Dependendo do tipo de malware, um tipo de análise pode ser mais útil do que o outro, mas, em geral, a análise dinâmica exigirá mais medidas para proteger o ambiente de teste e a rede para poder suportar a execução de malware real.Este curso mostra apenas técnicas de análise estática. Tenha cuidado ao publicar amostras ou outras informações das amostras analisadas:Em geral, isso pode alertar os operadores de malware sobre o fato de estarmos analisando a campanha de malware, fazendo com que eles fechem a infraestrutura, limpem todos os rastros para dificultar a atribuição etc.Isso se aplica a qualquer plataforma pública, como mídias sociais e sites, incluindo algumas plataformas públicas em que podemos enviar arquivos para analisá-los na nuvem em busca de sinalizações de mecanismos antivírus e da comunidade de segurança da informação.
+## Configurações adicionais no Virtualbox - Rede&#x20;
 
-Para o último cenário, compartilharemos alguns exemplos e técnicas para verificar as informações de que precisamos sem alertar ninguém.
+Como analisaremos arquivos potencialmente prejudiciais, não é aconselhável utilizar a máquina de forma que ela possa se comunicar com o restante da nossa rede. A estratégia específica pode variar dependendo do estilo do analista, mas a configuração é feita principalmente na tela de interfaces da nossa VM. Com nossa máquina Remnux desligada, clicamos no botão “Settings” (Configurações) na barra de ferramentas.
 
-## Teste sobre o ambiente
+\[Captura de tela da ferramenta VirtualBox com a máquina virtual REMnux pronta para uso ]
 
-**Questão 1:** Qual das seguintes afirmações é verdadeira?
+Em seguida, na seção “Network” (Rede), você terá uma série de opções, sendo as mais importantes:
 
-1. A execução de amostras exigirá menos medidas de segurança do que tentar dissecar os artefatos para procurar insights úteis.
-2. Cortar o acesso à Internet tornará mais difícil para uma amostra de malware notificar os criadores de que foi executada.
-3. A maneira mais eficiente de analisar malware é usar máquinas virtuais porque, se a máquina for infectada, poderemos criá-la novamente do zero.
+\[Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Network (Rede) com um menu suspenso estendido destacando NAT no campo Attached to (Anexado a)]
 
-Exemplo de ambiente:
+* **Enable Network Adapter (Ativar adaptador de rede):** a desativação dessa opção eliminará qualquer conectividade entre nossa máquina virtual e outros dispositivos por meio da rede (inclusive a nossa, que será gerenciada por meio da interface gráfica), emulando a ausência de hardware para se conectar a qualquer rede na máquina virtual.
+* **Attached to - NAT:** a configuração padrão emulará uma nova rede para a VM, o que permite que ela acesse a Internet, mas também outros dispositivos da nossa rede, o que não é recomendado para o tipo de uso que daremos à nossa VM.
+* **Attached to - Bridged Adapter (conectado a um adaptador em ponte):** Isso compartilhará o adaptador de rede do nosso computador host físico com a VM, colocando-a como qualquer outro dispositivo em nossa rede. Essa opção também não é recomendada para o nosso caso de uso.
+* **Attached to - Host-only Adapter (Conectado a um adaptador somente de host):** conecta a VM a uma rede que está conectada somente à nossa máquina host e a outras VMs com a mesma configuração; em alguns casos, isso pode ser útil, mas também pode expor nossa máquina a atividades mal-intencionadas.
+* **Attached to - Internal Network (Conectado a uma rede interna):** semelhante ao anterior, mas nossa máquina host não está acessível; isso é útil quando queremos ver como duas ou mais máquinas interagem entre si.
+* **Attached to - Not attached (Conectado a - Não conectado):** Isso emula um adaptador de rede sem um cabo conectado a ele.
 
-Remnux + Virtualbox Caso você queira um ambiente funcional pronto para uso, recomendamos o uso do Remnux, uma máquina virtual (VM) para download pré-configurada com algumas ferramentas úteis para análise de malware.Aqui, usaremos o Virtualbox para virtualizar a máquina Remnux. Se você estiver familiarizado com esse processo, fique à vontade para pular para a próxima seção do curso.
+Dependendo do uso que daremos à nossa máquina, na configuração inicial podemos manter o NAT ativado para acessar a Internet e fazer o download de ferramentas, etc.. E antes de iniciar nossa análise, podemos alterá-lo para Não conectado, Rede interna ou desativar o adaptador.
 
-Instalação do Virtualbox
-
-Primeiro, precisaremos de um programa para gerenciar nossas máquinas virtuais. Escolhemos o Virtualbox porque é a solução mais usada, compatível com as três principais plataformas (Windows, macOS e Linux) e é gratuita.
-
-Para fazer o download do respectivo instalador, visite https://www.virtualbox.org/ e procure o grande botão azul.Em seguida, procure a seção com os pacotes por plataforma, conforme mostrado na imagem. Dependendo do uso que daremos à nossa máquina, para a configuração inicial, podemos manter o NAT ativado para acessar a Internet para fazer download de ferramentas etc., e antes de iniciar nossa análise, podemos alterá-lo para Não conectado, Rede interna ou desativar o adaptador.
+<mark style="color:red;">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</mark>
 
 Configurações extras no Virtualbox - Compartilhamento de informações com a máquina host
-
-Como analisaremos arquivos potencialmente prejudiciais, não é aconselhável executar a máquina de forma que ela possa se comunicar com o restante da rede. A estratégia específica pode variar dependendo do estilo do analista, mas a configuração é feita principalmente na tela de interfaces da VM. Com nossa máquina Remnux desligada, clicamos no botão “Settings” (Configurações) na barra de ferramentas.
-
-Captura de tela da ferramenta VirtualBox com a máquina virtual REMnux pronta para uso Em seguida, na seção “Network” (Rede), você terá uma série de opções, sendo as mais importantes: Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Network (Rede) com um menu suspenso estendido destacando NAT no campo Attached to (Anexado a)
-
-Enable Network Adapter (Ativar adaptador de rede): a desativação dessa opção eliminará qualquer conectividade entre nossa VM e outros dispositivos por meio da rede (inclusive a nossa, que será gerenciada por meio da interface gráfica) e emulará a ausência de hardware para se conectar a qualquer rede na VM.
-
-Attached to - NAT: a configuração padrão emulará uma nova rede para a VM, o que permite que ela acesse a Internet, mas também outros dispositivos da nossa rede, o que não é recomendado para o tipo de uso que daremos à nossa VM.
-
-Attached to - Bridged Adapter (conectado a um adaptador em ponte): Isso compartilhará o adaptador de rede do nosso computador host físico com a VM, colocando-a como qualquer outro dispositivo em nossa rede. Essa opção também não é recomendada para o nosso caso de uso.
-
-Attached to - Host-only Adapter (Conectado a um adaptador somente de host): conecta a VM a uma rede que está conectada somente à nossa máquina host e a outras VMs com a mesma configuração; em alguns casos, isso pode ser útil, mas também pode expor nossa máquina a atividades mal-intencionadas.
-
-Attached to - Internal Network (Conectado a uma rede interna): semelhante ao anterior, mas nossa máquina host não está acessível; é útil quando queremos ver como duas ou mais máquinas interagem entre si.
-
-Attached to - Not attached (Conectado a - Não conectado): Isso emula um adaptador de rede sem um cabo conectado a ele Dependendo do uso que daremos à nossa máquina, para a configuração inicial, podemos manter o NAT ativado para acessar a Internet para fazer download de ferramentas etc., e antes de iniciar nossa análise, podemos alterá-lo para Não conectado, Rede interna ou desativar o adaptador. Configurações extras no Virtualbox - Compartilhamento de informações com a máquina host
 
 É muito comum compartilhar arquivos e outros dados entre nosso computador e a VM. Novamente, há diferentes abordagens que podemos adotar:Pastas compartilhadas: semelhante a uma pasta compartilhada de rede, podemos sincronizar uma pasta entre nosso host e nosso sistema convidado (a máquina virtual).Isso nem sempre é recomendado para compartilhar amostras de malware, pois abrirá um espaço em nosso computador que é controlado por nossa VM, que pode ser infectada em instantes de nossa análise.Para configurar as pastas compartilhadas, há uma seção dedicada nas configurações. Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)
 
@@ -245,3 +228,13 @@ Como podemos lidar com o básico com o VirtualBox, podemos aprender sobre o Remn
 [^9]: incluir no glossário?
 
 [^10]: incluir no glossário?
+
+[^11]: checar hierarquia do tópico: H1, H2, parágrafo. a partir desse ponto, a trdução estava sem formatação e fiquei confusa
+
+
+
+
+
+[^12]: exclui, sem querer, a descrição da imagem
+
+[^13]: exclui, sem querer, a descrição da imagem
