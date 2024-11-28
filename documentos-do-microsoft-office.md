@@ -1,6 +1,8 @@
 # Documentos do Microsoft Office
 
-\` Depois de verificar como configurar máquinas virtuais como ambientes seguros e apresentar um fluxo de trabalho introdutório para analisar documentos PDF suspeitos, estamos prontos para continuar com os formatos de arquivo do Microsoft Office. Problemas de segurança com documentos do Microsoft Office
+Depois de verificar como configurar máquinas virtuais como ambientes seguros e apresentar um fluxo de trabalho introdutório para analisar documentos PDF suspeitos, estamos prontos para continuar com os formatos de arquivo do Microsoft Office.&#x20;
+
+### Problemas de segurança com documentos do Microsoft Office
 
 Em geral, os documentos do Office não são perigosos por si só se contiverem apenas as informações para as quais foram projetados: páginas com texto e outros elementos imprimíveis para o MS Word, células com valores e fórmulas para o MS Excel, slides com elementos observáveis no MS PowerPoint etc.
 
