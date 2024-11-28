@@ -169,23 +169,35 @@ Dependendo do uso que daremos à nossa máquina, na configuração inicial podem
 
 <mark style="color:red;">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</mark>
 
-Configurações extras no Virtualbox - Compartilhamento de informações com a máquina host
+### Configurações extras no Virtualbox - Compartilhamento de informações com a máquina host
 
-É muito comum compartilhar arquivos e outros dados entre nosso computador e a VM. Novamente, há diferentes abordagens que podemos adotar:Pastas compartilhadas: semelhante a uma pasta compartilhada de rede, podemos sincronizar uma pasta entre nosso host e nosso sistema convidado (a máquina virtual).Isso nem sempre é recomendado para compartilhar amostras de malware, pois abrirá um espaço em nosso computador que é controlado por nossa VM, que pode ser infectada em instantes de nossa análise.Para configurar as pastas compartilhadas, há uma seção dedicada nas configurações. Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)
+É muito comum compartilhar arquivos e outros dados entre nosso computador e a VM. Novamente, há diferentes abordagens que podemos adotar:
 
-Área de transferência compartilhada e arrastar e soltar: isso nos permitirá compartilhar a área de transferência entre o nosso computador e a máquina virtual, que pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. Semelhante para arrastar e soltar arquivos entre o sistema host e o sistema guest. Para alguns, desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de “Host to Guest” é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência; no entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
+**Pastas compartilhadas:** semelhante a uma pasta compartilhada de rede, podemos sincronizar uma pasta entre nosso host e nosso sistema convidado (a máquina virtual).Isso nem sempre é recomendado para compartilhar amostras de malware, pois abrirá um espaço em nosso computador que é controlado por nossa VM, que pode ser infectada em instantes de nossa análise.Para configurar as pastas compartilhadas, há uma seção dedicada nas configurações.&#x20;
 
-Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada Configurações extras no Virtualbox - Snapshots Um recurso muito útil do Virtualbox é salvar uma versão da VM para a qual podemos reverter a qualquer momento no futuro. Assim, por exemplo, se configurarmos a máquina Remnux para analisar malware, talvez queiramos salvar um instantâneo antes de iniciar a análise, de modo que, quando terminarmos, possamos reverter a VM para o instantâneo salvo para ter certeza de que a máquina não está infectada e que estamos prontos para continuar a análise. Para salvar um instantâneo, com a máquina no estado desejado, clique em “Machine” (Máquina) e depois em “Take Snapshot” (Tirar instantâneo) Captura de tela de uma máquina virtual no VirtualBox com o menu Machine aberto e a opção Take screenshot destacada
+\[imagem] Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)
+
+**Área de transferência compartilhada e arrastar e soltar:** isso nos permitirá compartilhar a área de transferência entre o nosso computador e a máquina virtual, que pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. Semelhante para arrastar e soltar arquivos entre o sistema host e o sistema guest. Para alguns, desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de “Host to Guest” é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência; no entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
+
+\[imagem] Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada
+
+### Configurações extras no Virtualbox - Snapshots
+
+Um recurso muito útil do Virtualbox é salvar uma versão da VM para a qual podemos reverter a qualquer momento no futuro. Assim, por exemplo, se configurarmos a máquina Remnux para analisar malware, talvez queiramos salvar um instantâneo antes de iniciar a análise, de modo que, quando terminarmos, possamos reverter a VM para o instantâneo salvo para ter certeza de que a máquina não está infectada e que estamos prontos para continuar a análise. Para salvar um instantâneo, com a máquina no estado desejado, clique em “Machine” (Máquina) e depois em “Take Snapshot” (Tirar instantâneo)
+
+\[imagem] Captura de tela de uma máquina virtual no VirtualBox com o menu Machine aberto e a opção Take screenshot destacada
 
 Em seguida, selecione um nome e clique em “OK”. Levará algum tempo para criar o instantâneo e, depois disso, ele estará disponível na seção Snapshots da tela principal do Virtualbox para a nossa VM.
 
-Captura de tela da janela de snapshot do VirtualBox
+\[imagem] Captura de tela da janela de snapshot do VirtualBox
 
 Podemos usar o botão “Restore” (Restaurar) na respectiva tela
 
-Captura de tela da janela do VirtualBox com o botão Restore destacado O que vem a seguir
+\[imagem] Captura de tela da janela do VirtualBox com o botão Restore destacado
 
-Como podemos lidar com o básico com o VirtualBox, podemos aprender sobre o Remnux enquanto entendemos e analisamos nosso primeiro formato de arquivo: PDFs.
+### Aseguir
+
+Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enquanto estudamos e analisamos nosso primeiro formato de arquivo: PDFs.
 
 ## Respostas dos questionários
 
