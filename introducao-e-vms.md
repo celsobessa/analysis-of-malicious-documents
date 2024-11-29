@@ -167,8 +167,6 @@ Em seguida, na seção “Network” (Rede), você terá uma série de opções,
 
 Dependendo do uso que daremos à nossa máquina, na configuração inicial podemos manter o NAT ativado para acessar a Internet e fazer o download de ferramentas, etc.. E antes de iniciar nossa análise, podemos alterá-lo para Não conectado, Rede interna ou desativar o adaptador.
 
-<mark style="color:red;">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</mark>
-
 ### Configurações adicionais no Virtualbox - Compartilhamento de informações com a máquina host
 
 É muito comum compartilhar arquivos e outros dados entre nosso computador e a VM. Novamente, há diferentes abordagens que podemos adotar:
@@ -201,7 +199,7 @@ Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enqua
 
 ## [Respostas dos questionários](#user-content-fn-16)[^16]
 
-### Respostas do Questionário Isenção de responsabilidade - Pergunta 2
+### Respostas do Questionário Isenção de responsabilidade - Questão 2
 
 * Opção 1: **CORRETO** – Caso o arquivo suspeito esteja realmente infectado, qualquer dano seria feito em um espaço seguro, além de desconectar a máquina do seu ambiente real, outras recomendações são configurar uma maneira de reverter o ambiente para uma condição segura anterior, ter ferramentas de monitoramento caso queiramos saber quais alterações são feitas durante uma possível infecção e usar diferentes sistemas operacionais entre o host e o sistema convidado para mitigar infecções acidentais.
 * Opção 2: _Incorreto_ – Mesmo quando desconectar da internet é uma prática recomendada durante a análise de arquivos, um arquivo infectado ainda pode comprometer seu computador/ambiente principal ou deixá-lo preparado para danificá-lo quando a conectividade for restaurada.
