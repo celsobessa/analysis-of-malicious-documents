@@ -66,8 +66,6 @@ startxref
 
 Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73261/l/798383-how-to-create-a-simple-pdf-file)" (Como criar um arquivo PDF simples) da Callas Software
 
-Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73261/l/798383-how-to-create-a-simple-pdf-file)" (Como criar um arquivo PDF simples) da Callas Software
-
 #### [Estrutura do arquivo PDF](#user-content-fn-1)[^1]
 
 A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
@@ -115,7 +113,7 @@ Em ataques mais elaborados, uma combinação desses objetos pode ser usada. Por 
 
 Considerando tudo isso, queremos saber se um arquivo contém algum desses tipos de objetos, logo na primeira etapa, para verificar se um arquivo PDF é malicioso ou, pelo menos, para ter certeza de que não é.
 
-### [Inserir ](#user-content-fn-4)[^4]`pdfid`
+### `Conheça o pdfid`
 
 Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PDF que consideramos suspeitos, podemos usar a ferramenta pdfid como primeira etapa para ver quais tipos de objetos estão contidos em nosso arquivo. O pdfid faz parte de [um conjunto de ferramentas desenvolvidas por Didier Stevens](https://blog.didierstevens.com/programs/pdf-tools/) para simplificar alguns processos de análise em arquivos PDF. Essas ferramentas são executadas usando a linha de comando (_Command Line,_ em inglês), por isso são conhecidas como aplicativos CLI (_Command Line Interface,_ ou interfaces de linha de comando). Explicaremos como usá-las usando a máquina virtual Remnux que configuramos na parte anterior deste curso.
 
@@ -161,11 +159,7 @@ Como podemos verificar, todos os objetos vistos pelo pdfid correspondem aos que 
 
 > Como dissemos antes, há técnicas que os agentes mal-intencionados empregam para evitar a fácil detecção de tipos específicos de objetos. O pdfid tenta mostrar até mesmo objetos ofuscados; no entanto, em alguns casos menos comuns, pode haver objetos ocultos que exigem um mergulho um pouco mais profundo para serem descobertos.
 
-###
-
-###
-
-### Digite pdf-parser
+### Conheça o pdf-parser
 
 #### Exemplo 1
 
@@ -193,6 +187,8 @@ Aqui, o argumento `-o` é usado para fornecer à ferramenta a identificação do
 
 Aqui, podemos ver a linha "/OpenAction 7 0 R", o que significa que o conteúdo real do objeto /OpenAction está no objeto com id 7 e, quando abrirmos o arquivo, chamaremos ou faremos referência a esse objeto. Repetindo o processo para ver o conteúdo do objeto com id 7, obtemos:
 
+[`pdf-parser.ph -o 7 ex005.pdf`](#user-content-fn-4)[^4]
+
 <figure><img src="images/ex005_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 7, destacando um tipo de objeto Javascript"><figcaption></figcaption></figure>
 
 Onde vemos que o documento está tentando mostrar um alerta ou pop-up com a mensagem descrita no terminal. Se abrirmos o arquivo, ele terá a seguinte aparência:
@@ -205,9 +201,13 @@ Onde vemos que o documento está tentando mostrar um alerta ou pop-up com a mens
 
 Como mencionamos anteriormente, pode haver arquivos em que o conteúdo suspeito não seja visível em texto simples. Pode haver vários motivos para fazer isso em casos legítimos, como compactar informações longas para reduzir o tamanho do arquivo, entre outros. No entanto, os arquivos mal-intencionados empregam essas técnicas com o objetivo de ofuscação para ajudar a evitar a detecção por antivírus e outras soluções de segurança. Por exemplo, se repetirmos o fluxo de trabalho anterior para o arquivo ex006.pdf, veremos que o resultado do comando `pdfid.py ex006.pdf` é a seguinte:
 
+`pdfid.py ex006.pdf`
+
 <figure><img src="images/ex006_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdfid.py para a análise do arquivo ex006.pdf destacando um objeto JavasScript"><figcaption></figcaption></figure>
 
 Aqui, podemos ver na linha /JavaScript "1(1)", que o significa que o pdfid detectou um objeto desse tipo, mas ofuscado. Repetindo o mesmo fluxo de trabalho que já conhecemos, analisamos o objeto com id 8 (onde reside o código JavaScript):
+
+`pdf-parser.py -o 8 ex006.pdf`
 
 E vemos o resultado a seguir.
 
@@ -231,13 +231,13 @@ Outra coisa que o software criador de PDF faz normalmente, para criar novos arqu
 
 Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que podem conter (e de fato contêm) outros objetos que podem ser interessantes.
 
+`pdf-parser.py -a example3.pdf`
+
 <figure><img src="images/example3_1-1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
 
 Para esse tipo de cenário, é aconselhável usar a opção `-O` (O maiúsculo) do pdf-parser. Essa opção tentará analisar qualquer fluxo que contenha objetos e tratá-los como objetos regulares do arquivo. Usando essa opção, por exemplo:
 
 [`pdf-parser.py -a -O example3.pdf`](#user-content-fn-5)[^5]
-
-
 
 <figure><img src="images/example3_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
 
@@ -289,9 +289,7 @@ Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tip
 
 
 
-[^4]: ver
-
-
+[^4]: [Heloisa](https://app.gitbook.com/u/3cfPFnhrGmMW3SNQ6vaZbifjH3C2 "mention") Por favor, não apague os códigos
 
 [^5]: isso não aparece no original
 
