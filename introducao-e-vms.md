@@ -169,51 +169,51 @@ Dependendo do uso que daremos à nossa máquina, na configuração inicial podem
 
 <mark style="color:red;">\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*</mark>
 
-### Configurações extras no Virtualbox - Compartilhamento de informações com a máquina host
+### Configurações adicionais no Virtualbox - Compartilhamento de informações com a máquina host
 
 É muito comum compartilhar arquivos e outros dados entre nosso computador e a VM. Novamente, há diferentes abordagens que podemos adotar:
 
-**Pastas compartilhadas:** semelhante a uma pasta compartilhada de rede, podemos sincronizar uma pasta entre nosso host e nosso sistema convidado (a máquina virtual).Isso nem sempre é recomendado para compartilhar amostras de malware, pois abrirá um espaço em nosso computador que é controlado por nossa VM, que pode ser infectada em instantes de nossa análise.Para configurar as pastas compartilhadas, há uma seção dedicada nas configurações.&#x20;
+**Pastas compartilhadas:** de forma semelhante a uma pasta compartilhada de rede, podemos sincronizar uma pasta entre nosso host e nosso sistema convidado (a máquina virtual). Isso nem sempre é recomendado ao compartilhar amostras de malware, pois abrirá um espaço em nosso computador que é controlado por nossa VM, que pode ser infectada no momento de análise. Para configurar as pastas compartilhadas, há uma seção específica nas configurações.&#x20;
 
-\[imagem] Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)
+\[imagem - Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)]
 
-**Área de transferência compartilhada e arrastar e soltar:** isso nos permitirá compartilhar a área de transferência entre o nosso computador e a máquina virtual, que pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. Semelhante para arrastar e soltar arquivos entre o sistema host e o sistema guest. Para alguns, desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de “Host to Guest” é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência; no entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
+[**Area de transferência compartilhada e recurso de arrastar e soltar:**](#user-content-fn-14)[^14] isso nos permitirá compartilhar a área de transferência entre o computador e a máquina virtual. Essa área pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. O mesmo vale para arrastar e soltar arquivos entre o sistema host (anfitrião) e o sistema guest (hóspede). [Para alguns,](#user-content-fn-15)[^15] desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de "Host to Guest" é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência. No entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
 
-\[imagem] Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada
+\[imagem - Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada]
 
-### Configurações extras no Virtualbox - Snapshots
+### Configurações adicionais no Virtualbox - Snapshots
 
-Um recurso muito útil do Virtualbox é salvar uma versão da VM para a qual podemos reverter a qualquer momento no futuro. Assim, por exemplo, se configurarmos a máquina Remnux para analisar malware, talvez queiramos salvar um instantâneo antes de iniciar a análise, de modo que, quando terminarmos, possamos reverter a VM para o instantâneo salvo para ter certeza de que a máquina não está infectada e que estamos prontos para continuar a análise. Para salvar um instantâneo, com a máquina no estado desejado, clique em “Machine” (Máquina) e depois em “Take Snapshot” (Tirar instantâneo)
+Um recurso muito útil do Virtualbox é salvar uma versão da VM para a qual podemos reverter a qualquer momento no futuro. Assim, por exemplo, se configurarmos a máquina Remnux para analisar malware, talvez queiramos salvar um instantâneo antes de iniciar a análise, de modo que, quando terminarmos, possamos reverter a VM para o instantâneo salvo, de forma a ter certeza de que a máquina não está infectada e que estamos prontos para continuar a análise. Para salvar um instantâneo, com a máquina no estado desejado, clique em “Machine” (Máquina) e depois em “Take Snapshot” (Tirar instantâneo).
 
-\[imagem] Captura de tela de uma máquina virtual no VirtualBox com o menu Machine aberto e a opção Take screenshot destacada
+\[imagem - Captura de tela de uma máquina virtual no VirtualBox com o menu Machine aberto e a opção Take screenshot destacada]
 
-Em seguida, selecione um nome e clique em “OK”. Levará algum tempo para criar o instantâneo e, depois disso, ele estará disponível na seção Snapshots da tela principal do Virtualbox para a nossa VM.
+Em seguida, selecione um nome e clique em “OK”. Levará algum tempo para criar o instantâneo e, depois disso, ele estará disponível na seção Snapshots da tela principal do Virtualbox na nossa VM.
 
-\[imagem] Captura de tela da janela de snapshot do VirtualBox
+\[imagem - Captura de tela da janela de snapshot do VirtualBox]
 
-Podemos usar o botão “Restore” (Restaurar) na respectiva tela
+Podemos usar o botão “Restore” (Restaurar) na respectiva tela.
 
-\[imagem] Captura de tela da janela do VirtualBox com o botão Restore destacado
+\[imagem - Captura de tela da janela do VirtualBox com o botão Restore destacado]&#x20;
 
-### Aseguir
+### A seguir
 
 Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enquanto estudamos e analisamos nosso primeiro formato de arquivo: PDFs.
 
-## Respostas dos questionários
+## [Respostas dos questionários](#user-content-fn-16)[^16]
 
-### Respostas Questionário Isenção de responsabilidade - Pergunta 2
+### Respostas do Questionário de responsabilidade - Pergunta 2
 
 * Opção 1: **CORRETO** – Caso o arquivo suspeito esteja realmente infectado, qualquer dano seria feito em um espaço seguro, além de desconectar a máquina do seu ambiente real, outras recomendações são configurar uma maneira de reverter o ambiente para uma condição segura anterior, ter ferramentas de monitoramento caso queiramos saber quais alterações são feitas durante uma possível infecção e usar diferentes sistemas operacionais entre o host e o sistema convidado para mitigar infecções acidentais.
 * Opção 2: _Incorreto_ – Mesmo quando desconectar da internet é uma prática recomendada durante a análise de arquivos, um arquivo infectado ainda pode comprometer seu computador/ambiente principal ou deixá-lo preparado para danificá-lo quando a conectividade for restaurada.
 * Opção 2: _Incorreto_ – Mesmo quando a maioria dos malwares conhecidos é projetada para Windows, também há códigos maliciosos projetados para outros sistemas, e também o mais importante ao analisar arquivos suspeitos é evitar infecções em nosso ambiente principal, independentemente de seu sistema operacional. Este conselho, embora possa ajudar a mitigar o impacto negativo da execução acidental de malware, não é suficiente sem outras séries de medidas, este conselho é considerado opcional e fornece pouco impacto se tivermos ambientes de teste fortes.
 
-### Respostas Questionário de Modelos de Ameaças - Pergunta 1
+### Respostas do Questionário de Modelos de Ameaças - Pergunta 1
 
 * Opção 1: **CORRETA** - É possível (especialmente para vítimas de alto risco) ser alvo de malwares muito específicos que não são expostos ao resto da internet, então os mecanismos AV ainda não os encontraram e não podem detectá-los como maliciosos. Além disso, há muitas técnicas que agentes maliciosos empregam para disfarçar malware como dados legítimos que às vezes dificultam a detecção de código malicioso pelo software AV.
 * Opção 2: _Incorreto_ – Anexos na caixa de entrada não são executados no computador sem a permissão explícita do usuário (ou pelo menos em ataques conhecidos), especialmente se estiverem armazenados em servidores externos. Portanto, excluí-los imediatamente nos fará perder evidências valiosas caso queiramos pesquisar mais sobre o arquivo e o e-mail.
 * Opção 2: _Incorreto_ – Mesmo quando isso garante que arquivos maliciosos não sejam executados, devemos entender que públicos vulneráveis ​​na maioria das vezes precisam interagir com informações de fontes não confiáveis ​​para cumprir sua missão, tornando a interação zero insustentável como conselho na maioria dos casos.
 
-### Respostas Questionário sobre o ambiente - Pergunta 1
+### Respostas do Questionário sobre o ambiente - Pergunta 1
 
 * Opção 1: _Incorreto_ – Executar malware infectará o ambiente que estamos usando, causando coisas como notificar os criadores, o malware tentando infectar outros dispositivos na rede e tornando o dispositivo inutilizável. Todas essas consequências exigem mais medidas de segurança do que analisar a amostra sem executá-la (conhecido como Análise Estática)
 * Opção 2: **Correto** – Sem acesso à Internet, o malware não será capaz de se comunicar com servidores externos para executar certas ações, incluindo notificar sua execução. É bom saber também que alguns malwares usam a Internet para baixar outras partes de seu código, então cortar o acesso também pode ser um problema porque não teremos insights sobre toda a funcionalidade sem obter as partes que faltam. No entanto, os riscos associados à execução acidental do malware tornam melhor estar desconectado e ver durante a análise se estamos perdendo algo importante.
@@ -250,3 +250,10 @@ Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enqua
 [^12]: exclui, sem querer, a descrição da imagem
 
 [^13]: exclui, sem querer, a descrição da imagem
+
+[^14]: parágrafo editado para clareza
+
+[^15]: falta o objeto direto da frase e não consigo inferir pois não entendo completamente o processo. "alguns" se refere a arquivos?&#x20;
+
+[^16]: o conteúdo restante, abaixo, não aparece no link [https://greaterinternetfreedom.org/course/part01-intro-and-vms/](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) portanto, farei a revisão depois.
+
