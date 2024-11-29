@@ -1,8 +1,8 @@
-# PDF documents
+# Documentos PDF
 
 Após a visão geral do gerenciamento de máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos, exploraremos os arquivos PDF em termos de formato e maneiras como eles podem ser usados para prejudicar os usuários. O que é um PDF?
 
-Quando abrimos um arquivo PDF, usamos um software específico que renderiza seu conteúdo de forma legível. No entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples regular e dados binários (para imagens e outros elementos que possam exigir isso). Por exemplo, o texto a seguir renderiza o arquivo PDF mostrado logo depois:
+Quando abrimos um arquivo PDF, usamos um software específico que renderiza seu conteúdo de forma legível. No entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples, regular, e dados binários (para imagens e outros elementos que possam exigir isso). Por exemplo, o texto a seguir renderiza o arquivo PDF mostrado logo depois:
 
 ```txt
 %PDF-1.4
@@ -62,7 +62,7 @@ startxref
 
 <figure><img src=".gitbook/assets/pdf-example-1.png" alt="Captura de tela de um arquivo PDF em branco com um quadrado vermelho no canto inferior esquerdo da página"><figcaption></figcaption></figure>
 
-Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73261/l/798383-how-to-create-a-simple-pdf-file)" (Como criar um arquivo PDF simples, em ) da Callas Software
+Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73261/l/798383-how-to-create-a-simple-pdf-file)" (Como criar um arquivo PDF simples) da Callas Software
 
 ### Estrutura de arquivo PDF
 
@@ -187,7 +187,7 @@ Aqui, podemos ver a linha "/OpenAction 7 0 R", o que significa que o conteúdo r
 
 `pdf-parser.py -o 7 ex005.pdf`
 
-&#x20;Obtemos:
+Obtemos:
 
 <figure><img src="images/ex005_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 7, destacando um tipo de objeto Javascript"><figcaption></figcaption></figure>
 
@@ -225,7 +225,7 @@ Onde podemos ver o conteúdo real do objeto a ser renderizado pelo leitor de PDF
 
 ### Exemplo 3
 
-Outra coisa que o software criador de PDF faz normalmente para criar novos arquivos é criar objetos dentro de fluxos que são codificados para tornar os arquivos resultantes menores. Isso é desejável em geral, mas também cria uma maneira de ofuscar ainda mais o código malicioso.&#x20;
+Outra coisa que o software criador de PDF faz normalmente para criar novos arquivos é criar objetos dentro de fluxos que são codificados para tornar os arquivos resultantes menores. Isso é desejável em geral, mas também cria uma maneira de ofuscar ainda mais o código malicioso.
 
 Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que podem conter (e de fato contêm) outros objetos que podem ser interessantes.
 

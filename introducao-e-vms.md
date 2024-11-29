@@ -201,7 +201,7 @@ Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enqua
 
 ## [Respostas dos questionários](#user-content-fn-16)[^16]
 
-### Respostas do Questionário de responsabilidade - Pergunta 2
+### Respostas do Questionário Isenção de responsabilidade - Pergunta 2
 
 * Opção 1: **CORRETO** – Caso o arquivo suspeito esteja realmente infectado, qualquer dano seria feito em um espaço seguro, além de desconectar a máquina do seu ambiente real, outras recomendações são configurar uma maneira de reverter o ambiente para uma condição segura anterior, ter ferramentas de monitoramento caso queiramos saber quais alterações são feitas durante uma possível infecção e usar diferentes sistemas operacionais entre o host e o sistema convidado para mitigar infecções acidentais.
 * Opção 2: _Incorreto_ – Mesmo quando desconectar da internet é uma prática recomendada durante a análise de arquivos, um arquivo infectado ainda pode comprometer seu computador/ambiente principal ou deixá-lo preparado para danificá-lo quando a conectividade for restaurada.
