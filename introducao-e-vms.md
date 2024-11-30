@@ -124,27 +124,33 @@ Caso você queira um ambiente funcional pronto para uso, recomendamos o uso do R
 
 Primeiro, precisaremos de um programa para gerenciar nossas máquinas virtuais. Escolhemos o Virtualbox porque é a solução mais usada, compatível com as três principais plataformas (Windows, macOS e Linux) e é gratuita. Para fazer o download do respectivo instalador, visite [https://www.virtualbox.org/](https://www.virtualbox.org/) e procure o grande botão azul. Em seguida, procure a seção com os pacotes por plataforma, conforme mostrado na imagem.
 
-\[Captura de tela do site do virtualbox com a lista das diferentes plataformas para download da ferramenta]
+<figure><img src="images/Captura-de-Tela-2024-11-28-às-21.57.12.jpg" alt="Captura de tela do site do virtualbox com a lista das diferentes plataformas para download da ferramenta"><figcaption></figcaption></figure>
 
 Aqui, clique em sua plataforma e siga as instruções. Depois disso, você pode executar o Virtualbox e ver uma janela como esta&#x20;
 
-\[Captura de tela da janela do Virtualbox]
+<figure><img src="images/Captura-de-Tela-2024-11-28-às-22.08.40.jpg" alt="Captura de tela da janela do Virtualbox"><figcaption></figcaption></figure>
 
-&#x20;Você ainda não terá nada na área embaçada. A partir daqui, estamos prontos para baixar e instalar o Remnux&#x20;
+Você ainda não terá nada na área distorcida na coluna esquerda. A partir daqui, estamos prontos para baixar e instalar o Remnux
 
 ## Instalando o Remnux
 
 Agora, acesse [https://remnux.org/](https://remnux.org/) e clique em “Download” na seção correspondente. É possível que você seja redirecionado para outra página solicitando que selecione se deseja fazer o download de um OVA geral ou de um OVA do Virtualbox; no nosso caso, o último será o correto.
 
-\[Captura de tela do site do Remnux na seção de downloads]
+<figure><img src="images/Remnux-anotaded.jpg" alt="Captura de tela do site do Remnux na seção de downloads"><figcaption></figcaption></figure>
 
-Depois de fazer o download do arquivo, é recomendável verificar se ele foi baixado corretamente. Para isso, precisamos verificar o [_hash_](#user-content-fn-9)[^9] associado ao arquivo. [_Hashing_](#user-content-fn-10)[^10] é um tópico denso que incentivamos a aprender e aplicar (também é muito usado na análise de malware), mas, por enquanto, podemos resumi-lo como um processo matemático que transforma um dado (como um texto ou um arquivo) em um código alfanumérico. Esse código deve ser exclusivo para os dados que você está analisando e, mesmo com pequenas alterações, o _hash_ mudará muito. Portanto, verificar se o arquivo baixado tem o mesmo _hash_ publicado no site do Remnux nos dirá que o arquivo foi baixado sem problemas; se o _hash_ for diferente, será um sinal de que o arquivo foi corrompido por causa de um processo de download defeituoso ou que, de alguma forma, não é o arquivo correto (talvez um erro de nossa parte ao selecionar a versão correta ou, em um cenário remoto, alguém alterou o arquivo para uma versão maliciosa, portanto, fique atenta). Uma referência rápida sobre como verificar _hashes_ está disponível em [https://technastic.com/check-md5-checksum-hash/](https://technastic.com/check-md5-checksum-hash/)
+> Depois de fazer o download do arquivo, é recomendável verificar se ele foi baixado corretamente. Para isso, precisamos verificar o [_hash_](#user-content-fn-9)[^9] associado ao arquivo. [_Hashing_](#user-content-fn-10)[^10] é um tópico denso que incentivamos a aprender e aplicar (também é muito usado na análise de malware), mas, por enquanto, podemos resumi-lo como um processo matemático que transforma um dado (como um texto ou um arquivo) em um código alfanumérico. Esse código deve ser exclusivo para os dados que você está analisando e, mesmo com pequenas alterações, o _hash_ mudará muito. Portanto, verificar se o arquivo baixado tem o mesmo _hash_ publicado no site do Remnux nos dirá que o arquivo foi baixado sem problemas; se o _hash_ for diferente, será um sinal de que o arquivo foi corrompido por causa de um processo de download defeituoso ou que, de alguma forma, não é o arquivo correto (talvez um erro de nossa parte ao selecionar a versão correta ou, em um cenário remoto, alguém alterou o arquivo para uma versão maliciosa, portanto, fique atenta). Uma referência rápida sobre como verificar _hashes_ está disponível em [https://technastic.com/check-md5-checksum-hash/](https://technastic.com/check-md5-checksum-hash/)
 
 [**Baixando o arquivo**](#user-content-fn-11)[^11]
 
 Depois de verificar se nosso arquivo baixou sem problemas, podemos importá-lo para o Virtualbox. Na página do Remnux em que baixamos a VM, há instruções disponíveis; no entanto, basta clicar duas vezes no arquivo .ova, e um assistente nos guiará pelo processo de importação. Podemos deixar tudo como sugerido na configuração proposta. No final, deveremos ver a máquina Remnux em nossa janela do Virtualbox. Ao clicar em “Start”, a máquina será ligada em uma janela separada. Esta é uma máquina Linux e, para fazer login, o usuário é remnux e a senha é malware (no entanto, é possível que a sessão seja aberta sem solicitar credenciais).
 
+<figure><img src="images/Captura-de-Tela-2024-11-28-às-21.57.12.jpg" alt="Captura de tela do VirtualBox no MacOs"><figcaption>Captura de tela do VirtualBox no MacOs</figcaption></figure>
 [\[imagem 1\]](#user-content-fn-12)[^12]
+
+<figure><img src="images/virtualbox-remnux-windows.png" alt="Captura de tela do VirtualBox no Windows"><figcaption>Captura de tela do VirtualBox no Windows</figcaption></figure>
+
+<figure><img src="images/remnux-on-macos-pt-br.jpg" alt="Captura de tela do REMNux em MacOs em seu estado inicial"><figcaption>Captura de tela do REMNux em MacOs em seu estado inicial</figcaption></figure>
+
 
 [\[imagem 2\]](#user-content-fn-13)[^13]
 
@@ -152,11 +158,12 @@ Depois de verificar se nosso arquivo baixou sem problemas, podemos importá-lo p
 
 Como analisaremos arquivos potencialmente prejudiciais, não é aconselhável utilizar a máquina de forma que ela possa se comunicar com o restante da nossa rede. A estratégia específica pode variar dependendo do estilo do analista, mas a configuração é feita principalmente na tela de interfaces da nossa VM. Com nossa máquina Remnux desligada, clicamos no botão “Settings” (Configurações) na barra de ferramentas.
 
-\[Captura de tela da ferramenta VirtualBox com a máquina virtual REMnux pronta para uso ]
+<figure><img src="images/Captura-de-Tela-2024-11-30-às-17.19.06-macos-configuracoes.jpg" alt="Captura de tela da barra de navegação no REMnux destacando o ícone de configurações"><figcaption></figcaption></figure>
 
 Em seguida, na seção “Network” (Rede), você terá uma série de opções, sendo as mais importantes:
 
-\[Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Network (Rede) com um menu suspenso estendido destacando NAT no campo Attached to (Anexado a)]
+<figure><img src="images/Captura-de-Tela-2024-11-28-às-22.14.50-configuracoes-rede.jpg" alt="Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Network (Rede) com um menu suspenso estendido destacando NAT no campo Attached to (Anexado a)"><figcaption>janela de configurações de uma máquina virtual na seção Network (Rede) com um menu suspenso estendido destacando NAT no campo Attached to (Anexado a)</figcaption></figure>
+
 
 * **Enable Network Adapter (Ativar adaptador de rede):** a desativação dessa opção eliminará qualquer conectividade entre nossa máquina virtual e outros dispositivos por meio da rede (inclusive a nossa, que será gerenciada por meio da interface gráfica), emulando a ausência de hardware para se conectar a qualquer rede na máquina virtual.
 * **Attached to - NAT:** a configuração padrão emulará uma nova rede para a VM, o que permite que ela acesse a Internet, mas também outros dispositivos da nossa rede, o que não é recomendado para o tipo de uso que daremos à nossa VM.
@@ -173,25 +180,25 @@ Dependendo do uso que daremos à nossa máquina, na configuração inicial podem
 
 **Pastas compartilhadas:** de forma semelhante a uma pasta compartilhada de rede, podemos sincronizar uma pasta entre nosso host e nosso sistema convidado (a máquina virtual). Isso nem sempre é recomendado ao compartilhar amostras de malware, pois abrirá um espaço em nosso computador que é controlado por nossa VM, que pode ser infectada no momento de análise. Para configurar as pastas compartilhadas, há uma seção específica nas configurações.&#x20;
 
-\[imagem - Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)]
+<figure><img src="images/Captura-de-Tela-2024-11-28-às-22.17.39-pastas-compartilhadas.jpg" alt="Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)"><figcaption>aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)</figcaption></figure>
 
 [**Area de transferência compartilhada e recurso de arrastar e soltar:**](#user-content-fn-14)[^14] isso nos permitirá compartilhar a área de transferência entre o computador e a máquina virtual. Essa área pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. O mesmo vale para arrastar e soltar arquivos entre o sistema host (anfitrião) e o sistema guest (hóspede). [Para alguns,](#user-content-fn-15)[^15] desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de "Host to Guest" é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência. No entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
 
-\[imagem - Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada]
+<figure><img src="images/remnux-clipboard-settings-pt-br-area-de-transferencia.png" alt="Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada"><figcaption>máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada</figcaption></figure>
 
-### Configurações adicionais no Virtualbox - Snapshots
+### Configurações adicionais no Virtualbox - Instantâneos
 
-Um recurso muito útil do Virtualbox é salvar uma versão da VM para a qual podemos reverter a qualquer momento no futuro. Assim, por exemplo, se configurarmos a máquina Remnux para analisar malware, talvez queiramos salvar um instantâneo antes de iniciar a análise, de modo que, quando terminarmos, possamos reverter a VM para o instantâneo salvo, de forma a ter certeza de que a máquina não está infectada e que estamos prontos para continuar a análise. Para salvar um instantâneo, com a máquina no estado desejado, clique em “Machine” (Máquina) e depois em “Take Snapshot” (Tirar instantâneo).
+Um recurso muito útil do Virtualbox é salvar uma versão da VM para a qual podemos reverter a qualquer momento no futuro. Assim, por exemplo, se configurarmos a máquina Remnux para analisar malware, talvez queiramos salvar um instantâneo antes de iniciar a análise, de modo que, quando terminarmos, possamos reverter a VM para o instantâneo salvo, de forma a ter certeza de que a máquina não está infectada e que estamos prontos para continuar a análise. Para salvar um instantâneo, com a máquina no estado desejado, clique em “Machine” (Máquina) e depois em “Take Instantâneo” (Tirar instantâneo).
 
-\[imagem - Captura de tela de uma máquina virtual no VirtualBox com o menu Machine aberto e a opção Take screenshot destacada]
+<figure><img src="images/remnux-snapshot-settings-pt-br.png" alt="Captura de tela de uma máquina virtual no VirtualBox com o menu Máquina aberto e a opção Criar Instantâneo destacada"><figcaption>máquina virtual no VirtualBox com o menu Máquina aberto e a opção Criar Instantâneo destacada</figcaption></figure>
 
-Em seguida, selecione um nome e clique em “OK”. Levará algum tempo para criar o instantâneo e, depois disso, ele estará disponível na seção Snapshots da tela principal do Virtualbox na nossa VM.
+Em seguida, selecione um nome e clique em “OK”. Levará algum tempo para criar o instantâneo e, depois disso, ele estará disponível na seção Instantâneos da tela principal do Virtualbox na nossa VM.
 
-\[imagem - Captura de tela da janela de snapshot do VirtualBox]
+<figure><img src="images/Captura-de-Tela-2024-11-30-às-17.33.43-criar-instantaneo.jpg" alt="Captura de tela da janela de instantâneo do VirtualBox"><figcaption>Janela de instantâneo do VirtualBox</figcaption></figure>
 
 Podemos usar o botão “Restore” (Restaurar) na respectiva tela.
+<figure><img src="images/Captura-de-Tela-2024-11-30-às-17.39.51-snapshot-restore.jpg" alt="Captura de tela da janela do VirtualBox com o botão Restaurar destacado"><figcaption>janela do VirtualBox com o botão Restaurar destacado</figcaption></figure>
 
-\[imagem - Captura de tela da janela do VirtualBox com o botão Restore destacado]&#x20;
 
 ### A seguir
 
@@ -240,10 +247,6 @@ Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enqua
 [^10]: incluir no glossário?
 
 [^11]: checar hierarquia do tópico: H1, H2, parágrafo. a partir desse ponto, a trdução estava sem formatação e fiquei confusa
-
-
-
-
 
 [^12]: exclui, sem querer, a descrição da imagem
 
