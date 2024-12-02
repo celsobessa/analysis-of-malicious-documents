@@ -1,6 +1,6 @@
 # Documentos PDF
 
-Após a visão geral do gerenciamento de máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos, exploraremos os arquivos PDF em termos de formato e de maneiras como eles podem ser usados para prejudicar os usuários.&#x20;
+Após a visão geral do gerenciamento de [máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos,](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) exploraremos os arquivos PDF em termos de formato e de maneiras como eles podem ser usados para prejudicar os usuários.&#x20;
 
 ## O que é um PDF?
 
