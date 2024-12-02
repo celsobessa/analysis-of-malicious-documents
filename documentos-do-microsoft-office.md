@@ -84,7 +84,7 @@ Muitas vezes, a análise de macros mais complexas exigirá habilidades não abor
 
 \[ imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para um objeto mostrando uma variável chamada strPayload com uma cadeia de caracteres codificada em Base64]
 
-Aqui, em vez de usar texto simples, o criador da macro usou o esquema de codificação base64, o que [dificulta a leitura da carga útil que está tentando executar.](#user-content-fn-3)[^3] Para este exemplo, há muitas ferramentas que podem nos ajudar a decodificar essa variável, uma delas é o CyberChef, um aplicativo da web em que podemos inserir alguns dados e executar operações para obter um resultado. Neste caso, temos:
+Aqui, em vez de usar texto simples, o criador da macro usou o esquema de codificação base64, o que dificulta a leitura do que se está tentando executar. Para este exemplo, há muitas ferramentas que podem nos ajudar a decodificar essa variável, uma delas é o CyberChef, um aplicativo da web em que podemos inserir alguns dados e executar operações para obter um resultado. Neste caso, temos:
 
 \[imagem - Captura de tela da ferramenta CyberChef mostrando a string de texto decodificada dizendo Hello world]
 
@@ -116,7 +116,7 @@ Após compreender melhor como o PDF e o MS Office podem ser avaliados quanto a c
 
 * [Oletools:](https://github.com/decalage2/oletools) outra ferramenta famosa para analisar arquivos do MS Office.&#x20;
 * [Lista de vulnerabilidades conhecidas do Microsoft Office](https://www.cvedetails.com/vulnerability-list/vendor_id-26/product_id-320/Microsoft-Office.html) (a maioria não envolve macros)&#x20;
-* [CVE-2022-30190 ou codinome "Follina"](https://www.infosecinstitute.com/resources/vulnerabilities/follina-microsoft-office-code-execution-vulnerability/): [uma vulnerabilidade que  abusa de documentos para interagir com os recursos de solução de problemas do Windows.](#user-content-fn-4)[^4]
+* [CVE-2022-30190 ou codinome "Follina"](https://www.infosecinstitute.com/resources/vulnerabilities/follina-microsoft-office-code-execution-vulnerability/): [uma vulnerabilidade que  abusa de documentos para interagir com os recursos de solução de problemas do Windows.](#user-content-fn-3)[^3]
 * &#x20;["Uncompromised: Unpacking a malicious Excel macro"](https://redcanary.com/blog/incident-response/malicious-excel-macro/), (Intransigente: investigando uma macro maliciosa no Excel), um caso interessante que explora um arquivo malicioso passo a passo.&#x20;
 * [Analyzing Malicious Documents Cheat Sheet](https://zeltser.com/analyzing-malicious-documents/) (folha de truques/dicas para análise de documentos maliciosos), uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
 
@@ -126,6 +126,4 @@ Após compreender melhor como o PDF e o MS Office podem ser avaliados quanto a c
 
 [^2]: ver
 
-[^3]: verificar se está correto - termos técnicos
-
-[^4]: checar a tradução tecnica
+[^3]: checar a tradução tecnica
