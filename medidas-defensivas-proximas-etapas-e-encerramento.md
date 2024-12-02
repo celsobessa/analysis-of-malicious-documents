@@ -4,6 +4,10 @@ Até agora, abordamos uma [introdução](https://greaterinternetfreedom.org/cour
 
 Ainda assim, se oferecermos suporte a agentes vulneráveis (o principal público-alvo desta série de postagens), sabemos que isso é apenas metade da história. Também precisamos garantir que possamos fornecer boas orientações proativas aos nossos beneficiários, para que eles estejam bem protegidos contra documentos mal-intencionados antes que eles cheguem aos seus discos rígidos. Esperamos que, com todo o conteúdo que analisamos, possamos não apenas entender melhor as recomendações clássicas que damos aos usuários finais, mas também propor algumas medidas adicionais que possam ser úteis para agentes vulneráveis com um nível de risco maior.
 
+Até agora, nas seções anteriores, abordamos uma introdução à modelagem de ameaças, o uso de máquinas virtuais como ambientes para analisar malware e como começar a analisar PDFs e documentos do Microsoft Office. Todos esses tópicos nos ajudarão a oferecer melhor suporte a outras pessoas, atuando como primeira linha de defesa contra documentos suspeitos.
+
+Ainda assim, se oferecermos suporte a agentes vulneráveis (o público-alvo principal desta série de postagens), sabemos que isso é apenas metade da história. Também precisamos garantir que possamos fornecer boas orientações proativas aos nossos beneficiários, para que eles estejam bem protegidos contra documentos maliciosos antes que eles cheguem aos discos rígidos. Esperamos que, com todo o conteúdo analisado, possamos não apenas compreender melhor as recomendações clássicas dadas aos usuários finais, mas também propor algumas medidas adicionais que possam ser úteis para agentes vulneráveis com um nível de risco maior.
+
 A primeira ideia que queremos reforçar é que dizer a ativistas, jornalistas e à mídia, que eles não devem abrir arquivos de fontes desconhecidas, não é um conselho sustentável. Para realizar suas atividades, muitas pessoas dessas categorias precisam abrir arquivos enviados a elas que podem conter ameaças, como convites para conferências de imprensa, documentos vazados, agendas de eventos etc. Portanto, o conselho mais pertinente que podemos dar a elas é conhecer os riscos e criar processos que lhes permitam abrir os arquivos da maneira mais segura possível.
 
 Dito isso, algumas medidas de defesa contra documentos maliciosos incluem&#x20;
@@ -12,7 +16,13 @@ Dito isso, algumas medidas de defesa contra documentos maliciosos incluem&#x20;
 
 #### Soluções antivírus
 
+### Em geral&#x20;
+
+#### Soluções antivírus
+
 Muitos documentos mal-intencionados distribuídos fazem parte de operações maciças que são documentadas com sucesso e integradas aos bancos de dados de detecção de antivírus. Lembre-se de que essa recomendação não garante a detecção de arquivos mal-intencionados que são feitos sob medida para alvos específicos. Ainda assim, ela fornecerá uma camada de segurança que vale a pena ter, especialmente se estiver operando com muitos arquivos não confiáveis. Lembre-se de escolher um fornecedor de boa reputação, ativar a detecção em tempo real, se disponível, e manter o banco de dados atualizado.&#x20;
+
+#### Mantenha o software legalizado e atualizado
 
 #### Mantenha o software legalizado e atualizado
 
