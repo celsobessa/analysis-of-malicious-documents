@@ -16,7 +16,7 @@ Quando começamos a nos aprofundar no funcionamento das macros, começamos a ver
 
 Em segundo lugar, a execução de macros a partir de documentos é muito fácil. Os criadores de documentos podem configurá-las para serem executadas automaticamente ao abrir o arquivo, ao clicar em um botão, link ou qualquer elemento específico, entre outros gatilhos. Então, para arquivos desconhecidos, o MS Office nos avisará que suas macros podem ser perigosas e as bloqueará, mas geralmente estamos a um ou dois cliques de desativar essa proteção e executar as macros de qualquer maneira. Essa situação torna muito atraente para os agentes mal-intencionados usar macros e nos convencer de que é seguro executá-las por meio de argumentos convincentes próprios de cada campanha de _phishing._
 
-Ao comparar PDFs com documentos do MS Office com macros para atividades maliciosas, observa-se que os documentos do MS Office oferecem mais possibilidades de comandos a serem executados em dispositivos que os abrem, o que os torna mais poderosos e também mais populares do que os PDFs. [Além disso, essa flexibilidade é o motivo pelo qual estamos nos concentrando em transformar macros permitidas em documentos maliciosos em armas, em vez de focar em outras formas de transformar documentos do MS Office em armas. ](#user-content-fn-1)[^1]Se você estiver interessado em maneiras diferentes de usar esses arquivos para vulnerar usuários de versões desatualizadas do Office, forneceremos links para outras referências ao final.&#x20;
+Ao comparar PDFs com documentos do MS Office com macros para atividades maliciosas, observa-se que os documentos do MS Office oferecem mais possibilidades de comandos a serem executados em dispositivos que os abrem, o que os torna mais poderosos e também mais populares do que os PDFs. Além disso, essa flexibilidade é o motivo pelo qual estamos nos concentrando em como se utiliza macros, e não outros meios, para transformar documentos do MS Office em armas. Se você estiver interessado em maneiras diferentes de usar esses arquivos para vulnerar usuários de versões desatualizadas do Office, forneceremos links para outras referências ao final.&#x20;
 
 #### Vulnerabilidades do Office&#x20;
 
@@ -30,7 +30,7 @@ Desde 2003, o Microsoft Office mudou a forma como os documentos são criados por
 
 ### &#x20;Análise de documentos do MS Office
 
-Para começar a explorar maneiras de detectar quando as macros estão incluídas em documentos do MS Office, usaremos [oledump.py](https://blog.didierstevens.com/programs/oledump-py/), uma ferramenta Python desenvolvida por Didier Stevens, o mesmo autor das ferramentas propostas anteriormente, com foco em PDFs. Também usaremos uma série de [arquivos para exemplificar](#user-content-fn-2)[^2] como os documentos do MS Office funcionam e como as macros podem ser detectadas e analisadas, também a partir de materiais de treinamento de Didier Stevens.
+Para começar a explorar maneiras de detectar quando as macros estão incluídas em documentos do MS Office, usaremos [oledump.py](https://blog.didierstevens.com/programs/oledump-py/), uma ferramenta Python desenvolvida por Didier Stevens, o mesmo autor das ferramentas propostas anteriormente, com foco em PDFs. Também usaremos uma série de [arquivos para exemplificar](http://didierstevens.com/workshop-maldoc-1.zip) \[nota: sugerimos baixar o arquivo .zip do link apenas em máquinas virtuais ou ambientes isolados] como os documentos do MS Office funcionam e como as macros podem ser detectadas e analisadas, também a partir de [versões arquivadas  materiais de treinamento de Didier Stevens](https://web.archive.org/web/20221207002535/https://conference.hitb.org/hitbsecconf2017ams/materials/D1T3%20-%20Didier%20Stevens%20-%20Analyzing%20Malicious%20Office%20Documents.pdf).
 
 O fluxo de trabalho para iniciar a análise de documentos do MS Office é muito semelhante ao que usamos em PDFs. Primeiro, listamos os diferentes elementos presentes no arquivo, identificamos objetos interessantes em termos de segurança e, em seguida, tentamos obter o conteúdo real desses elementos para ver se há algo prejudicial.
 
@@ -54,21 +54,15 @@ Quando abrirmos um arquivo com macros, o resultado incluirá novos elementos:
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip]
 
-Se olharmos atentamente para esse exemplo, veremos que [o arquivo que passamos para o comando](#user-content-fn-3)[^3] é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "infected" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente.
+Se olharmos atentamente para esse exemplo, veremos que [o arquivo que passamos para o comando](#user-content-fn-1)[^1] é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "infected" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente.
 
-Nesse resultado[^4], vemos dois objetos que são diferentes e são identificados com a letra "m" ou "M". Isso significa que esses objetos específicos contêm macros. Vamos usar o comando -s no oledump.py para ver o conteúdo desses fluxos, começando com o objeto (ou fluxo 8)
+Nesse resultado[^2], vemos dois objetos que são diferentes e são identificados com a letra "m" ou "M". Isso significa que esses objetos específicos contêm macros. Vamos usar o comando -s no oledump.py para ver o conteúdo desses fluxos, começando com o objeto (ou fluxo 8)
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip para o objeto com id 8]
-
-\[ imgem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip para o objeto com id 8]
 
 Usamos o comando -s para selecionar o objeto identificado com o número 8 e o comando -v para descompactar o conteúdo porque o VBA pode compactar o código por padrão, portanto, é uma prática segura incluir esse comando ao solicitar objetos com macros.
 
 Agora, observando o conteúdo, vemos algumas declarações de atributo, que são feitas por padrão pelo VBA e nem mesmo são visíveis para o criador do documento, portanto, esse código não é considerado personalizado ou prejudicial para os nossos fins. Dito isso, o código conhecido como inofensivo pela ferramenta é identificado com um "m" minúsculo, assumindo-o como seguro e menos interessante para análise posterior. Vamos analisar o outro objeto que contém uma macro.
-
-Agora, observando o conteúdo, vemos algumas declarações de atributo que são feitas por padrão pelo VBA e nem mesmo são visíveis para o criador do documento. Portanto, esse código não é considerado personalizado ou prejudicial aos nossos efeitos. Dito isso, o código conhecido como inofensivo pela ferramenta é identificado com um "m" minúsculo, assumindo-o como seguro e menos interessante para análise posterior. Vamos analisar o outro objeto que contém uma macro.
-
-\[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip do objeto com id 7]
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip do objeto com id 7]
 
@@ -78,37 +72,21 @@ Para explorar a maneira como isso pode ser transformado em uma arma, vamos verif
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex013.doc.zip]
 
-\[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex013.doc.zip]
-
-\[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex013.doc.zip para o objeto com id 7, incluindo uma macro]
-
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex013.doc.zip para o objeto com id 7, incluindo uma macro]
 
 Aqui, a macro de interesse é um pouco mais complexa do que uma janela de diálogo com uma mensagem de texto. Podemos ver que, novamente, o recurso AutoOpen() é usado para executar o código abaixo ao abrir o documento. Observando o código, com uma pequena ajuda para verificar os comandos usados, podemos inferir que a macro tenta fazer o download do conteúdo de um URL em um arquivo no diretório temporal de nossa máquina e executar o arquivo que foi baixado.
 
 Nesse caso, parece que o arquivo está preenchendo um arquivo de texto, que deve ser inofensivo, mas com o URL certo e o tipo de arquivo certo usado para baixar o conteúdo, uma macro como essa pode escrever e executar programas ou outros artefatos prejudiciais sem muita interação ou mesmo conhecimento do usuário. Além disso, vale a pena mencionar que essa macro é uma versão simplificada de ameaças mais reais, que geralmente ofuscam seu código para evitar a detecção pelo software antivírus e podem executar ações mais elaboradas, como adicionar o malware baixado a programas de inicialização ou a tarefas agendadas, tornando o malware persistente ao longo do tempo, entre outras ações.
 
-Nesse caso, parece que o arquivo está preenchendo um arquivo de texto, que deve ser inofensivo, mas com o URL certo e o tipo de arquivo certo usado para baixar o conteúdo, uma macro como essa pode escrever e executar programas ou outros artefatos prejudiciais sem muita interação ou mesmo conhecimento do usuário. Além disso, vale a pena mencionar que essa macro é uma versão simplificada de ameaças mais reais, que geralmente ofuscam seu código para evitar a detecção pelo software antivírus, e podem executar ações mais elaboradas, como adicionar o malware baixado a programas de inicialização ou tarefas agendadas, para que o malware seja persistente ao longo do tempo, entre outras.
-
 Muitas vezes, a análise de macros mais complexas exigirá habilidades não abordadas neste material, como descriptografar o código e descobrir como, por meio do uso de diferentes comandos e estruturas de dados, podemos obter o código final executado para que possamos entender o que ele faz (desofuscação). Um exemplo ainda muito simples que mostra uma técnica comum para ofuscar o conteúdo pode ser encontrado na verificação do próximo arquivo.
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex015.doc.zip]
 
-\[ imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex015.doc.zip]
-
 \[ imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para um objeto mostrando uma variável chamada strPayload com uma cadeia de caracteres codificada em Base64]
 
-\[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para um objeto mostrando uma variável chamada strPayload com uma cadeia de caracteres codificada em Base64]
-
-Aqui, em vez de usar texto simples, o criador da macro usou o esquema de codificação base64, o que [dificulta a leitura da carga útil que está tentando executar.](#user-content-fn-5)[^5] Para este exemplo, há muitas ferramentas que podem nos ajudar a decodificar essa variável, uma delas é o CyberChef, um aplicativo da web em que podemos inserir alguns dados e executar operações para obter um resultado. Neste caso, temos:
-
-Aqui, em vez de usar texto simples, o criador da macro usou o esquema de codificação base64, o que dificulta a leitura da carga útil que está tentando executar. Para este exemplo, há muitas ferramentas que podem nos ajudar a decodificar essa variável, uma delas é o [CyberChef](https://gchq.github.io/CyberChef/), um aplicativo da web em que podemos inserir alguns dados e executar algumas operações para obter um resultado. Neste caso, temos:
+Aqui, em vez de usar texto simples, o criador da macro usou o esquema de codificação base64, o que [dificulta a leitura da carga útil que está tentando executar.](#user-content-fn-3)[^3] Para este exemplo, há muitas ferramentas que podem nos ajudar a decodificar essa variável, uma delas é o CyberChef, um aplicativo da web em que podemos inserir alguns dados e executar operações para obter um resultado. Neste caso, temos:
 
 \[imagem - Captura de tela da ferramenta CyberChef mostrando a string de texto decodificada dizendo Hello world]
-
-\[imagem - Captura de tela da ferramenta CyberChef mostrando a string de texto decodificada dizendo Hello world]
-
-Com esses exemplos e referências, devemos ser capazes de saber se um arquivo tem macros incorporadas usando oledump.py, se um arquivo é interessante para ser analisado mais detalhadamente e, caso seu código seja simples o suficiente, o que a macro está tentando fazer. No caso de encontrar documentos com macros muito complexas, o conselho é procurar ajuda para analisar o arquivo mais detalhadamente e nunca tentar executar o arquivo em nossos ambientes, pois isso pode ter efeitos terríveis nos dispositivos, caso eles sejam infectados.
 
 Com esses exemplos e referências, devemos ser capazes de saber se um arquivo tem macros incorporadas usando oledump.py, se um arquivo é interessante para ser analisado mais detalhadamente e, caso seu código seja simples o suficiente, o que a macro está tentando fazer. No caso de encontrar documentos com macros muito complexas, o conselho é procurar ajuda para analisar o arquivo mais detalhadamente e nunca tentar executar o arquivo em nossos ambientes, pois isso pode ter efeitos terríveis nos dispositivos, caso eles sejam infectados.
 
@@ -116,13 +94,7 @@ Agora que aprendemos alguns fluxos de trabalho introdutórios para analisar PDFs
 
 ### Desafios
 
-### Desafios
-
 **Questão:** Aplicando o mesmo fluxo de trabalho ao arquivo ex006.doc.zip, vemos este resultado. Qual das seguintes hipóteses se confirma com as informações que obtivemos até agora?
-
-**Questão:** aplicando o mesmo fluxo de trabalho ao arquivo [ex006.doc.zip](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/ex006.doc.zip), vemos esta saída. Qual das seguintes hipóteses se confirma com as informações que obtivemos até agora?
-
-\[imagem - Captura de tela de um terminal mostrando a saída da ferramenta oledump.py para o arquivo ex006.doc.zip, mostrando dois objetos com macros descritas pela letra m minúscula]
 
 \[imagem - Captura de tela de um terminal mostrando a saída da ferramenta oledump.py para o arquivo ex006.doc.zip, mostrando dois objetos com macros descritas pela letra m minúscula]
 
@@ -130,11 +102,7 @@ Agora que aprendemos alguns fluxos de trabalho introdutórios para analisar PDFs
 2. O arquivo tem macros personalizadas criadas como qualquer um dos outros exemplos abordados
 3. De alguma forma, o arquivo tem macros inofensivas ao sistema, mas não tem macros criadas de forma personalizada.
 
-**Questão:** Aplicando o mesmo fluxo de trabalho ao arquivo ex016.doc.zip, vemos uma macro semelhante à última abordada acima, em que a macro decodifica algo em base64. O que está sendo passado para a função Decode64? (dica: aaaaaaaaaaaaaaaaaa.aaaaaaa.aaaa)
-
 **Questão:** aplicando o mesmo fluxo de trabalho ao arquivo [ex016.doc.zip](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/ex016.doc.zip), vemos uma macro semelhante à última abordada acima, em que a macro decodifica algo em base64. O que está sendo passado para a função Decode64? (dica: aaaaaaaaaaaaaaaaaa.aaaaaaa.aaaa)
-
-\[imagem - Janela da interface de linha de comando mostrando a saída de uma macro de documento com uma cadeia de texto ofuscada]
 
 \[imagem - Janela da interface de linha de comando mostrando a saída de uma macro de documento com uma cadeia de texto ofuscada]
 
@@ -142,44 +110,22 @@ Quero ver a resposta
 
 ### O que vem a seguir?
 
-### O que vem a seguir?
-
-Após compreender melhor como o PDF e o MS Office podem ser avaliados quanto a códigos maliciosos, é possível propor [medidas defensivas mais eficazes e revisar as dicas finais](https://greaterinternetfreedom.org/course/analysis-of-malicious-documents-part-04-defensive-measures-next-steps-and-closure/) sobre como conduzir esse tipo de avaliação inicial.
-
-### Bônus: leitura adicional sobre segurança do MS Office
-
-* Oletools: outra ferramenta famosa para analisar arquivos do MS Office&#x20;
-* Lista de vulnerabilidades conhecidas do Microsoft Office (a maioria não envolve macros)&#x20;
-* CVE-2022-30190 ou codinome "Follina": uma vulnerabilidade recente que está na moda, abusando de documentos para interagir com os recursos de solução de problemas do Windows.&#x20;
-* ["Uncompromised: Unpacking a malicious Excel macro (Não comprometido: Descompactando uma macro maliciosa do Excel)"](#user-content-fn-6)[^6], um caso interessante que explora um arquivo malicioso passo a passo. &#x20;
-* ["Analyzing Malicious Documents Cheat Sheet (Análise de Documentos Maliciosos Folha de Consulta)"](#user-content-fn-7)[^7], uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
-
-Depois de compreender melhor como o PDF e o MS Office podem ser avaliados quanto a códigos maliciosos, é possível propor [medidas defensivas mais eficazes e revisar as dicas finais ](https://greaterinternetfreedom.org/course/analysis-of-malicious-documents-part-04-defensive-measures-next-steps-and-closure/)sobre como conduzir esse tipo de avaliação inicial.
+Após compreender melhor como o PDF e o MS Office podem ser avaliados quanto a códigos maliciosos, é possível propor [medidas defensivas mais eficazes e revisar as dicas finais](medidas-defensivas-proximas-etapas-e-encerramento.md) sobre como conduzir esse tipo de avaliação inicial.
 
 ### Bônus: leitura adicional sobre segurança do MS Office
 
 * [Oletools:](https://github.com/decalage2/oletools) outra ferramenta famosa para analisar arquivos do MS Office.&#x20;
 * [Lista de vulnerabilidades conhecidas do Microsoft Office](https://www.cvedetails.com/vulnerability-list/vendor_id-26/product_id-320/Microsoft-Office.html) (a maioria não envolve macros)&#x20;
-* [CVE-2022-30190 ou codinome "Follina"](https://www.infosecinstitute.com/resources/vulnerabilities/follina-microsoft-office-code-execution-vulnerability/): [uma vulnerabilidade recente que está na moda, abusando de documentos para interagir com os recursos de solução de problemas do Windows.](#user-content-fn-8)[^8]
-* &#x20;["Uncompromised: Unpacking a malicious Excel macro"](https://redcanary.com/blog/incident-response/malicious-excel-macro/), um caso interessante que explora um arquivo malicioso passo a passo.&#x20;
-* [Analyzing Malicious Documents Cheat Sheet](https://zeltser.com/analyzing-malicious-documents/), uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
+* [CVE-2022-30190 ou codinome "Follina"](https://www.infosecinstitute.com/resources/vulnerabilities/follina-microsoft-office-code-execution-vulnerability/): [uma vulnerabilidade que  abusa de documentos para interagir com os recursos de solução de problemas do Windows.](#user-content-fn-4)[^4]
+* &#x20;["Uncompromised: Unpacking a malicious Excel macro"](https://redcanary.com/blog/incident-response/malicious-excel-macro/), (Intransigente: investigando uma macro maliciosa no Excel), um caso interessante que explora um arquivo malicioso passo a passo.&#x20;
+* [Analyzing Malicious Documents Cheat Sheet](https://zeltser.com/analyzing-malicious-documents/) (folha de truques/dicas para análise de documentos maliciosos), uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
 
 
 
-[^1]: essa frase não faz sentido pra mim
+[^1]: nào entendi essa parte da frase
 
+[^2]: ver
 
+[^3]: verificar se está correto - termos técnicos
 
-[^2]: LINK 404 NOT FOUND
-
-[^3]: nào entendi essa parte da frase
-
-[^4]: ver
-
-[^5]: verificar se está correto - termos técnicos
-
-[^6]: inclui uma tradução, checar
-
-[^7]: inclui uma tradução, checar
-
-[^8]: checar a tradução tecnica
+[^4]: checar a tradução tecnica
