@@ -8,13 +8,13 @@ Este minicurso destina-se aos entusiastas e profissionais de segurança digital 
 * Apresentar algumas ferramentas que podem ajudar a identificar sinais de documentos perigosos ou confirmar se é seguro abri-los.
 * Fornecer alguns conselhos de segurança e esclarecer dúvidas comuns sobre como lidar com arquivos suspeitos.
 
-Este curso utiliza o formato de leituras curtas e questionários na maior parte do conteúdo abordado, sendo que, dependendo do material, será necessário executar algumas ferramentas. Isso será abordado na seção [**Ambiente de trabalho**](#user-content-fn-1)[^1]**,** logo após a introdução. Os requisitos gerais são:
+Este curso utiliza o formato de leituras curtas e questionários na maior parte do conteúdo abordado, sendo que, dependendo do material, será necessário executar algumas ferramentas. Isso será abordado na seção **Ambiente de trabalho,** logo após a introdução. Os requisitos gerais são:
 
 * Para concluir os exercícios propostos:
   * Capacidade de executar 1) uma máquina virtual no computador usando o Virtualbox ou software semelhante, ou 2) scripts python (somente para analisar os arquivos do curso, não para analisar amostras reais).
 * O tempo para estudar o material (aproximadamente 2 horas)
 
-Este curso utiliza materiais disponíveis em outras referências e usa apenas ferramentas disponíveis gratuitamente. A maior parte do conteúdo é inspirada no trabalho que [Didier Stevens](#user-content-fn-2)[^2] tem feito ao longo do tempo, especialmente para o SANS, bem como em outras referências:
+Este curso utiliza materiais disponíveis em outras referências e usa apenas ferramentas disponíveis gratuitamente. A maior parte do conteúdo é inspirada no trabalho que [Didier Stevens](https://didierstevens.com) tem feito ao longo do tempo, especialmente para o SANS, bem como em outras referências:
 
 * [https://blog.didierstevens.com/2011/05/25/malicious-pdf-analysis-workshop-screencasts/](https://blog.didierstevens.com/2011/05/25/malicious-pdf-analysis-workshop-screencasts/)
 * [https://github.com/filipi86/MalwareAnalysis-in-PDF](https://github.com/filipi86/MalwareAnalysis-in-PDF)
@@ -23,9 +23,9 @@ Este curso utiliza materiais disponíveis em outras referências e usa apenas fe
 
 ## Estrutura
 
-1. Avisos[^3]
+1. Avisos[^1]
 2. Algumas considerações sobre modelagem de ameaças
-3. [Para cada tipo de formato de arquivo (PDFs, MS Office)](#user-content-fn-4)[^4]
+3. Para cada tipo de formato de arquivo (PDFs, MS Office)
    1. Como eles são estruturados (de uma forma mais técnica)
    2. Como eles podem ser transformados em armas
    3. Como podemos fazer uma análise introdutória
@@ -35,7 +35,7 @@ Este curso utiliza materiais disponíveis em outras referências e usa apenas fe
 
 A seguir, uma série de avisos úteis antes de começar a usar o material
 
-## Avisos[^5]
+### Avisos[^2]
 
 Dada a natureza da tarefa que realizaremos após dominar o conteúdo fornecido (análise de arquivos maliciosos e perigosos) e a complexidade do tópico (que consideramos uma introdução à análise de malware), é altamente recomendável ler esta seção e concordar com todos os itens antes de prosseguir.
 
@@ -45,7 +45,7 @@ Dada a natureza da tarefa que realizaremos após dominar o conteúdo fornecido (
 
 ## Questionário de responsabilidade
 
-[**Questão 1**](#user-content-fn-6)[^6]**:** Entendo os riscos de analisar arquivos suspeitos, as possíveis consequências de executar malware de propósito ou acidentalmente, li o conteúdo desta página/seção e entendo as estratégias mais comuns para lidar com essas possíveis ameaças.
+**Questão 1:** Entendo os riscos de analisar arquivos suspeitos, as possíveis consequências de executar malware de propósito ou acidentalmente, li o conteúdo desta página/seção e entendo as estratégias mais comuns para lidar com essas possíveis ameaças.
 
 **Questão 2:** Qual das opções a seguir descreve melhor o que precisamos fazer ao analisar um arquivo realmente suspeito?
 
@@ -95,9 +95,9 @@ As amostras usadas neste curso são inofensivas, apenas para demonstrar como os 
 
 Outra vantagem de ter um ambiente dedicado é que, depois de manipular amostras de malware, você pode excluir tudo e começar de novo sem medo de perder arquivos não relacionados. Isso nos permite planejar maneiras práticas de “redefinir” nosso ambiente para um estado pronto para uso antes de cada análise.
 
-Uma das estratégias mais usadas para garantir um ambiente isolado é o uso de máquinas virtuais (VMs), que basicamente emulam um computador completo dentro de outro computador, incluindo o sistema operacional (SO), discos rígidos, tela etc. As ferramentas comuns para configurar e usar VMs são o [Virtualbox](https://www.virtualbox.org/) e o [VMware Workstation Player](#user-content-fn-7)[^7], entre outras. O uso de hardware dedicado também é uma opção, desde que esteja protegido em caso de infecção.
+Uma das estratégias mais usadas para garantir um ambiente isolado é o uso de máquinas virtuais (VMs), que basicamente emulam um computador completo dentro de outro computador, incluindo o sistema operacional (SO), discos rígidos, tela etc. As ferramentas comuns para configurar e usar VMs são o [Virtualbox](https://www.virtualbox.org/) e o VMware Workstation Player, entre outras. O uso de hardware dedicado também é uma opção, desde que esteja protegido em caso de infecção.
 
-[Uma possível desvantagem é que alguns malwares incluem código para verificar se são executados em ambientes isolados, o que dificulta a análise. No entanto, o perigo inerente de executar malware em nossos ambientes cotidianos não compensa nem mesmo o risco de tentar. Por isso, recomendamos procurar ajuda, concentrando-se em técnicas que não dependam da execução de arquivos suspeitos ou obtendo informações sobre como configurar um ambiente que se pareça com uma máquina real para uma amostra de malware. Para esse exercício, isso não deve ser um problema, pois não executaremos nenhum código de documentos. No entanto, se você quiser aprender a realizar análises dinâmicas em arquivos suspeitos, isso será útil.](#user-content-fn-8)[^8]
+Uma possível desvantagem é que alguns malwares incluem código para verificar se são executados em ambientes isolados, o que dificulta a análise. No entanto, o perigo inerente de executar malware em nossos ambientes cotidianos não compensa nem mesmo o risco de tentar. Por isso, recomendamos procurar ajuda, concentrando-se em técnicas que não dependam da execução de arquivos suspeitos ou obtendo informações sobre como configurar um ambiente que se pareça com uma máquina real para uma amostra de malware. Para esse exercício, isso não deve ser um problema, pois não executaremos nenhum código de documentos. No entanto, se você quiser aprender a realizar análises dinâmicas em arquivos suspeitos, isso será útil.
 
 ## Outras considerações
 
@@ -138,21 +138,19 @@ Agora, acesse [https://remnux.org/](https://remnux.org/) e clique em “Download
 
 <figure><img src="images/Remnux-anotaded.jpg" alt="Captura de tela do site do Remnux na seção de downloads"><figcaption></figcaption></figure>
 
-> Depois de fazer o download do arquivo, é recomendável verificar se ele foi baixado corretamente. Para isso, precisamos verificar o [_hash_](#user-content-fn-9)[^9] associado ao arquivo. [_Hashing_](#user-content-fn-10)[^10] é um tópico denso que incentivamos a aprender e aplicar (também é muito usado na análise de malware), mas, por enquanto, podemos resumi-lo como um processo matemático que transforma um dado (como um texto ou um arquivo) em um código alfanumérico. Esse código deve ser exclusivo para os dados que você está analisando e, mesmo com pequenas alterações, o _hash_ mudará muito. Portanto, verificar se o arquivo baixado tem o mesmo _hash_ publicado no site do Remnux nos dirá que o arquivo foi baixado sem problemas; se o _hash_ for diferente, será um sinal de que o arquivo foi corrompido por causa de um processo de download defeituoso ou que, de alguma forma, não é o arquivo correto (talvez um erro de nossa parte ao selecionar a versão correta ou, em um cenário remoto, alguém alterou o arquivo para uma versão maliciosa, portanto, fique atenta). Uma referência rápida sobre como verificar _hashes_ está disponível em [https://technastic.com/check-md5-checksum-hash/](https://technastic.com/check-md5-checksum-hash/)
+> Depois de fazer o download do arquivo, é recomendável verificar se ele foi baixado corretamente. Para isso, precisamos verificar a [hash](https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_hash) associado ao arquivo. _Hashing_ é um tópico denso que incentivamos a aprender e aplicar (também é muito usado na análise de malware), mas, por enquanto, podemos resumi-lo como um processo matemático que transforma um dado (como um texto ou um arquivo) em um código alfanumérico. Esse código deve ser exclusivo para os dados que você está analisando e, mesmo com pequenas alterações, o _hash_ mudará muito. Portanto, verificar se o arquivo baixado tem o mesmo _hash_ publicado no site do Remnux nos dirá que o arquivo foi baixado sem problemas; se o _hash_ for diferente, será um sinal de que o arquivo foi corrompido por causa de um processo de download defeituoso ou que, de alguma forma, não é o arquivo correto (talvez um erro de nossa parte ao selecionar a versão correta ou, em um cenário remoto, alguém alterou o arquivo para uma versão maliciosa, portanto, fique atenta). Uma referência rápida sobre como verificar _hashes_ está disponível em [https://technastic.com/check-md5-checksum-hash/](https://technastic.com/check-md5-checksum-hash/)
 
-[**Baixando o arquivo**](#user-content-fn-11)[^11]
+#### **Baixando o arquivo**
 
 Depois de verificar se nosso arquivo baixou sem problemas, podemos importá-lo para o Virtualbox. Na página do Remnux em que baixamos a VM, há instruções disponíveis; no entanto, basta clicar duas vezes no arquivo .ova, e um assistente nos guiará pelo processo de importação. Podemos deixar tudo como sugerido na configuração proposta. No final, deveremos ver a máquina Remnux em nossa janela do Virtualbox. Ao clicar em “Start”, a máquina será ligada em uma janela separada. Esta é uma máquina Linux e, para fazer login, o usuário é remnux e a senha é malware (no entanto, é possível que a sessão seja aberta sem solicitar credenciais).
 
 <figure><img src="images/Captura-de-Tela-2024-11-28-a%CC%80s-21.57.12.jpg" alt="Captura de tela do VirtualBox no MacOs"><figcaption><p>Captura de tela do VirtualBox no MacOs</p></figcaption></figure>
 
-\[\\\[imagem 1\\]]\(#user-content-fn-12)\[^12]
-
 <figure><img src="images/virtualbox-remnux-windows.png" alt="Captura de tela do VirtualBox no Windows"><figcaption><p>Captura de tela do VirtualBox no Windows</p></figcaption></figure>
 
 <figure><img src="images/remnux-on-macos-pt-br.jpg" alt="Captura de tela do REMNux em MacOs em seu estado inicial"><figcaption><p>Captura de tela do REMNux em MacOs em seu estado inicial</p></figcaption></figure>
 
-[\[imagem 2\]](#user-content-fn-12)[^12]
+[\[imagem 2\]](#user-content-fn-3)[^3]
 
 ## Configurações adicionais no Virtualbox - Rede
 
@@ -181,7 +179,7 @@ Dependendo do uso que daremos à nossa máquina, na configuração inicial podem
 
 <figure><img src="images/Captura-de-Tela-2024-11-28-a%CC%80s-22.17.39-pastas-compartilhadas.jpg" alt="Captura de tela do aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)"><figcaption><p>aplicativo VirtualBox na janela de configurações de uma máquina virtual na seção Shared Folders (Pastas compartilhadas)</p></figcaption></figure>
 
-[**Area de transferência compartilhada e recurso de arrastar e soltar:**](#user-content-fn-13)[^13] isso nos permitirá compartilhar a área de transferência entre o computador e a máquina virtual. Essa área pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. O mesmo vale para arrastar e soltar arquivos entre o sistema host (anfitrião) e o sistema guest (hóspede). [Para alguns,](#user-content-fn-14)[^14] desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de "Host to Guest" é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência. No entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
+**Area de transferência compartilhada e recurso de arrastar e soltar:** isso nos permitirá compartilhar a área de transferência entre o computador e a máquina virtual. Essa área pode ser desativada, unidirecional ou bidirecional, conforme sugerido na imagem. O mesmo vale para arrastar e soltar arquivos entre o sistema host (anfitrião) e o sistema guest (hóspede). Alguns peritos argumentam que desabilitar o compartilhamento de pastas e habilitar o arrastar e soltar somente de "Host to Guest" é a opção mais segura para proteger nossos computadores físicos, de forma semelhante ao compartilhamento da área de transferência. No entanto, em alguns momentos, talvez seja necessário extrair informações da VM.
 
 <figure><img src="images/remnux-clipboard-settings-pt-br-area-de-transferencia.png" alt="Captura de tela de uma máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada"><figcaption><p>máquina virtual no VirtualBox com o menu Devices (Dispositivos) e o submenu Shared Clipboard (Área de transferência compartilhada) abertos com a opção Bidirectional (Bidirecional) destacada</p></figcaption></figure>
 
@@ -203,11 +201,11 @@ Podemos usar o botão “Restore” (Restaurar) na respectiva tela.
 
 Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enquanto estudamos e analisamos nosso primeiro formato de arquivo: [PDFs.](https://greaterinternetfreedom.org/course/analysis-of-malicious-documents-part-02-pdf-documents/)
 
-## [Respostas dos questionários](#user-content-fn-15)[^15]
+## Respostas dos questionários
 
 ### Respostas do Questionário de responsabilidade - Questão 2
 
-* Opção 1: [**Correta**](#user-content-fn-16)[^16] – Caso o arquivo suspeito esteja realmente infectado, qualquer dano seria feito em um espaço seguro, além de desconectar a máquina do seu ambiente real, outras recomendações são configurar uma maneira de reverter o ambiente para uma condição segura anterior, ter ferramentas de monitoramento caso queiramos saber quais alterações são feitas durante uma possível infecção, e usar diferentes sistemas operacionais entre o host e o sistema convidado para mitigar infecções acidentais.
+* Opção 1: **Correta** – Caso o arquivo suspeito esteja realmente infectado, qualquer dano seria feito em um espaço seguro, além de desconectar a máquina do seu ambiente real, outras recomendações são configurar uma maneira de reverter o ambiente para uma condição segura anterior, ter ferramentas de monitoramento caso queiramos saber quais alterações são feitas durante uma possível infecção, e usar diferentes sistemas operacionais entre o host e o sistema convidado para mitigar infecções acidentais.
 * Opção 2: **Incorreta** – Embora desconectar a internet seja recomendada durante a análise de arquivos, um arquivo infectado ainda pode comprometer seu computador ou deixar o ambiente preparado para que ele seja prejudicado quando a conectividade voltar, se você estiver utilizando o computador principal ou sistema operacional hospedeiro, ao invés de uma máquina virtual.
 * Opção 2: **Incorreta** – Mesmo que a maioria dos malwares conhecidos seja projetada para o Windows, também há códigos maliciosos projetados para outros sistemas, e o mais importante ao analisar arquivos suspeitos é evitar infecções em nosso ambiente principal, independentemente de seu sistema operacional. Esse conselho, embora possa ajudar a atenuar o impacto negativo da execução acidental de malware, não é suficiente sem outras séries de medidas; esse conselho é considerado opcional e oferece pouco impacto se tivermos ambientes de teste fortes.
 
@@ -223,34 +221,8 @@ Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enqua
 * Opção 2: **Correta** – Sem acesso à Internet, o malware não será capaz de se comunicar com servidores externos para executar certas ações, incluindo notificar sua execução. É bom saber, também, que alguns malwares usam a Internet para baixar outras partes de seu código, então, cortar o acesso também pode ser um problema porque não teremos insights sobre toda a funcionalidade sem obter as partes que faltam. No entanto, os riscos associados à execução acidental do malware tornam melhor estar desconectado e ver durante a análise se estamos perdendo algo importante.
 * Opção 3: **Incorreta** – O que torna as VMs mais eficientes para uso em análise de malware é a capacidade de tirar “instantâneos”, para que possamos fazer uma captura do estado de uma VM antes de começar a análise e, quando terminar, podemos reverter a VM para esse instantâneo, para que estejamos prontos para analisar a próxima amostra de forma controlada. Isso é muito mais rápido do que recriar a VM do zero todas as vezes. (Essa foi uma questão complicada, para dizer a verdade).
 
-[^1]: sugiro este negrito que nãa existe no original, para maior clareza.
+[^1]: veja
 
-[^2]: no original há um link para o perfil dele no X. buscar alternativa? sugestão: perfil dele no SANS [https://www.sans.org/profiles/didier-stevens/](https://www.sans.org/profiles/didier-stevens/)
+[^2]: veja
 
-[^3]: veja
-
-[^4]: consegui indentar os 4 itens abaixo, mas não como 1, 2, 3, 4 . acho melhor o uso de a,b,c,d para a compreensão, mas difere do original.
-
-[^5]: veja
-
-[^6]: veja, troquei pq não é uma pergunta
-
-[^7]: LINK QUEBRADO PAGE NOT FOUND
-
-[^8]: veja alterações para fluidez e clareza
-
-[^9]: incluir no glossário?
-
-[^10]: incluir no glossário?
-
-[^11]: checar hierarquia do tópico: H1, H2, parágrafo. a partir desse ponto, a trdução estava sem formatação e fiquei confusa
-
-[^12]: exclui, sem querer, a descrição da imagem
-
-[^13]: parágrafo editado para clareza
-
-[^14]: falta o objeto direto da frase e não consigo inferir pois não entendo completamente o processo. "alguns" se refere a arquivos?
-
-[^15]: o conteúdo restante, abaixo, não aparece no link [https://greaterinternetfreedom.org/course/part01-intro-and-vms/](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) portanto, farei a revisão depois.
-
-[^16]: fiquei na dúvida entre correta no feminino, referente a resposta e/ou opção, e o uso no masculino genérico. por ora, padronzei tudo no feminino
+[^3]: exclui, sem querer, a descrição da imagem
