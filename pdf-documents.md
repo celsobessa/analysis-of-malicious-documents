@@ -66,7 +66,7 @@ startxref
 
 Fonte: "[_How to create a simple PDF file_](https://help.callassoftware.com/m/73261/l/798383-how-to-create-a-simple-pdf-file)" (Como criar um arquivo PDF simples) da Callas Software
 
-#### [Estrutura do arquivo PDF](#user-content-fn-1)[^1]
+#### Estrutura do arquivo PDF
 
 A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
@@ -76,7 +76,7 @@ A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
 **Corpo (**_**body**_**):** Aqui estarão todos os objetos que compõem o arquivo PDF, páginas, imagens, texto, fontes etc. Até mesmo códigos e ações automatizadas, se o arquivo os tiver.
 
-**Tabela de referência cruzada (**_**cross reference table**_**):** Aqui encontraremos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para ser lido pelo software leitor de PDFs. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser apresentada[^2] e a procurará nessa tabela para localizar os respectivos elementos no documento[^3] e carregá-los na tela.
+**Tabela de referência cruzada (**_**cross reference table**_**):** Aqui encontraremos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para ser lido pelo software leitor de PDFs. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser apresentada e a procurará nessa tabela para localizar os respectivos elementos no documento e carregá-los na tela.
 
 **Reboque (**_**trailer**_**):** Aqui encontraremos a indicação de onde começa tabela de referência cruzada no documento e outras informações úteis "à reboque", como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.
 
@@ -187,7 +187,7 @@ Aqui, o argumento `-o` é usado para fornecer à ferramenta a identificação do
 
 Aqui, podemos ver a linha "/OpenAction 7 0 R", o que significa que o conteúdo real do objeto /OpenAction está no objeto com id 7 e, quando abrirmos o arquivo, chamaremos ou faremos referência a esse objeto. Repetindo o processo para ver o conteúdo do objeto com id 7, obtemos:
 
-[`pdf-parser.ph -o 7 ex005.pdf`](#user-content-fn-4)[^4]
+`pdf-parser.ph -o 7 ex005.pdf`
 
 <figure><img src="images/ex005_4.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf e seu objeto 7, destacando um tipo de objeto Javascript"><figcaption></figcaption></figure>
 
@@ -237,13 +237,13 @@ Analisando o arquivo example3.pdf, vemos alguns /ObjStm (Object Streams) que pod
 
 Para esse tipo de cenário, é aconselhável usar a opção `-O` (O maiúsculo) do pdf-parser. Essa opção tentará analisar qualquer fluxo que contenha objetos e tratá-los como objetos regulares do arquivo. Usando essa opção, por exemplo:
 
-[`pdf-parser.py -a -O example3.pdf`](#user-content-fn-5)[^5]
+`pdf-parser.py -a -O example3.pdf`
 
 <figure><img src="images/example3_1.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf, mostrando vários tipos de objetos diferentes"><figcaption></figcaption></figure>
 
 Revela que o arquivo tem "novos" objetos e que um deles é um /AA, o que é interessante para procurar comportamento malicioso, observando o respectivo objeto que temos:
 
-[`pdf-parser.py -o 10 -O example3.pdf`](#user-content-fn-6)[^6]
+`pdf-parser.py -o 10 -O example3.pdf`
 
 <figure><img src="images/example3_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA"><figcaption></figcaption></figure>
 
@@ -278,19 +278,3 @@ Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de obj
 * Pergunta 2: 889652
 
 Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tipo de arquivo fortemente armado: [Documentos do Office](documentos-do-microsoft-office.md).
-
-[^1]: checar hierarquia do título H3
-
-[^2]: ver
-
-
-
-[^3]: ver
-
-
-
-[^4]: [Heloisa](https://app.gitbook.com/u/3cfPFnhrGmMW3SNQ6vaZbifjH3C2 "mention") Por favor, não apague os códigos
-
-[^5]: isso não aparece no original
-
-[^6]: não aparece no original

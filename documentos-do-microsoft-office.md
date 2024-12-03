@@ -56,7 +56,7 @@ Quando abrirmos um arquivo com macros, o resultado incluirá novos elementos:
 
 Se olharmos atentamente para esse exemplo, veremos que o arquivo que passamos para a linha de comando é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "infected" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente.
 
-Nesse resultado[^1], vemos dois objetos que são diferentes e são identificados com a letra "m" ou "M". Isso significa que esses objetos específicos contêm macros. Vamos usar o comando -s no oledump.py para ver o conteúdo desses fluxos, começando com o objeto (ou fluxo 8)
+Nesse resultado, vemos dois objetos que são diferentes e são identificados com a letra "m" ou "M". Isso significa que esses objetos específicos contêm macros. Vamos usar o comando -s no oledump.py para ver o conteúdo desses fluxos, começando com o objeto (ou fluxo 8)
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip para o objeto com id 8]
 
@@ -116,12 +116,7 @@ Após compreender melhor como o PDF e o MS Office podem ser avaliados quanto a c
 
 * [Oletools:](https://github.com/decalage2/oletools) outra ferramenta famosa para analisar arquivos do MS Office.&#x20;
 * [Lista de vulnerabilidades conhecidas do Microsoft Office](https://www.cvedetails.com/vulnerability-list/vendor_id-26/product_id-320/Microsoft-Office.html) (a maioria não envolve macros)&#x20;
-* [CVE-2022-30190 ou codinome "Follina"](https://www.infosecinstitute.com/resources/vulnerabilities/follina-microsoft-office-code-execution-vulnerability/): [uma vulnerabilidade que  abusa de documentos para interagir com os recursos de solução de problemas do Windows.](#user-content-fn-2)[^2]
+* [CVE-2022-30190 ou codinome "Follina"](https://www.infosecinstitute.com/resources/vulnerabilities/follina-microsoft-office-code-execution-vulnerability/): uma vulnerabilidade que  abusa de documentos para interagir com os recursos de solução de problemas do Windows.
 * &#x20;["Uncompromised: Unpacking a malicious Excel macro"](https://redcanary.com/blog/incident-response/malicious-excel-macro/), (Intransigente: investigando uma macro maliciosa no Excel), um caso interessante que explora um arquivo malicioso passo a passo.&#x20;
 * [Analyzing Malicious Documents Cheat Sheet](https://zeltser.com/analyzing-malicious-documents/) (folha de truques/dicas para análise de documentos maliciosos), uma orientação rápida de Lenny Zeltser para analisar documentos suspeitos.
 
-
-
-[^1]: ver
-
-[^2]: checar a tradução tecnica
