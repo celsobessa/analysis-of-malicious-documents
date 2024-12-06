@@ -23,7 +23,7 @@ Este curso utiliza materiais disponíveis em outras referências e usa apenas fe
 
 ## Estrutura
 
-1. Avisos[^1]
+1. Avisos
 2. Algumas considerações sobre modelagem de ameaças
 3. Para cada tipo de formato de arquivo (PDFs, MS Office)
    1. Como eles são estruturados (de uma forma mais técnica)
@@ -35,7 +35,7 @@ Este curso utiliza materiais disponíveis em outras referências e usa apenas fe
 
 A seguir, uma série de avisos úteis antes de começar a usar o material
 
-### Avisos[^2]
+### Avisos[^1]
 
 Dada a natureza da tarefa que realizaremos após dominar o conteúdo fornecido (análise de arquivos maliciosos e perigosos) e a complexidade do tópico (que consideramos uma introdução à análise de malware), é altamente recomendável ler esta seção e concordar com todos os itens antes de prosseguir.
 
@@ -150,7 +150,7 @@ Depois de verificar se nosso arquivo baixou sem problemas, podemos importá-lo p
 
 <figure><img src="images/remnux-on-macos-pt-br.jpg" alt="Captura de tela do REMNux em MacOs em seu estado inicial"><figcaption><p>Captura de tela do REMNux em MacOs em seu estado inicial</p></figcaption></figure>
 
-[\[imagem 2\]](#user-content-fn-3)[^3]
+[\[imagem 2\]](#user-content-fn-2)[^2]
 
 ## Configurações adicionais no Virtualbox - Rede
 
@@ -223,6 +223,4 @@ Com agora sabemos o básico de VirtualBox, podemos aprender sobre o Remnux enqua
 
 [^1]: veja
 
-[^2]: veja
-
-[^3]: exclui, sem querer, a descrição da imagem
+[^2]: exclui, sem querer, a descrição da imagem
