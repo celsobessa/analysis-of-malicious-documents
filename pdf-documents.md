@@ -1,10 +1,10 @@
 # Documentos PDF
 
-Após a visão geral do CREDENCIAMENTO de [máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos,](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) exploraremos os arquivos PDF em termos de formato e de maneiras como eles podem ser usados para prejudicar os usuários.&#x20;
+Após a visão geral do gerenciamento de [máquinas virtuais e da instalação do Remnux como um ambiente para analisar artefatos suspeitos,](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) exploraremos os arquivos PDF em termos de formato e de maneiras como eles podem ser usados para prejudicar as pessoas.&#x20;
 
 ## O que é um PDF?
 
-Quando abrimos um arquivo PDF, usamos um software específico que renderiza seu conteúdo de forma legível. No entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples, regular, e dados binários (para imagens e outros elementos que possam exigir isso). Por exemplo, o texto a seguir renderiza o arquivo PDF mostrado logo depois:
+Quando abrimos um arquivo PDF, usamos um programa específico que renderiza seu conteúdo de forma legível. No entanto, como muitos outros tipos de arquivo, os PDFs são criados usando uma combinação de texto simples, regular, e dados binários (para imagens e outros elementos que possam exigir isso). Por exemplo, o texto a seguir renderiza o arquivo PDF mostrado logo depois:
 
 ```txt
 %PDF-1.4
