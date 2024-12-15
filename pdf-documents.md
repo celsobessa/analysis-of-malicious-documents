@@ -97,15 +97,21 @@ endobj
 
 é uma página com o id 4, tem um elemento pai com o id 3 e contém como filho o elemento com o id 1 (o retângulo vermelho). Mostrar a maneira exata como cada objeto é escrito está fora do escopo deste material; no entanto, há alguns tipos de elementos que podem ser usados para fins maliciosos, e queremos abordá-los.
 
-_**/OpenAction**_: Esse objeto faz referência a um conjunto de ações a serem executadas quando o arquivo PDF é aberto, o que pode ser usado para iniciar um site para dar suporte ao conteúdo ou para fins de rastreamento, executar código JavaScript, etc. Isso pode ser usado para induzir os usuários a executar ações extras que podem ser prejudiciais ou, dependendo do ambiente do computador, esse objeto pode executar _malware_ diretamente.
+_**/OpenAction**_: esse objeto faz referência a um conjunto de ações a serem executadas quando o arquivo PDF é aberto, o que pode ser usado para iniciar um site para dar suporte ao conteúdo ou para fins de rastreamento, executar código JavaScript, etc. Isso pode ser usado para induzir os usuários a executar ações extras que podem ser prejudiciais ou, dependendo do ambiente do computador, esse objeto pode executar _malware_ diretamente.
 
 _**/AA**_: esse objeto também inclui uma série de ações que são acionadas em circunstâncias variadas, como visualizar uma página, passar o ponteiro do mouse sobre objetos específicos, preencher campos de formulários etc. Os riscos associados são semelhantes aos do objeto/`OpenAction`, mas com muito mais cenários onde pode haver acionamento.
 
 _**/JS**_ ou _**/Javascript**_: contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
 
+_**/JS**_ ou _**/Javascript**_: contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
+
+_**/Launch:**_ tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
+
 _**/Launch:**_ tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
 
 _**/EmbeddedFile**_: permite a inclusão de arquivos arbitrários entre os documentos executáveis dentro do PDF. Há antecedentes de arquivos PDF benignos contendo outros arquivos nocivos incorporados, como executáveis de _malware_ ou documentos do Microsoft Office com macros maliciosas.
+
+_**/ObjStm**_: contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código malicioso, ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada resultará em muitos falsos positivos.
 
 _**/ObjStm**_: contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código malicioso, ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada resultará em muitos falsos positivos.
 
@@ -141,9 +147,9 @@ Para analisar nosso primeiro arquivo, precisamos estar cientes de que o comando 
 
 <figure><img src="images/files.png" alt="Captura de tela do aplicativo explorador de arquivos no REMnux"><figcaption></figcaption></figure>
 
-Para facilitar as coisas por enquanto, podemos colocar nossos PDFs nessa pasta, de modo que o comando do terminal seja executado a partir do mesmo diretório do nosso arquivo PDF.
+Para facilitar as coisas, por enquanto, podemos colocar nossos PDFs nessa pasta, de modo que o comando do terminal seja executado a partir do mesmo diretório do nosso arquivo PDF.
 
-Podemos pegar nosso arquivo de exemplo acima e salvá-lo como um arquivo PDF com a ajuda de um editor de texto em nosso computador anfitrião e arrastar e soltar o arquivo no diretório inicial do Remnux.
+Podemos pegar nosso arquivo de exemplo acima e salvá-lo como um arquivo PDF com a ajuda de um editor de texto em nosso computador anfitrião e arrastar e soltar o arquivo no diretório inicial do REMnux.
 
 <figure><img src="images/Screenshot-from-2022-06-13-16-02-30.png" alt="Captura de tela do aplicativo explorador de arquivos dentro do REMnux com o arquivo test.pdf destacado"><figcaption></figcaption></figure>
 
@@ -177,7 +183,7 @@ Usamos o argumento `-a` para ver as estatísticas do arquivo; para uma melhor re
 
 <figure><img src="images/ex005_2.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo ex005.pdf, destacando os objetos dos tipos JS, JavasScript e OpenAction"><figcaption></figcaption></figure>
 
-Aqui, podemos ver que de fato temos esses três objetos problemáticos, mas também algumas informações adicionais, podemos ver o id dos objetos para cada tipo de objeto. Agora sabemos que os objetos /JS e /Javascript estão no objeto com id 7, e o objeto /OpenAction está no objeto com id 1. Em seguida, podemos ver o conteúdo do objeto /OpenAction para ver o que o documento irá tentar fazer ao abri-lo. Para isso, usamos o comando
+Aqui, podemos ver que, de fato, temos esses três objetos problemáticos, mas também algumas informações adicionais, podemos ver o id dos objetos para cada tipo de objeto. Agora sabemos que os objetos /JS e /Javascript estão no objeto com id 7, e o objeto /OpenAction está no objeto com id 1. Em seguida, podemos ver o conteúdo do objeto /OpenAction para ver o que o documento irá tentar fazer ao abri-lo. Para isso, usamos o comando
 
 `pdf-parser.py -o 1 ex005.pdf`
 
@@ -247,7 +253,7 @@ Revela que o arquivo tem "novos" objetos e que um deles é um /AA, o que é inte
 
 <figure><img src="images/example3_3.png" alt="Captura de tela de uma janela de terminal com a saída da ferramenta pdf-parser.py para a análise do arquivo example3.pdf e seu objeto 10, mostrando um tipo de objeto AA"><figcaption></figcaption></figure>
 
-Isso nos diz que a ação está vinculada a um objeto de página; nesse caso, o /O está indicando que a ação é acionada quando abrimos a página, e a ação real é armazenada no objeto 37.
+Isso nos diz que a ação está vinculada a um objeto de página. Neste caso, o /O está indicando que a ação é acionada quando abrimos a página, e a ação real é armazenada no objeto 37.
 
 `pdf-parser.py -o 37 -O example3.pdf`
 
@@ -263,18 +269,18 @@ Agora que já sabemos o básico sobre como analisar arquivos PDF em busca de obj
 
 ### Desafios
 
-**Pergunta 1:** analisando o arquivo [challenge1.pdf](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/challenge1.pdf) (md5: 3b20821cb817e40e088d9583e8699938), que tipo de objeto interessante está escondido atrás de um fluxo?
+**Questão 1:** Analisando o arquivo [challenge1.pdf](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/challenge1.pdf) (md5: 3b20821cb817e40e088d9583e8699938), que tipo de objeto interessante está escondido atrás de um fluxo?
 
 1. OpenAction
 2. AA
 3. JS
 4. JavaScript
 
-**Pergunta 2:** Analisando o arquivo [challenge2.pdf](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/challenge2.pdf) (md5: 30373b268d516845751c10dc2b579c97), podemos ver uma ação que tenta abrir uma URL. Qual código a URL inclui como código de rastreamento? (dica: 6 números)
+**Questão 2:** Analisando o arquivo [challenge2.pdf](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/challenge2.pdf) (md5: 30373b268d516845751c10dc2b579c97), podemos ver uma ação que tenta abrir uma URL. Qual código a URL inclui como código de rastreamento? (dica: 6 números)
 
 #### Respostas dos desafios
 
-* Pergunta 1: opção 2
-* Pergunta 2: 889652
+* Questão 1: opção 2
+* Questão 2: 889652
 
 Agora que já sabemos mais sobre PDFs, vamos abordar na próxima parte outro tipo de arquivo fortemente armado: [Documentos do Office](documentos-do-microsoft-office.md).
