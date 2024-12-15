@@ -72,13 +72,13 @@ A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
 <figure><img src="images/example2-pt-br.png" alt="Captura de tela com o texto que compõe um arquivo PDF com divisões marcando as diferentes seções: Cabeçalho, Corpo, Tabela de referência cruzada e Reboque (Trailer)"><figcaption></figcaption></figure>
 
-**Cabeçalho (h**_**eader**_**):** Contém a versão do protocolo com o qual o arquivo foi criado, para indicar ao programa leitor como ler o restante da estrutura e renderizar todos os seus elementos.
+**Cabeçalho (h**_**eader**_**):** contém a versão do protocolo com o qual o arquivo foi criado, para indicar ao programa leitor como ler o restante da estrutura e renderizar todos os seus elementos.
 
-**Corpo (**_**body**_**):** Aqui estarão todos os objetos que compõem o arquivo PDF, páginas, imagens, texto, fontes etc. Até mesmo códigos e ações automatizadas, se o arquivo os tiver.
+**Corpo (**_**body**_**):** aqui estarão todos os objetos que compõem o arquivo PDF, páginas, imagens, texto, fontes etc. Até mesmo códigos e ações automatizadas, se o arquivo os tiver.
 
-**Tabela de referência cruzada (**_**cross reference table**_**):** Aqui encontraremos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para ser lido pelo software leitor de PDFs. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser apresentada e a procurará nessa tabela para localizar os respectivos elementos no documento e carregá-los na tela.
+**Tabela de referência cruzada (**_**cross reference table**_**):** aqui encontramos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para ser lido pelo software leitor de PDFs. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser apresentada e a procurará nessa tabela para localizar os respectivos elementos no documento e carregá-los na tela.
 
-**Reboque (**_**trailer**_**):** Aqui encontraremos a indicação de onde começa tabela de referência cruzada no documento e outras informações úteis "à reboque", como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.
+**Reboque (**_**trailer**_**):** aqui encontraremos a indicação de onde começa tabela de referência cruzada no documento e outras informações úteis "à reboque", como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.
 
 ### Entendendo os objetos do PDF
 
@@ -101,13 +101,13 @@ _**/OpenAction**_: Esse objeto faz referência a um conjunto de ações a serem 
 
 _**/AA**_: esse objeto também inclui uma série de ações que são acionadas em circunstâncias variadas, como visualizar uma página, passar o ponteiro do mouse sobre objetos específicos, preencher campos de formulários etc. Os riscos associados são semelhantes aos do objeto/`OpenAction`, mas com muito mais cenários onde pode haver acionamento.
 
-_**/JS**_ ou _**/Javascript**_: Contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
+_**/JS**_ ou _**/Javascript**_: contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
 
-_**/Launch:**_ Tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
+_**/Launch:**_ tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
 
 _**/EmbeddedFile**_: permite a inclusão de arquivos arbitrários entre os documentos executáveis dentro do PDF. Há antecedentes de arquivos PDF benignos contendo outros arquivos nocivos incorporados, como executáveis de _malware_ ou documentos do Microsoft Office com macros maliciosas.
 
-_**/ObjStm**_: Contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código malicioso, ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada resultará em muitos falsos positivos.
+_**/ObjStm**_: contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código malicioso, ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada resultará em muitos falsos positivos.
 
 Em ataques mais elaborados, uma combinação desses objetos pode ser usada. Por exemplo, um PDF pode acionar uma ação que abre um arquivo incorporado, criptografado, em um `/ObjStm`.
 
