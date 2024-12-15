@@ -1,16 +1,12 @@
 # Medidas defensivas, próximas etapas e encerramento
 
-Até agora, abordamos uma [introdução](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) à modelagem de ameaças, o uso de máquinas virtuais como ambientes para analisar malware e como começar a analisar PDFs e documentos do Microsoft Office nas partes anteriores. Todos esses tópicos nos ajudarão a oferecer melhor suporte a outras pessoas como a primeira linha de defesa contra documentos suspeitos.
+Até agora, nas seções anteriores, abordamos uma [introdução](https://greaterinternetfreedom.org/course/part01-intro-and-vms/) à modelagem de ameaças, o uso de máquinas virtuais como ambientes para analisar malware e como começar a analisar PDFs e documentos do Microsoft Office. Todos esses tópicos nos ajudarão a oferecer melhor suporte a outras pessoas, atuando como a primeira linha de defesa contra documentos suspeitos.
 
-Ainda assim, se oferecermos suporte a agentes vulneráveis (o principal público-alvo desta série de postagens), sabemos que isso é apenas metade da história. Também precisamos garantir que possamos fornecer boas orientações proativas aos nossos beneficiários, para que eles estejam bem protegidos contra documentos mal-intencionados antes que eles cheguem aos seus discos rígidos. Esperamos que, com todo o conteúdo que analisamos, possamos não apenas entender melhor as recomendações clássicas que damos aos usuários finais, mas também propor algumas medidas adicionais que possam ser úteis para agentes vulneráveis com um nível de risco maior.
+Ainda assim, se oferecermos suporte a agentes vulneráveis (o principal público-alvo desta série de postagens), sabemos que isso é apenas metade da história. Também precisamos garantir que possamos fornecer boas orientações proativas às nossas beneficiárias, para que elas estejam bem protegidas contra documentos mal-intencionados antes que eles cheguem aos seus discos rígidos. Esperamos que, com todo o conteúdo que analisamos, possamos não apenas entender melhor as recomendações clássicas que damos às usuárias finais, mas também propor algumas medidas adicionais que possam ser úteis para agentes vulneráveis com um nível de risco maior.
 
-Até agora, nas seções anteriores, abordamos uma introdução à modelagem de ameaças, o uso de máquinas virtuais como ambientes para analisar malware e como começar a analisar PDFs e documentos do Microsoft Office. Todos esses tópicos nos ajudarão a oferecer melhor suporte a outras pessoas, atuando como primeira linha de defesa contra documentos suspeitos.
+A primeira ideia que queremos reforçar é que dizer a ativistas, jornalistas e à mídia que não devem abrir arquivos de fontes desconhecidas, não é um conselho sustentável. Para realizar suas atividades, muitas pessoas dessas categorias precisam abrir arquivos enviados a elas que podem conter ameaças, como convites para conferências de imprensa, documentos vazados, agendas de eventos etc. Portanto, o conselho mais pertinente que podemos dar a elas é conhecer os riscos e criar processos que lhes permitam abrir os arquivos da maneira mais segura possível.
 
-Ainda assim, se oferecermos suporte a agentes vulneráveis (o público-alvo principal desta série de postagens), sabemos que isso é apenas metade da história. Também precisamos garantir que possamos fornecer boas orientações proativas aos nossos beneficiários, para que eles estejam bem protegidos contra documentos maliciosos antes que eles cheguem aos discos rígidos. Esperamos que, com todo o conteúdo analisado, possamos não apenas compreender melhor as recomendações clássicas dadas aos usuários finais, mas também propor algumas medidas adicionais que possam ser úteis para agentes vulneráveis com um nível de risco maior.
-
-A primeira ideia que queremos reforçar é que dizer a ativistas, jornalistas e à mídia, que eles não devem abrir arquivos de fontes desconhecidas, não é um conselho sustentável. Para realizar suas atividades, muitas pessoas dessas categorias precisam abrir arquivos enviados a elas que podem conter ameaças, como convites para conferências de imprensa, documentos vazados, agendas de eventos etc. Portanto, o conselho mais pertinente que podemos dar a elas é conhecer os riscos e criar processos que lhes permitam abrir os arquivos da maneira mais segura possível.
-
-Dito isso, algumas medidas de defesa contra documentos maliciosos incluem&#x20;
+**Dito isso, algumas medidas de defesa contra documentos maliciosos incluem:**&#x20;
 
 ### Em geral&#x20;
 
@@ -24,17 +20,15 @@ Muitos documentos mal-intencionados distribuídos fazem parte de operações mac
 
 #### Mantenha o software legalizado e atualizado
 
-#### Mantenha o software legalizado e atualizado
-
 Todos os anos, centenas de novas vulnerabilidades são descobertas e divulgadas para muitos programas de uso diário, incluindo o Microsoft Office e leitores de PDF, e essas vulnerabilidades são "corrigidas" por meio de atualizações de software. Portanto, ter todos os softwares atualizados reduzirá drasticamente as chances de alguém usar vulnerabilidades conhecidas e documentadas para atacar um alvo e ser bem-sucedido. Ter um software pirata afetará sua capacidade de detectar e aplicar atualizações de software, tornando-o um problema de segurança. É por isso que é recomendável ter um software original do ponto de vista da segurança, mesmo antes de abordar as considerações legais.&#x20;
 
 #### Analise a extensão de arquivos suspeitos
 
-Algumas [campanhas ](#user-content-fn-1)[^1]induzem os usuários a abrir arquivos nocivos disfarçados de documentos, mas que, na verdade, são outros tipos de arquivos, como aplicativos executáveis, arquivos .zip ou outros tipos de arquivos de contêiner, como .iso, entre outros. Geralmente, esses arquivos incluem até mesmo ícones personalizados para se parecerem com documentos do MS Word, PDFs, etc. Verificar cuidadosamente os arquivos que baixamos e abrimos nos dará outra camada de proteção ao detectar quando um arquivo não se enquadra em um tipo de arquivo comum ou esperado.&#x20;
+Algumas campanhas induzem os usuários a abrir arquivos nocivos disfarçados de documentos, mas que, na verdade, são outros tipos de arquivos, como aplicativos executáveis, arquivos .zip ou outros tipos de arquivos de contêiner, como .iso, entre outros. Geralmente, esses arquivos incluem até mesmo ícones personalizados para se parecerem com documentos do MS Word, PDFs, etc. Verificar cuidadosamente os arquivos que baixamos e abrimos nos dará outra camada de proteção, ao detectar quando um arquivo não se enquadra em um tipo de arquivo comum ou esperado.&#x20;
 
 #### Use leitores "emprestados"
 
-Uma estratégia comum é abrir documentos suspeitos em um ambiente fora do seu computador que esteja mais bem equipado para detectar e conter qualquer ameaça em potencial. Um exemplo clássico é abrir arquivos usando o Google Drive (isso inclui visualizações no Gmail); em seguida, o arquivo é realmente aberto nos servidores do Google e renderizado em nossos computadores, fazendo com que o Google (ou qualquer outra plataforma com recursos semelhantes) seja o agente que precisa se preocupar com ameaças específicas contidas nos documentos abertos. Uma desvantagem dessa abordagem é que perdemos alguma visibilidade e capacidade de análise, já que não estamos baixando os arquivos, mas isso será útil para o uso diário.&#x20;
+Uma estratégia comum é abrir documentos suspeitos em um ambiente fora do seu computador que esteja mais bem equipado para detectar e conter qualquer ameaça em potencial. Um exemplo clássico é abrir arquivos usando o Google Drive (isso inclui visualizações no Gmail). Em seguida, o arquivo é realmente aberto nos servidores do Google e renderizado em nossos computadores, fazendo com que o Google (ou qualquer outra plataforma com recursos semelhantes) seja o agente que precisa se preocupar com ameaças específicas contidas nos documentos abertos. Uma desvantagem dessa abordagem é que perdemos alguma visibilidade e capacidade de análise, já que não estamos baixando os arquivos, mas isso será útil para o uso diário.&#x20;
 
 #### Use ferramentas específicas projetadas para esse caso de uso
 
@@ -54,7 +48,7 @@ Exemplo de resultados no VirusTotal, agosto de 2022&#x20;
 
 ### Específico para PDFs: Desativar a execução de Javascript no leitor (e outras configurações de segurança)
 
-Dependendo do seu software leitor de PDF, a execução do código JavaScript pode já estar desativada; no entanto, é aconselhável verificar novamente caso você espere abrir arquivos suspeitos. Além disso, dependendo do seu leitor, pode haver outros recursos de segurança que podem ser configurados.
+Dependendo do software do seu leitor de PDF, a execução do código JavaScript pode já estar desativada. No entanto, é aconselhável verificar novamente caso você espere abrir arquivos suspeitos. Além disso, dependendo do seu leitor, é possível que existam outros recursos de segurança que possam ser configurados.
 
 \[imagem - Captura de tela do Adobe PDF Reader destacando as opções para ativar ou desativar o JavaScript]
 
@@ -64,50 +58,47 @@ Exemplo para o Acrobat Reader (agosto de 2022, Menu Editar -> Preferências -> J
 
 Exemplo para o Foxit Reader (agosto de 2022, Menu File->Preferences->Javascript)&#x20;
 
-### [Específico para Office](#user-content-fn-2)[^2]: Minimizar o uso de macros em atividades legítimas
+### [Específico para Office](#user-content-fn-1)[^1]: Minimizar o uso de macros em atividades legítimas
 
-Mesmo que existam muitos casos de uso aceitáveis e inofensivos para macros, usar documentos com elas com frequência e estar acostumado a permiti-las pode abrir a porta para receber um documento malicioso e ativar suas macros acidentalmente. Por isso, especialmente as organizações devem estar atentas a essa situação e planejar adequadamente, seja para remover o uso de macros, seja para preparar processos para conviver com elas, considerando como lidar com arquivos não confiáveis.&#x20;
+Mesmo que haja muitos casos de uso aceitáveis e inofensivos para macros, usar frequentemente documentos com elas e se habituar a permiti-las pode abrir a porta para receber um documento mal-intencionado e ativar suas macros acidentalmente. Por isso, especialmente as organizações devem estar atentas a essa situação e planejar adequadamente, seja para remover o uso de macros, seja para preparar processos para conviver com elas, considerando como lidar com arquivos não confiáveis.&#x20;
 
-\[PAREI AQUI, TERMINAR E REVISAR LINKS DE TUDO]
+### [Específico para Office](#user-content-fn-2)[^2]: Desative as macros e verifique a Central de Confiança
 
-### [Específico para Office](#user-content-fn-3)[^3]: Desative as macros e verifique a Central de Confiança
-
-Recentemente, o Microsoft Office alterou várias vezes sua política em relação às macros, portanto, dependendo de quando você estiver lendo este material, o Office poderá ter as macros ativadas ou desativadas por padrão; além disso, poderá haver regras dependendo da origem dos arquivos, etc. Uma maneira de ter mais visibilidade e controle é verificar a Central de Confiança para ver e configurar diretamente o comportamento em relação às macros.
+Recentemente, o Microsoft Office alterou várias vezes sua política em relação às macros, portanto, dependendo de quando você estiver lendo este material, o Office poderá ter as macros ativadas ou desativadas por padrão; além disso, poderá haver regras dependendo da origem dos arquivos, etc. Uma maneira de ter mais visibilidade e controle é verificar a Central de Confiabilidade e configurar diretamente o comportamento em relação às macros.
 
 Captura de tela da janela de configuração do Microsoft Office destacando as opções para ativar ou desativar as macros
 
 Trust Center para MS Office (agosto de 2022, Menu File->Options->Trust Center->Trust Center Settings->Macro Settings)
 
-Outro recurso interessante do MS Office é o Protected View, que, considerando a origem de um arquivo, abre-o em um ambiente de área restrita com pouco privilégio ou acesso para interferir no computador, oferecendo outra camada de confiança. Um problema com esse modo é que, de forma semelhante ao bloqueio de macros, há um botão em uma faixa de opções acima do documento em que o usuário pode desativar o recurso Modo de Exibição Protegido, permitindo novamente ataques em que o criador do documento engana o usuário para desativar essa proteção.
+Outro recurso interessante do MS Office é o Modo de exibição Protegido, que, considerando a origem de um arquivo, abre-o em um ambiente de área restrita com pouco privilégio ou acesso para interferir no computador, oferecendo outra camada de confiança. Um problema com esse modo é que, de forma semelhante ao bloqueio de macros, há um botão em uma faixa de opções acima do documento em que o usuário pode desativar o recurso Modo de Exibição Protegido, permitindo novamente ataques em que o criador do documento engana o usuário para desativar essa proteção.
 
-Captura de tela da janela de configuração do Microsoft Office mostrando as opções para ativar ou desativar o Protected View
+Captura de tela da janela de configuração do Microsoft Office mostrando as opções para ativar ou desativar o Modo de Exibição Protegido (Protected View)
 
 Configurações do Protected View (agosto de 2022, Menu File->Options->Trust Center->Trust Center Settings->Protected View)
 
-Captura de tela do Microsoft Word mostrando o aviso de Protected View
+Captura de tela do Microsoft Word mostrando o aviso do Modo de Exibição Protegido (Protected View)
 
-Modo de exibição protegido em um documento do MS Word (agosto de 2022) O que vem a seguir
+Modo de exibição protegido em um documento do MS Word (agosto de 2022)&#x20;
+
+### O que vem a seguir
 
 Em primeiro lugar, ao receber um arquivo suspeito, você terá a capacidade de executar uma primeira análise para verificar se há problemas óbvios de segurança; os possíveis cenários podem ser abstraídos para isso:
 
-```
-Se o arquivo não parecer conter nada prejudicial, podemos diminuir o nível de suspeita do arquivo.
-    Se, por acaso, o alvo tiver um nível de alto risco, talvez seja necessário verificar novamente com outros colegas ou grupos mais especializados.
-Se o arquivo parecer mal-intencionado, podemos tentar pesquisar seu hash em plataformas como o VirusTotal e, se for uma amostra de malware conhecida, encontraremos muitas informações mais detalhadas que serão úteis para entender a natureza da ameaça, a dimensão da campanha etc.
-Se as ameaças contidas no arquivo forem fáceis de detectar e entender, mas não forem conhecidas pela comunidade, poderemos fornecer alguns insights sobre os detalhes ao pesquisar mais ou procurar ajuda.
-Se os elementos contidos no arquivo parecerem avançados, difíceis de entender ou até mesmo difíceis de categorizar como ameaças, e o hash do arquivo for desconhecido pelas plataformas públicas, vale a pena entrar em contato com organizações mais especializadas que possam examinar melhor os arquivos em busca de ameaças não tão óbvias.
-```
+1. Se o arquivo não parecer conter nada prejudicial, podemos diminuir o nível de suspeita do arquivo.&#x20;
+2. Se, por acaso, o alvo tiver um nível de alto risco, talvez seja necessário verificar novamente com outros colegas ou grupos mais especializados.&#x20;
+3. Se o arquivo parecer mal-intencionado, podemos tentar pesquisar seu hash em plataformas como o VirusTotal e, se for uma amostra de malware conhecida, encontraremos muitas informações mais detalhadas que serão úteis para entender a natureza da ameaça, a dimensão da campanha etc.&#x20;
+4. Se as ameaças contidas no arquivo forem fáceis de detectar e entender, mas não forem conhecidas pela comunidade, poderemos fornecer alguns insights sobre os detalhes ao pesquisar mais ou procurar ajuda.&#x20;
+5. Se os elementos contidos no arquivo parecerem avançados, difíceis de entender ou até mesmo difíceis de categorizar como ameaças, e o hash do arquivo for desconhecido pelas plataformas públicas, vale a pena entrar em contato com organizações mais especializadas que possam examinar melhor os arquivos em busca de ameaças não tão óbvias.
 
 Além disso, aconselhamos em geral a:
 
-Evite executar qualquer código suspeito (a menos que você compreenda os riscos e tome as respectivas precauções, que não são abordadas neste material) Pesquise mais sobre qualquer coisa específica que você encontrar e sobre a qual não tenha conhecimento. Há muitos comandos e maneiras diferentes de realizar coisas com o código, e é insustentável conhecer todos eles; portanto, é normal e esperado analisar a documentação em busca de instruções ou recursos específicos para entender melhor a funcionalidade de uma macro ou de outros objetos desconhecidos.
+* Evite executar qualquer código suspeito (a menos que você compreenda os riscos e tome as respectivas precauções, que não são abordadas neste material)
+* Pesquise mais sobre qualquer coisa específica que você encontrar e sobre a qual não tenha conhecimento. Há muitos comandos e maneiras diferentes de realizar coisas com o código, e é insustentável conhecer todos eles; portanto, é normal e esperado analisar a documentação em busca de instruções ou recursos específicos para entender melhor a funcionalidade de uma macro ou de outros objetos desconhecidos.
 
 Lembre-se de que a análise de documentos maliciosos (e de malware em geral) é uma carreira completa que geralmente requer anos de experiência para lidar com casos mais avançados. Dito isso, reforçamos que este material é uma introdução a uma parte específica da análise de malware que, esperamos, incentive o leitor a aprender mais e a adquirir mais habilidades nesse campo. No entanto, dado o risco associado à operação de artefatos mal-intencionados sem os devidos processos e considerações de segurança, desencorajamos os leitores a adicionar mais processos e ferramentas de análise aos fluxos de trabalho apresentados sem o devido conhecimento desses processos e ferramentas, especialmente aqueles que envolvem a execução de malware (ou análise dinâmica).
 
 Este é um material em constante revisão. Em caso de dúvidas ou comentários, entre em contato com cguerra@internews.org
 
-[^1]: será que tem uma palavra melhor? campanha é meio enigmático
+[^1]: "office" está em minúscula no original, mas acho que se refere ao programa MS OFFICE, checar
 
 [^2]: "office" está em minúscula no original, mas acho que se refere ao programa MS OFFICE, checar
-
-[^3]: "office" está em minúscula no original, mas acho que se refere ao programa MS OFFICE, checar
