@@ -4,7 +4,7 @@ Depois de verificar [como configurar máquinas virtuais como ambientes seguros ]
 
 ### Problemas de segurança com documentos do Microsoft Office
 
-Em geral, os documentos do Office não são perigosos por si só, se contiverem apenas as informações para as quais foram projetados: páginas com texto e outros elementos imprimíveis para o MS Word, células com valores e fórmulas para o MS Excel, slides com elementos observáveis no MS PowerPoint etc.
+Em geral, os documentos do Office não são perigosos por si só, se contiverem apenas as informações para as quais foram projetados: páginas com texto e outros elementos imprimíveis do MS Word, células com valores e fórmulas para o MS Excel, slides com elementos observáveis no MS PowerPoint etc.
 
 No entanto, entre os vários recursos disponíveis no ecossistema do MS Office que acrescentam funcionalidades aos documentos, um é especificamente interessante do ponto de vista da segurança digital: a possibilidade de incorporar objetos nos documentos. Os tipos de objetos que podemos incorporar são muitos, como notação matemática, multimídia, outros documentos etc. E, entre todos eles, há um que é especialmente poderoso porque permite a execução de código personalizado, que pode ser usado como arma para prejudicar o usuário: a macro.&#x20;
 
@@ -94,7 +94,7 @@ Agora que aprendemos alguns fluxos de trabalho introdutórios para analisar PDFs
 
 ### Desafios
 
-**Questão:** Aplicando o mesmo fluxo de trabalho ao arquivo ex006.doc.zip, vemos este resultado. Qual das seguintes hipóteses se confirma com as informações que obtivemos até agora?
+**Questão 1:** Aplicando o mesmo fluxo de trabalho ao arquivo ex006.doc.zip, vemos este resultado. Qual das seguintes hipóteses se confirma com as informações que obtivemos até agora?
 
 \[imagem - Captura de tela de um terminal mostrando a saída da ferramenta oledump.py para o arquivo ex006.doc.zip, mostrando dois objetos com macros descritas pela letra m minúscula]
 
@@ -102,11 +102,21 @@ Agora que aprendemos alguns fluxos de trabalho introdutórios para analisar PDFs
 2. O arquivo tem macros personalizadas criadas como qualquer um dos outros exemplos abordados
 3. De alguma forma, o arquivo tem macros inofensivas ao sistema, mas não tem macros criadas de forma personalizada.
 
-**Questão:** aplicando o mesmo fluxo de trabalho ao arquivo [ex016.doc.zip](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/ex016.doc.zip), vemos uma macro semelhante à última abordada acima, em que a macro decodifica algo em base64. O que está sendo passado para a função Decode64? (dica: aaaaaaaaaaaaaaaaaa.aaaaaaa.aaaa)
+**Questão 2:** aplicando o mesmo fluxo de trabalho ao arquivo [ex016.doc.zip](https://greaterinternetfreedom.org/wp-content/uploads/2023/07/ex016.doc.zip), vemos uma macro semelhante à última abordada acima, em que a macro decodifica algo em base64. O que está sendo passado para a função Decode64? (dica: aaaaaaaaaaaaaaaaaa.aaaaaaa.aaaa)
 
 \[imagem - Janela da interface de linha de comando mostrando a saída de uma macro de documento com uma cadeia de texto ofuscada]
 
-Quero ver a resposta
+**Respostas das questões**
+
+**Questão 1**
+
+1. Incorreta
+2. Incorreta
+3. Correta
+
+**Questão 2**
+
+Resposta: ActiveDocument.Content.Text
 
 ### O que vem a seguir?
 
