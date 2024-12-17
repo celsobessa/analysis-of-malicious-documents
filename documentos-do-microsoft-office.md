@@ -20,7 +20,7 @@ Ao comparar PDFs com documentos do MS Office com macros para atividades malicios
 
 #### Vulnerabilidades do Office&#x20;
 
-Há muitas maneiras documentadas para explorar macros ou documentos do Office em geral; no entanto, muitas das mais criativas não são possíveis de serem exploradas em instâncias totalmente atualizadas do MS Office.&#x20;
+Há muitas maneiras documentadas para explorar macros ou documentos do Office em geral, no entanto, muitas das mais criativas não são possíveis de serem exploradas em instâncias totalmente atualizadas do MS Office.&#x20;
 
 Como qualquer outro programa, o MS Office pode ter vulnerabilidades conhecidas ou desconhecidas que podem permitir o comprometimento de um dispositivo, mesmo sem o uso de macros.&#x20;
 
@@ -30,7 +30,7 @@ Desde 2003, o Microsoft Office mudou a forma como os documentos são criados por
 
 ### &#x20;Análise de documentos do MS Office
 
-Para começar a explorar maneiras de detectar quando as macros estão incluídas em documentos do MS Office, usaremos [oledump.py](https://blog.didierstevens.com/programs/oledump-py/), uma ferramenta Python desenvolvida por Didier Stevens, o mesmo autor das ferramentas propostas anteriormente, com foco em PDFs. Também usaremos uma série de [arquivos para exemplificar](http://didierstevens.com/workshop-maldoc-1.zip) \[nota: sugerimos baixar o arquivo .zip do link apenas em máquinas virtuais ou ambientes isolados] como os documentos do MS Office funcionam e como as macros podem ser detectadas e analisadas, também a partir de [versões arquivadas  materiais de treinamento de Didier Stevens](https://web.archive.org/web/20221207002535/https://conference.hitb.org/hitbsecconf2017ams/materials/D1T3%20-%20Didier%20Stevens%20-%20Analyzing%20Malicious%20Office%20Documents.pdf).
+Para começar a explorar maneiras de detectar quando as macros estão incluídas em documentos do MS Office, usaremos [oledump.py](https://blog.didierstevens.com/programs/oledump-py/), uma ferramenta Python desenvolvida por Didier Stevens, o mesmo autor das ferramentas propostas anteriormente, com foco em PDFs. Também usaremos uma série de [arquivos para exemplificar](http://didierstevens.com/workshop-maldoc-1.zip) \[nota: sugerimos baixar o arquivo .zip do link apenas em máquinas virtuais ou ambientes isolados] como os documentos do MS Office funcionam e como as macros podem ser detectadas e analisadas, também a partir de [versões arquivadas de materiais de treinamento de Didier Stevens](https://web.archive.org/web/20221207002535/https://conference.hitb.org/hitbsecconf2017ams/materials/D1T3%20-%20Didier%20Stevens%20-%20Analyzing%20Malicious%20Office%20Documents.pdf/).
 
 O fluxo de trabalho para iniciar a análise de documentos do MS Office é muito semelhante ao que usamos em PDFs. Primeiro, listamos os diferentes elementos presentes no arquivo, identificamos objetos interessantes em termos de segurança e, em seguida, tentamos obter o conteúdo real desses elementos para ver se há algo prejudicial.
 
@@ -54,7 +54,7 @@ Quando abrirmos um arquivo com macros, o resultado incluirá novos elementos:
 
 \[imagem - Captura de tela da janela do terminal do REMnux com a saída da ferramenta oledump.py para o arquivo ex008.doc.zip]
 
-Se olharmos atentamente para esse exemplo, veremos que o arquivo que passamos para a linha de comando é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "infected" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente.
+Se olharmos atentamente para esse exemplo, veremos que o arquivo que passamos para a linha de comando é um arquivo .zip que contém um documento do MS Word. Além disso, o arquivo .zip está protegido por senha com a senha "_infected_" (infectado). Essa é uma prática comum na comunidade de análise de malware, e o oledump.py a considera como uma entrada válida e gerencia toda a descompressão, passando o documento para análise automaticamente.
 
 Nesse resultado, vemos dois objetos que são diferentes e são identificados com a letra "m" ou "M". Isso significa que esses objetos específicos contêm macros. Vamos usar o comando -s no oledump.py para ver o conteúdo desses fluxos, começando com o objeto (ou fluxo 8)
 
