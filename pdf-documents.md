@@ -78,7 +78,7 @@ A partir desse exemplo, podemos ver a estrutura padrão de qualquer arquivo PDF:
 
 **Tabela de referência cruzada (**_**cross reference table**_**):** aqui encontramos uma lista de todos os objetos do documento para fácil acesso e seus respectivos locais dentro do arquivo. Isso é semelhante a um "índice", mas para ser lido pelo software leitor de PDFs. Se, a qualquer momento, o leitor precisar renderizar um objeto específico (por exemplo, se rolarmos para uma página aleatória em um documento grande), o software leitor verá qual página deve ser apresentada e a procurará nessa tabela para localizar os respectivos elementos no documento e carregá-los na tela.
 
-**Reboque (**_**trailer**_**):** aqui encontraremos a indicação de onde começa tabela de referência cruzada no documento e outras informações úteis "à reboque", como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.
+**Reboque (**_**trailer**_**):** aqui encontraremos a indicação de onde começa tabela de referência cruzada no documento e outras informações úteis "a reboque", como o número de objetos na tabela de referência cruzada (para verificar se o arquivo não está corrompido, por exemplo), o objeto raiz do documento e informações de criptografia, se aplicável. Por padrão, os leitores de PDFs começam a ler os documentos a partir do final, onde podem encontrar rapidamente onde está o objeto raiz e a tabela de referência cruzada para começar a renderizar o conteúdo.
 
 ### Entendendo os objetos do PDF
 
@@ -103,15 +103,9 @@ _**/AA**_: esse objeto também inclui uma série de ações que são acionadas e
 
 _**/JS**_ ou _**/Javascript**_: contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
 
-_**/JS**_ ou _**/Javascript**_: contém código JavaScript a ser executado depois que uma ação é acionada; esse código pode incluir funções exclusivas para PDFs.
-
-_**/Launch:**_ tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
-
 _**/Launch:**_ tenta iniciar um aplicativo externo no dispositivo depois que uma ação é acionada, o que pode ser usado, por exemplo, para abrir outros documentos ou executar comandos específicos, que podem ser prejudiciais.
 
 _**/EmbeddedFile**_: permite a inclusão de arquivos arbitrários entre os documentos executáveis dentro do PDF. Há antecedentes de arquivos PDF benignos contendo outros arquivos nocivos incorporados, como executáveis de _malware_ ou documentos do Microsoft Office com macros maliciosas.
-
-_**/ObjStm**_: contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código malicioso, ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada resultará em muitos falsos positivos.
 
 _**/ObjStm**_: contém informações arbitrárias que serão processadas de acordo com a forma como é chamado. O principal uso desse objeto é para agrupar muitos objetos e compactá-los, resultando em um arquivo menor. No entanto, ele também pode ser usado para compactar código malicioso, ofuscá-lo e evitar a detecção de antivírus. Considerando os muitos casos de uso diferentes para esse tipo de objeto, presumir sua presença como mal-intencionada resultará em muitos falsos positivos.
 
@@ -121,7 +115,7 @@ Considerando tudo isso, queremos saber se um arquivo contém algum desses tipos 
 
 ### `Conheça o pdfid`
 
-Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PDF que consideramos suspeitos, podemos usar a ferramenta pdfid como primeira etapa para ver quais tipos de objetos estão contidos em nosso arquivo. O pdfid faz parte de [um conjunto de ferramentas desenvolvidas por Didier Stevens](https://blog.didierstevens.com/programs/pdf-tools/) para simplificar alguns processos de análise em arquivos PDF. Essas ferramentas são executadas usando a linha de comando (_Command Line,_ em inglês), por isso são conhecidas como aplicativos CLI (_Command Line Interface,_ ou interfaces de linha de comando). Explicaremos como usá-las usando a máquina virtual Remnux que configuramos na parte anterior deste curso.
+Uma vez que sabemos por onde começar a procurar sinais de alerta em arquivos PDF que consideramos suspeitos, podemos usar a ferramenta pdfid como primeira etapa para ver quais tipos de objetos estão contidos em nosso arquivo. O pdfid faz parte de [um conjunto de ferramentas desenvolvidas por Didier Stevens](https://blog.didierstevens.com/programs/pdf-tools/) para simplificar alguns processos de análise em arquivos PDF. Essas ferramentas são executadas usando a linha de comando (_Command Line,_ em inglês), por isso são conhecidas como aplicativos CLI (_Command Line Interface,_ ou Interfaces de Linha de Comando). Explicaremos como usá-las usando a máquina virtual REMnux que configuramos na parte anterior deste curso.
 
 Para usar o _pdfid_, precisamos abrir um aplicativo de Terminal em nossa máquina virtual. Quando iniciamos nossa máquina virtual, essa janela já deve estar aberta; no entanto, sempre podemos clicar no menu Activities (Atividades) no canto superior esquerdo e, em seguida, no ícone Terminal no painel esquerdo, conforme mostrado na imagem:
 
@@ -149,7 +143,7 @@ Para analisar nosso primeiro arquivo, precisamos estar cientes de que o comando 
 
 Para facilitar as coisas, por enquanto, podemos colocar nossos PDFs nessa pasta, de modo que o comando do terminal seja executado a partir do mesmo diretório do nosso arquivo PDF.
 
-Podemos pegar nosso arquivo de exemplo acima e salvá-lo como um arquivo PDF com a ajuda de um editor de texto em nosso computador anfitrião e arrastar e soltar o arquivo no diretório inicial do REMnux.
+Podemos pegar nosso arquivo de exemplo acima e salvá-lo como um arquivo PDF com a ajuda de um editor de texto em nosso computador hospedeiro e arrastar e soltar o arquivo no diretório inicial do REMnux.
 
 <figure><img src="images/Screenshot-from-2022-06-13-16-02-30.png" alt="Captura de tela do aplicativo explorador de arquivos dentro do REMnux com o arquivo test.pdf destacado"><figcaption></figcaption></figure>
 
