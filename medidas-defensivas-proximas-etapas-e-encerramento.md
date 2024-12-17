@@ -12,10 +12,6 @@ A primeira ideia que queremos reforçar é que dizer a ativistas, jornalistas e 
 
 #### Soluções antivírus
 
-### Em geral&#x20;
-
-#### Soluções antivírus
-
 Muitos documentos mal-intencionados distribuídos fazem parte de operações maciças que são documentadas com sucesso e integradas aos bancos de dados de detecção de antivírus. Lembre-se de que essa recomendação não garante a detecção de arquivos mal-intencionados que são feitos sob medida para alvos específicos. Ainda assim, ela fornecerá uma camada de segurança que vale a pena ter, especialmente se estiver operando com muitos arquivos não confiáveis. Lembre-se de escolher um fornecedor de boa reputação, ativar a detecção em tempo real, se disponível, e manter o banco de dados atualizado.&#x20;
 
 #### Mantenha o software legalizado e atualizado
@@ -24,7 +20,7 @@ Todos os anos, centenas de novas vulnerabilidades são descobertas e divulgadas 
 
 #### Analise a extensão de arquivos suspeitos
 
-Algumas campanhas induzem os usuários a abrir arquivos nocivos disfarçados de documentos, mas que, na verdade, são outros tipos de arquivos, como aplicativos executáveis, arquivos .zip ou outros tipos de arquivos de contêiner, como .iso, entre outros. Geralmente, esses arquivos incluem até mesmo ícones personalizados para se parecerem com documentos do MS Word, PDFs, etc. Verificar cuidadosamente os arquivos que baixamos e abrimos nos dará outra camada de proteção, ao detectar quando um arquivo não se enquadra em um tipo de arquivo comum ou esperado.&#x20;
+Algumas campanhas induzem os usuários a abrir arquivos nocivos disfarçados de documentos, mas que, na verdade, são outros tipos de arquivos, como aplicativos executáveis, arquivos .zip ou outros arquivos de tipo contêineres, como .iso, entre outros. Geralmente, esses arquivos incluem até mesmo ícones personalizados para se parecerem com documentos do MS Word, PDFs, etc. Verificar cuidadosamente os arquivos que baixamos e abrimos nos dará outra camada de proteção, ao detectar quando um arquivo não se enquadra em um tipo de arquivo comum ou esperado.&#x20;
 
 #### Use leitores "emprestados"
 
@@ -58,11 +54,11 @@ Exemplo para o Acrobat Reader (agosto de 2022, Menu Editar -> Preferências -> J
 
 Exemplo para o Foxit Reader (agosto de 2022, Menu File->Preferences->Javascript)&#x20;
 
-### [Específico para Office](#user-content-fn-1)[^1]: Minimizar o uso de macros em atividades legítimas
+### Específico para Office: Minimizar o uso de macros em atividades legítimas
 
 Mesmo que haja muitos casos de uso aceitáveis e inofensivos para macros, usar frequentemente documentos com elas e se habituar a permiti-las pode abrir a porta para receber um documento mal-intencionado e ativar suas macros acidentalmente. Por isso, especialmente as organizações devem estar atentas a essa situação e planejar adequadamente, seja para remover o uso de macros, seja para preparar processos para conviver com elas, considerando como lidar com arquivos não confiáveis.&#x20;
 
-### [Específico para Office](#user-content-fn-2)[^2]: Desative as macros e verifique a Central de Confiança
+### Específico para Office: Desative as macros e verifique a Central de Confiança
 
 Recentemente, o Microsoft Office alterou várias vezes sua política em relação às macros, portanto, dependendo de quando você estiver lendo este material, o Office poderá ter as macros ativadas ou desativadas por padrão; além disso, poderá haver regras dependendo da origem dos arquivos, etc. Uma maneira de ter mais visibilidade e controle é verificar a Central de Confiabilidade e configurar diretamente o comportamento em relação às macros.
 
@@ -98,7 +94,3 @@ Além disso, aconselhamos em geral a:
 Lembre-se de que a análise de documentos maliciosos (e de malware em geral) é uma carreira completa que geralmente requer anos de experiência para lidar com casos mais avançados. Dito isso, reforçamos que este material é uma introdução a uma parte específica da análise de malware que, esperamos, incentive o leitor a aprender mais e a adquirir mais habilidades nesse campo. No entanto, dado o risco associado à operação de artefatos mal-intencionados sem os devidos processos e considerações de segurança, desencorajamos os leitores a adicionar mais processos e ferramentas de análise aos fluxos de trabalho apresentados sem o devido conhecimento desses processos e ferramentas, especialmente aqueles que envolvem a execução de malware (ou análise dinâmica).
 
 Este é um material em constante revisão. Em caso de dúvidas ou comentários, entre em contato com cguerra@internews.org
-
-[^1]: "office" está em minúscula no original, mas acho que se refere ao programa MS OFFICE, checar
-
-[^2]: "office" está em minúscula no original, mas acho que se refere ao programa MS OFFICE, checar
