@@ -167,7 +167,7 @@ Em seguida, na seção “Network” (Rede), você terá uma série de opções,
 * **Attached to - Internal Network (Conectado a uma rede interna):** semelhante ao anterior, mas nossa máquina hospedeira não está acessível; isso é útil quando queremos ver como duas ou mais máquinas interagem entre si.
 * **Attached to - Not attached (Conectado a - Não conectado):** Isso emula um adaptador de rede sem um cabo conectado a ele.
 
-Dependendo do uso que daremos à nossa máquina, na configuração inicial podemos manter o NAT ativado para acessar a Internet e fazer o download de ferramentas, etc.. E antes de iniciar nossa análise, podemos alterá-lo para Não conectado, Rede interna ou desativar o adaptador.
+Dependendo do uso que daremos à nossa máquina, na configuração inicial podemos manter o NAT ativado para acessar a Internet e fazer o download de ferramentas, etc. E antes de iniciar nossa análise, podemos alterá-lo para Não conectado, Rede interna ou desativar o adaptador.
 
 ### Configurações adicionais no VirtualBox - Compartilhamento de informações com a máquina hospedeira (host)
 
