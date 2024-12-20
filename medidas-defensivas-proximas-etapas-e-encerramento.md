@@ -93,4 +93,4 @@ Além disso, aconselhamos em geral a:
 
 Lembre-se de que a análise de documentos maliciosos (e de malware em geral) é uma carreira completa que geralmente requer anos de experiência para lidar com casos mais avançados. Dito isso, reforçamos que este material é uma introdução a uma parte específica da análise de malware que, esperamos, incentive o leitor a aprender mais e a adquirir mais habilidades nesse campo. No entanto, dado o risco associado à operação de artefatos mal-intencionados sem os devidos processos e considerações de segurança, desencorajamos os leitores a adicionar mais processos e ferramentas de análise aos fluxos de trabalho apresentados sem o devido conhecimento desses processos e ferramentas, especialmente aqueles que envolvem a execução de malware (ou análise dinâmica).
 
-Este é um material em constante revisão. Em caso de dúvidas ou comentários, entre em contato com cguerra@internews.org
+Este é um material em constante revisão. Em caso de dúvidas ou comentários, entre em contato com cguerra@internews.org .
