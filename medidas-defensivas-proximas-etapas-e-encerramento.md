@@ -34,11 +34,11 @@ Existem ferramentas que adotam o mesmo princípio de usar um ambiente seguro par
 
 Outra estratégia comum diante de arquivos suspeitos é verificar em plataformas como o VirusTotal se o arquivo é conhecido como malicioso. Isso nos ajudará a economizar tempo, caso o arquivo seja uma ameaça conhecida, e ainda nos fornecerá informações mais valiosas, como o tipo de malware que ele tenta executar e as mensagens de membros da comunidade associadas ao arquivo. Uma observação muito importante é saber que o upload do arquivo para ferramentas como o VirusTotal colocará o arquivo à disposição da comunidade, divulgando o conteúdo do documento (que pode conter informações confidenciais) e, possivelmente, alertando os criadores do documento se eles estiverem monitorando o arquivo específico. Uma solução alternativa para isso é não carregar o arquivo e, em vez disso, verificar seu _hash_. Na primeira parte desta série, há orientações sobre como verificar _hashes_.
 
-**\[imagem - Captura de tela do site VirusTotal destacando a barra de pesquisa com um texto de hash]**
+<figure><img src=".gitbook/assets/2022-09-23_13-47-04.jpg" alt="Captura de tela do site VirusTotal destacando a barra de pesquisa com um texto de hash"><figcaption></figcaption></figure>
 
 Exemplo de pesquisa do _hash_ de um arquivo, agosto de 2022
 
-**\[imagem - Captura de tela do site VirusTotal mostrando os resultados de uma verificação de arquivo em que ele foi detectado como malicioso por 29 de 63 mecanismos antivírus]**
+<figure><img src=".gitbook/assets/2022-09-23_13-47-45.jpg" alt="Captura de tela do site VirusTotal mostrando os resultados de uma verificação de arquivo em que ele foi detectado como malicioso por 29 de 63 mecanismos antivírus"><figcaption></figcaption></figure>
 
 Exemplo de resultados no VirusTotal, agosto de 2022
 
@@ -46,11 +46,11 @@ Exemplo de resultados no VirusTotal, agosto de 2022
 
 Dependendo do software do seu leitor de PDF, a execução do código JavaScript pode já estar desativada. No entanto, é aconselhável verificar novamente caso você espere abrir arquivos suspeitos. Além disso, dependendo do seu leitor, é possível que existam outros recursos de segurança que possam ser configurados.
 
-**\[imagem - Captura de tela do Adobe PDF Reader destacando as opções para ativar ou desativar o JavaScript]**
+<figure><img src=".gitbook/assets/2022-09-23_13-56-22.jpg" alt="Captura de tela do Adobe PDF Reader destacando as opções para ativar ou desativar o JavaScript"><figcaption></figcaption></figure>
 
 Exemplo para o Acrobat Reader (agosto de 2022, Menu Editar -> Preferências -> Javascript)
 
-**\[imagem - Captura de tela do Foxit PDF reader destacando as opções para ativar ou desativar o JavaScript]**
+<figure><img src=".gitbook/assets/2022-09-23_13-59-00.jpg" alt="Captura de tela do Foxit PDF reader destacando as opções para ativar ou desativar o JavaScript"><figcaption></figcaption></figure>
 
 Exemplo para o Foxit Reader (agosto de 2022, Menu File->Preferences->Javascript)
 
@@ -62,17 +62,17 @@ Mesmo que haja muitos casos de uso aceitáveis e inofensivos para macros, usar f
 
 Recentemente, o Microsoft Office alterou várias vezes sua política em relação às macros, portanto, dependendo de quando você estiver lendo este material, o Office poderá ter as macros ativadas ou desativadas por padrão; além disso, poderá haver regras dependendo da origem dos arquivos, etc. Uma maneira de ter mais visibilidade e controle é verificar a Central de Confiabilidade e configurar diretamente o comportamento em relação às macros.
 
-**Captura de tela da janela de configuração do Microsoft Office destacando as opções para ativar ou desativar as macros**
+<figure><img src=".gitbook/assets/2022-09-23_14-13-40.jpg" alt="Captura de tela da janela de configuração do Microsoft Office destacando as opções para ativar ou desativar as macros"><figcaption></figcaption></figure>
 
 Trust Center para MS Office (agosto de 2022, Menu File->Options->Trust Center->Trust Center Settings->Macro Settings)
 
 Outro recurso interessante do MS Office é o Modo de exibição Protegido, que, considerando a origem de um arquivo, abre-o em um ambiente de área restrita com pouco privilégio ou acesso para interferir no computador, oferecendo outra camada de confiança. Um problema com esse modo é que, de forma semelhante ao bloqueio de macros, há um botão em uma faixa de opções acima do documento em que o usuário pode desativar o recurso Modo de Exibição Protegido, permitindo novamente ataques em que o criador do documento engana o usuário para desativar essa proteção.
 
-**Captura de tela da janela de configuração do Microsoft Office mostrando as opções para ativar ou desativar o Modo de Exibição Protegido (Protected View)**
+<figure><img src=".gitbook/assets/2022-09-23_14-14-15.jpg" alt="Captura de tela da janela de configuração do Microsoft Office mostrando as opções para ativar ou desativar o Modo de Exibição Protegido (Protected View)"><figcaption></figcaption></figure>
 
 Configurações do Protected View (agosto de 2022, Menu File->Options->Trust Center->Trust Center Settings->Protected View)
 
-**Captura de tela do Microsoft Word mostrando o aviso do Modo de Exibição Protegido (Protected View)**
+<figure><img src=".gitbook/assets/2022-09-23_14-31-50.jpg" alt="Captura de tela do Microsoft Word mostrando o aviso do Modo de Exibição Protegido (Protected View)"><figcaption></figcaption></figure>
 
 Modo de exibição protegido em um documento do MS Word (agosto de 2022)
 
